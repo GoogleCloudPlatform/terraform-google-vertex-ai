@@ -15,7 +15,7 @@
  */
 
 module "common_vertex_ai_workbench" {
-  source               = "../../"
+  source               = "../../modules/workbench/"
   name                 = var.name
   location             = var.location
   project_id           = var.project_id
