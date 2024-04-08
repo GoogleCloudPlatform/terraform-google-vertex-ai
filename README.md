@@ -1,7 +1,8 @@
 # Google Module for Vertex AI
 
 This is a collection of submodules that make it easier to non-destructively manage multiple IAM roles for resources on Google Cloud Platform:
-[Vertex AI workbench](./modules/workbench/)
+
+- [Vertex AI workbench](./modules/workbench/)
 
 ## Requirements
 
