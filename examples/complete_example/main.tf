@@ -22,16 +22,14 @@ locals {
     env  = "test"
     type = "workbench"
   }
-
 }
 
-module "complete_vertex_ai_workbench" {
-  source = "../../../examples/common_example"
-
+module "common_vertex_ai_workbench" {
+  source               = "../../modules/workbench/"
   name                 = "test-vertex-ai-instance"
   location             = local.location
   project_id           = var.project_id
-  instance_owners      = ["${var.instance_owner}"]
+  instance_owners      = var.instance_owners
   labels               = local.labels
   disable_proxy_access = true
   kms_key              = module.kms.keys["test"]

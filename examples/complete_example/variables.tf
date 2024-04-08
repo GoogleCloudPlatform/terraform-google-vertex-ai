@@ -199,5 +199,3 @@ variable "bucket_location" {
   description = "Common region that can be used for multiple Vertex AI Workbench Instances"
   type        = string
 }
-
-

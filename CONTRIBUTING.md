@@ -27,10 +27,6 @@ Integration tests are used to verify the behaviour of the root module,
 submodules, and example modules. Additions, changes, and fixes should
 be accompanied with tests.
 
-The integration tests are run using [Kitchen][kitchen],
-[Kitchen-Terraform][kitchen-terraform], and [InSpec][inspec]. These
-tools are packaged within a Docker image for convenience.
-
 The general strategy for these tests is to verify the behaviour of the
 [example modules](./examples/), thus ensuring that the root module,
 submodules, and example modules are all functionally correct.
@@ -63,23 +59,26 @@ noninteractively, using the prepared test project.
 
 ### Interactive Execution
 
-1. Run `make docker_run` to start the testing Docker container in
-   interactive mode.
-
-1. Run `kitchen_do create <EXAMPLE_NAME>` to initialize the working
-   directory for an example module.
-
-1. Run `kitchen_do converge <EXAMPLE_NAME>` to apply the example module.
-
-1. Run `kitchen_do verify <EXAMPLE_NAME>` to test the example module.
-
-1. Run `kitchen_do destroy <EXAMPLE_NAME>` to destroy the example module
-   state.
+1. Run `make docker_run` to enter developer tools container
+2. Run `cft test list` to list available tests
+Add a new test or get name of an existing test
+3. Run `cft test run <test-name> --stage init --verbose` to initialize the test
+This will run a terraform init and terraform validate within the example directory with configuration to be tested. Iteratively develop the Terraform configs in example directory if an error is thrown.
+4. Run `cft test run <test-name> --stage apply` --verbose to apply the test configuration
+This will run a terraform apply.Iteratively develop the Terraform configs in example directory if an error is thrown. State is persisted locally, so this is safe to rerun and idempotent.
+5. Run `cft test run <test-name> --stage verify --verbose` to execute the verification tests. These are the statements used to assert data received from gcloud (or API) is what we expected.
+Iterate on the test/integration/example-name/example_name_test.go verify stage.
+6. Run `cft test run <test-name> --stage teardown --verbose` to teardown any resources.
+7. Rerun `cft test run <test-name> --verbose` without an explicit stage to test all stages from init to teardown to validate e2e works as expected.
 
 ## Linting and Formatting
 
-Many of the files in the repository can be linted or formatted to
-maintain a standard of quality.
+Many of the files within your blueprint repository can be linted or formatted to maintain a standard of quality. Lint tests usually validate that
+- Terraform config formatted via `terraform fmt`
+- Trailing whitespaces removed
+- Auto generated docs up to date
+- Auto generated code if any are up to date
+- File headers are correct
 
 ### Execution
 
