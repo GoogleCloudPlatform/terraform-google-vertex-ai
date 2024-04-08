@@ -1,0 +1,57 @@
+/**
+ * Copyright 2023 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+name                 = "test-vertex-ai-instance"
+location             = local.location
+project_id           = var.project_id
+instance_owners      = ["abc@example.com"]
+labels               = {foo = bar}
+disable_proxy_access = true
+kms_key              = "projects/abc/locations/us-central1/keyRings/my-kr/cryptoKeys/mykey"
+
+machine_type         = "e2-standard-2"
+disable_public_ip    = true
+enable_ip_forwarding = false
+tags                 = ["abc", "def"]
+
+service_accounts = [
+  {
+    email = "vertex-ai-workbench-sa@ci-vertex-workbench.iam.gserviceaccount.com"
+  },
+]
+
+data_disks = [
+  {
+    disk_size_gb = 330
+    disk_type    = "PD_BALANCED"
+  },
+]
+
+network_interfaces = [
+  {
+    network  = "projects/{{project}}/global/networks/{{name}}"
+    subnet   = "projects/{{project}}/regions/{{region}}/subnetworks/{{name}}"
+    nic_type = "GVNIC"
+  }
+]
+
+metadata = {
+  post-startup-script          = "gs://mybucket/startup.sh"
+  post-startup-script-behavior = "download_and_run_every_start"
+}
+
+bucket_prefix   = "my-byod-bucket"
+bucket_location = "us-central1"
