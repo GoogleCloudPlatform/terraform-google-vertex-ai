@@ -25,7 +25,7 @@ resource "google_project_iam_custom_role" "os_login_custom_role" {
   ]
 }
 
-# ##############################   IAP/OsLogin VM Level Permissions   ##########################################################################################
+# ##############################   IAP/OsLogin VM Level Permissions   ##################
 # ## OS Login Role at VM level. Will need compute.projects.get permission on project
 
 resource "google_project_iam_member" "os_login_custom_role" {
