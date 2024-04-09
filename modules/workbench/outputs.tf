@@ -53,9 +53,3 @@ output "work_bench" {
   description = "Workbenchs created"
   value       = google_workbench_instance.vertex_ai_workbench
 }
-
-
-output "byod_bucket_name" {
-  description = "BYOD bucket name"
-  value       = module.byod_bucket.name
-}

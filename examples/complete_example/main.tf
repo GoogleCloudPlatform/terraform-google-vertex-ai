@@ -16,28 +16,37 @@
 
 locals {
   location             = "us-central1-a"
-  byod_bucket_location = "us-central1"
-  byod_bucket_name     = "sin-222333-test-bucket"
+  bucket_location      = "us-central1"
+  byod_bucket_name     = "byod-test-bucket"
+  metadata_bucket_name = "metadata-bucket"
   labels = {
     env  = "test"
     type = "workbench"
   }
 }
 
-module "common_vertex_ai_workbench" {
+resource "google_service_account" "workbench_sa" {
+  account_id   = "vertex-ai-workbench-sa"
+  display_name = "Vertex AI Workbench Service Account"
+  project      = var.project_id
+}
+
+module "complete_vertex_ai_workbench" {
   source               = "../../modules/workbench/"
   name                 = "test-vertex-ai-instance"
   location             = local.location
   project_id           = var.project_id
-  instance_owners      = var.instance_owners
   labels               = local.labels
   disable_proxy_access = true
   kms_key              = module.kms.keys["test"]
+  disk_encryption      = "CMEK"
 
   machine_type         = "e2-standard-2"
   disable_public_ip    = true
   enable_ip_forwarding = false
   tags                 = ["abc", "def"]
+
+  instance_owners = var.instance_owners
 
   service_accounts = [
     {
@@ -61,12 +70,9 @@ module "common_vertex_ai_workbench" {
   ]
 
   metadata = {
-    post-startup-script          = "${module.gcs_buckets.url}/${google_storage_bucket_object.startup_script.name}"
+    post-startup-script          = "${module.metadata_gcs_bucket.url}/${google_storage_bucket_object.startup_script.name}"
     post-startup-script-behavior = "download_and_run_every_start"
   }
-
-  bucket_prefix   = local.byod_bucket_name
-  bucket_location = local.byod_bucket_location
 
   depends_on = [
     google_storage_bucket_iam_member.member,

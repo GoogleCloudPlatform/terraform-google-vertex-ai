@@ -86,5 +86,4 @@ resource "google_workbench_instance" "vertex_ai_workbench" {
       }
     }
   }
-  depends_on = [google_storage_bucket_iam_member.member_sa]
 }

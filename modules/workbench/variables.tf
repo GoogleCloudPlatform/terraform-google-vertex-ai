@@ -32,7 +32,7 @@ variable "project_id" {
 variable "instance_owners" {
   description = "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
   type        = list(string)
-  default     = null
+  default     = []
 }
 
 variable "instance_id" {
@@ -161,40 +161,4 @@ variable "vm_image" {
     project = optional(string)
   })
   default = null
-}
-
-# Bucket configuration
-
-variable "bucket_prefix" {
-  description = "The name of the bucket"
-  type        = string
-}
-
-variable "bucket_storage_class" {
-  description = "The storage class of the bucket"
-  type        = string
-  default     = null
-}
-
-variable "bucket_versioning" {
-  description = "Specifies if versioning should be enabled for the bucket"
-  type        = bool
-  default     = true
-}
-
-variable "bucket_timestamp" {
-  description = "Timestamp of when access to BYOD will expire (ISO 8601 format - ex. 2020-01-01T00:00:00Z)"
-  type        = string
-  default     = null
-}
-
-variable "byod_access_group" {
-  description = "The AD group able to access the bucket"
-  type        = string
-  default     = null
-}
-
-variable "bucket_location" {
-  description = "Common region that can be used for multiple Vertex AI Workbench Instances"
-  type        = string
 }
