@@ -24,15 +24,3 @@ variable "instance_owners" {
   type        = list(string)
   default     = ["imrannayer@google.com"]
 }
-
-variable "bucket_timestamp" {
-  description = "Timestamp of when access to BYOD will expire (ISO 8601 format - ex. 2020-01-01T00:00:00Z)"
-  type        = string
-  default     = null
-}
-
-variable "byod_access_group" {
-  description = "The AD group able to access the bucket"
-  type        = string
-  default     = null
-}

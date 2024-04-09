@@ -32,7 +32,8 @@ resource "google_service_account" "workbench_sa" {
 }
 
 module "complete_vertex_ai_workbench" {
-  source               = "../../modules/workbench/"
+  source = "../../modules/workbench"
+
   name                 = "test-vertex-ai-instance"
   location             = local.location
   project_id           = var.project_id
@@ -50,7 +51,7 @@ module "complete_vertex_ai_workbench" {
 
   service_accounts = [
     {
-      email = "${google_service_account.workbench_sa.email}"
+      email = google_service_account.workbench_sa.email
     },
   ]
 

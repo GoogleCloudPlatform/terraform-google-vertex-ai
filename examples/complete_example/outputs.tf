@@ -53,8 +53,3 @@ output "work_bench" {
   description = "Workbenchs created"
   value       = module.complete_vertex_ai_workbench.work_bench
 }
-
-# output "byod_bucket_name" {
-#   description = "BYOD bucket name"
-#   value       = module.complete_vertex_ai_workbench.byod_bucket_name
-# }
