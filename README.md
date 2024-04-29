@@ -1,6 +1,6 @@
 # Google Module for Vertex AI resources
 
-This is a collection of submodules that make it easier to Vertex AI resources.
+This is a collection of submodules for vertex AI related resources.
 
 - [Vertex AI workbench](./modules/workbench/)
 
