@@ -17,7 +17,7 @@
 module "project" {
   source                  = "terraform-google-modules/project-factory/google"
   version                 = "~> 14.0"
-  name                    = "uhg-ci-vertex-workbench"
+  name                    = "ci-vertex-ai"
   random_project_id       = "true"
   org_id                  = var.org_id
   folder_id               = var.folder_id
@@ -33,11 +33,8 @@ module "project" {
     "cloudkms.googleapis.com",
     "servicenetworking.googleapis.com",
     "secretmanager.googleapis.com",
-    "vpcaccess.googleapis.com",
     "notebooks.googleapis.com",
     "aiplatform.googleapis.com",
-    "dataform.googleapis.com",
-    "discoveryengine.googleapis.com",
     "iap.googleapis.com",
   ]
 

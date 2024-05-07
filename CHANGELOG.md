@@ -8,9 +8,3 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
-## 0.1.0 (2024-04-03)
-
-
-### Bug Fixes
-
-* Initial release

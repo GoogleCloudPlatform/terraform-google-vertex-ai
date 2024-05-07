@@ -13,13 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/******************************************
-  Provider credential configuration
- *****************************************/
-locals {
-  terraform_service_account = "ci-vertex-workbench-sa@uhg-ci-vertex-workbench-78ae.iam.gserviceaccount.com"
+
+resource "random_id" "suffix" {
+  byte_length = 4
 }
 
-provider "google" {
-  impersonate_service_account = local.terraform_service_account
+module "test-vpc-module" {
+  source       = "terraform-google-modules/network/google"
+  version      = "~> 8.0"
+  project_id   = var.project_id
+  network_name = "simple-workbench"
+  mtu          = 1460
+  subnets = [
+    {
+      subnet_name           = "simple-subnet-01"
+      subnet_ip             = "10.10.10.0/24"
+      subnet_region         = "us-central1"
+      subnet_private_access = true
+    },
+  ]
 }

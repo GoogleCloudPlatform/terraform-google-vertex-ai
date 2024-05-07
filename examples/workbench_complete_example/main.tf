@@ -16,34 +16,44 @@
 
 locals {
   location             = "us-central1-a"
-  byod_bucket_location = "us-central1"
-  byod_bucket_name     = "sin-222333-test-bucket"
+  bucket_location      = "us-central1"
+  byod_bucket_name     = "byod-test-bucket"
+  metadata_bucket_name = "metadata-bucket"
   labels = {
     env  = "test"
     type = "workbench"
   }
+}
 
+resource "google_service_account" "workbench_sa" {
+  account_id   = "vertex-ai-workbench-sa"
+  display_name = "Vertex AI Workbench Service Account"
+  project      = var.project_id
 }
 
 module "complete_vertex_ai_workbench" {
-  source = "../../../examples/common_example"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
+  version = "~> 0.1"
 
-  name                 = "test-vertex-ai-instance"
+  name                 = "complete-vertex-ai-workbench"
   location             = local.location
   project_id           = var.project_id
-  instance_owners      = ["${var.instance_owner}"]
   labels               = local.labels
   disable_proxy_access = true
-  kms_key              = module.kms.keys["test"]
+
+  kms_key         = module.kms.keys["test"]
+  disk_encryption = "CMEK"
 
   machine_type         = "e2-standard-2"
   disable_public_ip    = true
   enable_ip_forwarding = false
   tags                 = ["abc", "def"]
 
+  instance_owners = var.instance_owners
+
   service_accounts = [
     {
-      email = "${google_service_account.workbench_sa.email}"
+      email = google_service_account.workbench_sa.email
     },
   ]
 
@@ -62,19 +72,24 @@ module "complete_vertex_ai_workbench" {
     }
   ]
 
-  metadata = {
-    post-startup-script          = "${module.gcs_buckets.url}/${google_storage_bucket_object.startup_script.name}"
+  ## https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
+  metadata_configs = {
+    post-startup-script          = "${module.metadata_gcs_bucket.url}/${google_storage_bucket_object.startup_script.name}"
     post-startup-script-behavior = "download_and_run_every_start"
+    idle-timeout-seconds         = 3600
+    notebook-disable-root        = true
+    notebook-upgrade-schedule    = "00 19 * * SAT"
   }
 
-  bucket_prefix   = local.byod_bucket_name
-  bucket_location = local.byod_bucket_location
+  shielded_instance_config = {
+    enable_secure_boot = true
+  }
 
   depends_on = [
     google_storage_bucket_iam_member.member,
-    google_project_iam_member.sa_notebooks,
-    google_project_iam_member.sa_aiplatform,
-    google_project_iam_member.sa_compute_engine,
+    google_kms_crypto_key_iam_member.sa_notebooks,
+    google_kms_crypto_key_iam_member.sa_aiplatform,
+    google_kms_crypto_key_iam_member.sa_compute_engine,
     google_storage_bucket_object.startup_script,
   ]
 }

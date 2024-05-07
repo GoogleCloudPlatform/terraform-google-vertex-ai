@@ -18,23 +18,24 @@ locals {
   startup_script_name     = "startup_script.sh"
 }
 
-module "gcs_buckets" {
-  source          = "terraform-google-modules/cloud-storage/google"
-  version         = "~> 5.0"
-  project_id      = var.project_id
-  names           = ["test_bucket", ]
-  prefix          = "sin-5678"
-  set_admin_roles = false
-  force_destroy   = { name = true }
-  location        = local.byod_bucket_location
+module "metadata_gcs_bucket" {
+  source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
+  version = "~> 5.0"
+
+  name          = "${local.metadata_bucket_name}-${random_id.suffix.hex}"
+  project_id    = var.project_id
+  location      = local.bucket_location
+  force_destroy = true
 }
 
 resource "google_storage_bucket_iam_member" "member" {
-  bucket = module.gcs_buckets.name
+  bucket = module.metadata_gcs_bucket.name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${google_service_account.workbench_sa.email}"
 }
 
+
+# Render startup script
 data "template_file" "startup_script" {
   template = file(format("%s/${local.startup_script_template}", path.module))
 
@@ -43,13 +44,9 @@ data "template_file" "startup_script" {
   }
 }
 
-
+# upload startup script to metadata bucket
 resource "google_storage_bucket_object" "startup_script" {
   name    = local.startup_script_name
   content = data.template_file.startup_script.rendered
-  bucket  = module.gcs_buckets.name
-}
-
-output "gcs_bucket_url" {
-  value = module.gcs_buckets.url
+  bucket  = module.metadata_gcs_bucket.name
 }

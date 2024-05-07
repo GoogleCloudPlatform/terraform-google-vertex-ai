@@ -32,8 +32,8 @@ locals {
 
 resource "google_service_account" "int_test" {
   project      = module.project.project_id
-  account_id   = "ci-vertex-workbench-sa"
-  display_name = "ci-vertex-workbench-sa"
+  account_id   = "ci-vertex-ai-sa"
+  display_name = "ci-vertex-ai-sa"
 }
 
 resource "google_project_iam_member" "int_test" {

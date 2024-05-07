@@ -54,8 +54,7 @@ output "work_bench" {
   value       = google_workbench_instance.vertex_ai_workbench
 }
 
-
-output "byod_bucket_name" {
-  description = "BYOD bucket name"
-  value       = module.byod_bucket.name
+output "workbench_name" {
+  value       = google_workbench_instance.vertex_ai_workbench.id
+  description = "The name of the Vertex AI Workbench instance"
 }

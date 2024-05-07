@@ -32,7 +32,7 @@ variable "project_id" {
 variable "instance_owners" {
   description = "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
   type        = list(string)
-  default     = null
+  default     = []
 }
 
 variable "instance_id" {
@@ -56,7 +56,7 @@ variable "desired_state" {
 variable "disable_proxy_access" {
   description = "If true, the workbench instance will not register with the proxy"
   type        = bool
-  default     = true
+  default     = false
 }
 
 ## GCE instance configuration
@@ -64,12 +64,13 @@ variable "disable_proxy_access" {
 variable "kms_key" {
   description = "The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}"
   type        = string
+  default     = null
 }
 
 variable "disk_encryption" {
   description = "Disk encryption method used on the boot and data disks, defaults to GMEK. Possible values are: GMEK, CMEK"
   type        = string
-  default     = "CMEK"
+  default     = "GMEK"
 }
 
 variable "disable_public_ip" {
@@ -82,6 +83,25 @@ variable "metadata" {
   description = "Custom metadata to apply to this instance"
   type        = map(string)
   default     = {}
+}
+
+## variables for metadata setting https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
+variable "metadata_configs" {
+  description = "predefined metadata to apply to this instance"
+  type = object({
+    idle-timeout-seconds            = optional(number)
+    notebook-upgrade-schedule       = optional(string)
+    notebook-disable-downloads      = optional(bool)
+    notebook-disable-root           = optional(bool)
+    post-startup-script             = optional(string)
+    post-startup-script-behavior    = optional(string)
+    nbconvert                       = optional(bool)
+    notebook-enable-delete-to-trash = optional(bool)
+    disable-mixer                   = optional(bool)
+    jupyter-user                    = optional(string)
+    report-event-health             = optional(bool)
+  })
+  default = {}
 }
 
 variable "tags" {
@@ -163,38 +183,21 @@ variable "vm_image" {
   default = null
 }
 
-# Bucket configuration
-
-variable "bucket_prefix" {
-  description = "The name of the bucket"
-  type        = string
+variable "container_image" {
+  description = "Use a container image to start the workbench instance. reposory path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag"
+  type = object({
+    repository = optional(string)
+    tag        = optional(string)
+  })
+  default = null
 }
 
-variable "bucket_storage_class" {
-  description = "The storage class of the bucket"
-  type        = string
-  default     = null
-}
-
-variable "bucket_versioning" {
-  description = "Specifies if versioning should be enabled for the bucket"
-  type        = bool
-  default     = true
-}
-
-variable "bucket_timestamp" {
-  description = "Timestamp of when access to BYOD will expire (ISO 8601 format - ex. 2020-01-01T00:00:00Z)"
-  type        = string
-  default     = null
-}
-
-variable "byod_access_group" {
-  description = "The AD group able to access the bucket"
-  type        = string
-  default     = null
-}
-
-variable "bucket_location" {
-  description = "Common region that can be used for multiple Vertex AI Workbench Instances"
-  type        = string
+variable "shielded_instance_config" {
+  description = "A set of Shielded Instance options"
+  type = object({
+    enable_secure_boot          = optional(bool, false)
+    enable_vtpm                 = optional(bool, true)
+    enable_integrity_monitoring = optional(bool, true)
+  })
+  default = null
 }
