@@ -1,7 +1,7 @@
 # Vertex AI Workbench Instance simple example
 Deploy private vertex AI Workbench Instance without proxy. Instance will be accessed using IAP (Identity aware proxy).
 
-This example also creates:
+This example creates:
 - Vertex AI workbench with custom service account [main.tf](./main.tf).
 - Network & firewall rules [network](./network.tf).
 

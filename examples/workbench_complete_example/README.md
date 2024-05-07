@@ -1,7 +1,7 @@
 # Vertex AI Workbench Instance end to end complete example
 Deploy private vertex AI Workbench Instance without proxy. Instance will be accessed using IAP (Identity aware proxy).
 
-This example also creates:
+This example creates:
 - Vertex AI workbench with CMEK encryption and custom service account [main.tf](./main.tf).
 - CMEK key and IAM permissions needed for google managed service accounts [CMEK](./kms.tf).
 - Metadata GCS bucket for hosting startup script [metadata startup script bucket](./metadata_gcs.tf).
