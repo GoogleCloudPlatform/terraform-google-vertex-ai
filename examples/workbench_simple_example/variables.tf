@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3.0"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 5.18, < 6"
-    }
-  }
+variable "project_id" {
+  description = "The ID of the project in which the resource belongs"
+  type        = string
 }
+
+# variable "instance_owners" {
+#   description = "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
+#   type        = list(string)
+#   default     = ["test@example.com"]
+# }

@@ -32,15 +32,17 @@ resource "google_service_account" "workbench_sa" {
 }
 
 module "complete_vertex_ai_workbench" {
-  source = "../../modules/workbench"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
+  version = "~> 0.1"
 
-  name                 = "test-vertex-ai-instance"
+  name                 = "complete-vertex-ai-workbench"
   location             = local.location
   project_id           = var.project_id
   labels               = local.labels
   disable_proxy_access = true
-  kms_key              = module.kms.keys["test"]
-  disk_encryption      = "CMEK"
+
+  kms_key         = module.kms.keys["test"]
+  disk_encryption = "CMEK"
 
   machine_type         = "e2-standard-2"
   disable_public_ip    = true
@@ -70,16 +72,24 @@ module "complete_vertex_ai_workbench" {
     }
   ]
 
-  metadata = {
+  ## https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
+  metadata_configs = {
     post-startup-script          = "${module.metadata_gcs_bucket.url}/${google_storage_bucket_object.startup_script.name}"
     post-startup-script-behavior = "download_and_run_every_start"
+    idle-timeout-seconds         = 3600
+    notebook-disable-root        = true
+    notebook-upgrade-schedule    = "00 19 * * SAT"
+  }
+
+  shielded_instance_config = {
+    enable_secure_boot = true
   }
 
   depends_on = [
     google_storage_bucket_iam_member.member,
-    google_project_iam_member.sa_notebooks,
-    google_project_iam_member.sa_aiplatform,
-    google_project_iam_member.sa_compute_engine,
+    google_kms_crypto_key_iam_member.sa_notebooks,
+    google_kms_crypto_key_iam_member.sa_aiplatform,
+    google_kms_crypto_key_iam_member.sa_compute_engine,
     google_storage_bucket_object.startup_script,
   ]
 }
