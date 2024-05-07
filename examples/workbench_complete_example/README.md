@@ -1,7 +1,7 @@
-# Vertex AI Workbench Instance example
+# Vertex AI Workbench Instance end to end complete example
 Deploy private vertex AI Workbench Instance without proxy. Instance will be accessed using IAP (Identity aware proxy).
 
-This example also creates:
+This example creates:
 - Vertex AI workbench with CMEK encryption and custom service account [main.tf](./main.tf).
 - CMEK key and IAM permissions needed for google managed service accounts [CMEK](./kms.tf).
 - Metadata GCS bucket for hosting startup script [metadata startup script bucket](./metadata_gcs.tf).
@@ -14,8 +14,12 @@ This example also creates:
 
 To run this example execute:
 
-
 ```bash
+export TF_VAR_project_id="your_project_id"
+export TF_VAR_instance_owners="your_email_address"
+```
+
+```tf
 terraform init
 terraform plan
 terraform apply
@@ -25,21 +29,20 @@ terraform apply
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| instance\_owners | The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | <pre>[<br>  "imrannayer@google.com"<br>]</pre> | no |
+| instance\_owners | The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | <pre>[<br>  "test@example.com"<br>]</pre> | no |
 | project\_id | The ID of the project in which the resource belongs | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| creator | Email address of entity that sent original CreateInstance request. |
-| gcs\_bucket\_url | n/a |
-| health\_info | Additional information about the the Vertex AI Workbench instance's health. |
-| health\_state | The health state of the Vertex AI Workbench instance. |
-| id | The Vertex AI Workbench instance ID. |
-| proxy\_uri | The proxy endpoint that is used to access the Jupyter notebook. |
-| state | The state of the Vertex AI Workbench instance. |
-| upgrade\_history | The upgrade history of the Vertex AI Workbench instance. |
-| work\_bench | Workbenchs created |
+| kms\_key | The KMS key for Vertex AI Workbench instance |
+| location | The location of the Vertex AI Workbench instance |
+| network | The network for Vertex AI Workbench instance |
+| project\_id | The project ID |
+| service\_account | The service account for Vertex AI Workbench instance |
+| subnet | The subnet for Vertex AI Workbench instance |
+| workbench | The Vertex AI Workbench instance |
+| workbench\_name | The name of the Vertex AI Workbench instance |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

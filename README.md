@@ -1,6 +1,6 @@
 # Google Module for Vertex AI resources
 
-This is a collection of submodules that make it easier to Vertex AI resources.
+This is a collection of submodules for vertex AI related resources.
 
 - [Vertex AI workbench](./modules/workbench/)
 
@@ -13,7 +13,6 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v4.79+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:

@@ -14,12 +14,7 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3.0"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 5.18, < 6"
-    }
-  }
+variable "project_id" {
+  description = "The ID of the project in which the resource belongs"
+  type        = string
 }

@@ -29,7 +29,7 @@ resource "google_workbench_instance" "vertex_ai_workbench" {
     disable_public_ip    = var.disable_public_ip
     enable_ip_forwarding = var.enable_ip_forwarding
     machine_type         = var.machine_type
-    metadata             = var.metadata
+    metadata             = merge(var.metadata_configs, var.metadata)
     tags                 = var.tags
 
     dynamic "accelerator_configs" {
@@ -78,12 +78,30 @@ resource "google_workbench_instance" "vertex_ai_workbench" {
     }
 
     dynamic "vm_image" {
-      for_each = var.vm_image == null ? [] : [""]
+      for_each = var.vm_image == null ? [] : ["vm_image"]
       content {
         family  = var.vm_image.family
         name    = var.vm_image.name
         project = var.vm_image.project
       }
     }
+
+    dynamic "container_image" {
+      for_each = var.container_image == null ? [] : ["container_image"]
+      content {
+        repository = lookup(var.container_image, "repository", null)
+        tag        = lookup(var.container_image, "tag", null)
+      }
+    }
+
+    dynamic "shielded_instance_config" {
+      for_each = var.shielded_instance_config == null ? [] : ["shielded_instance_config"]
+      content {
+        enable_secure_boot          = lookup(var.shielded_instance_config, "enable_secure_boot", null)
+        enable_vtpm                 = lookup(var.shielded_instance_config, "enable_vtpm", null)
+        enable_integrity_monitoring = lookup(var.shielded_instance_config, "enable_integrity_monitoring", null)
+      }
+    }
+
   }
 }

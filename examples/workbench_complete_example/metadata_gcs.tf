@@ -50,7 +50,3 @@ resource "google_storage_bucket_object" "startup_script" {
   content = data.template_file.startup_script.rendered
   bucket  = module.metadata_gcs_bucket.name
 }
-
-output "gcs_bucket_url" {
-  value = module.metadata_gcs_bucket.url
-}

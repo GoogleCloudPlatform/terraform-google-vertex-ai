@@ -33,11 +33,8 @@ module "project" {
     "cloudkms.googleapis.com",
     "servicenetworking.googleapis.com",
     "secretmanager.googleapis.com",
-    # "vpcaccess.googleapis.com",
     "notebooks.googleapis.com",
     "aiplatform.googleapis.com",
-    # "dataform.googleapis.com",
-    # "discoveryengine.googleapis.com",
     "iap.googleapis.com",
   ]
 
