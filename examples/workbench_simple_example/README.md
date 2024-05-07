@@ -12,7 +12,6 @@ To run this example execute:
 
 ```bash
 export TF_VAR_project_id="your_project_id"
-export TF_VAR_instance_owners="your_email_address"
 ```
 
 
