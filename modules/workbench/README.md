@@ -1,6 +1,6 @@
 # Module for Vertex AI Workbench Instance
 
-This module is used to create Vertex AI Workbench Instance. You can find example(s) for this module [here](./examples/)
+This module is used to create Vertex AI Workbench Instance. You can find example(s) for this module [here](../../examples/)
 
 ```hcl
 module "simple_vertex_ai_workbench" {
@@ -89,6 +89,8 @@ module "simple_vertex_ai_workbench" {
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Manage features through metadata
+Values for metadata_configs parameters are available [here](https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata)
 
 ## Requirements
 

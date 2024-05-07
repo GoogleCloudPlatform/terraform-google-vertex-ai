@@ -85,7 +85,7 @@ variable "metadata" {
   default     = {}
 }
 
-## variables for metadata setting
+## variables for metadata setting https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
 variable "metadata_configs" {
   description = "predefined metadata to apply to this instance"
   type = object({
