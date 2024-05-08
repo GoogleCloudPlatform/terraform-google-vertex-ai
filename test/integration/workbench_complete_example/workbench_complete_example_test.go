@@ -42,11 +42,13 @@ func TestCompleteWorkbench(t *testing.T) {
 		assert.True(wb.Get("disableProxyAccess").Bool(), "disableProxyAccess is not set to True")
 		assert.True(wb.Get("gceSetup.disablePublicIp").Bool(), "disablePublicIp is not set to True")
 		assert.Equal("CMEK", wb.Get("gceSetup.bootDisk.diskEncryption").String(), "No matching boot Disk Encryption")
+		assert.Equal(serviceAccount, wb.Get("gceSetup.serviceAccounts").Array()[0].Get("email").String(), "No matching serviceAccount")
+
 		dataDisk := wb.Get("gceSetup.dataDisks").Array()[0]
+		assert.Equal(kmsKey, dataDisk.Get("kmsKey").String(), "No matching data Disk kms key")
 		assert.Equal("CMEK", dataDisk.Get("diskEncryption").String(), "No matching data Disk Encryption")
 		assert.Equal("330", dataDisk.Get("diskSizeGb").String(), "No matching data Disk size")
-		assert.Equal(kmsKey, dataDisk.Get("kmsKey").String(), "No matching data Disk kms key")
-		assert.Equal(serviceAccount, wb.Get("gceSetup.serviceAccounts").Array()[0].Get("email").String(), "No matching serviceAccount")
+
 		assert.Equal("test@example.com", wb.Get("gceSetup.metadata.proxy-user-mail").String(), "No matching proxy-user-mail")
 		assert.Equal("00 19 * * SAT", wb.Get("gceSetup.metadata.notebook-upgrade-schedule").String(), "No matching notebook-upgrade-schedule")
 		assert.Equal("download_and_run_every_start", wb.Get("gceSetup.metadata.post-startup-script-behavior").String(), "No matching post-startup-script-behavior")
