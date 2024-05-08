@@ -22,4 +22,7 @@ terraform {
       version = ">= 5.18, < 6"
     }
   }
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:workbench/v0.1.0"
+  }
 }
