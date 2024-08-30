@@ -58,3 +58,4 @@ output "workbench_name" {
   value       = google_workbench_instance.vertex_ai_workbench.id
   description = "The name of the Vertex AI Workbench instance"
 }
+
