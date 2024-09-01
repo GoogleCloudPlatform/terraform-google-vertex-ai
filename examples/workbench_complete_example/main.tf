@@ -17,7 +17,7 @@
 locals {
   location             = "us-central1-a"
   bucket_location      = "us-central1"
-  byod_bucket_name     = "byod-test-bucket"
+  byod_bucket_name     = "byod-test-bucket-${random_id.suffix.hex}"
   metadata_bucket_name = "metadata-bucket"
   labels = {
     env  = "test"
