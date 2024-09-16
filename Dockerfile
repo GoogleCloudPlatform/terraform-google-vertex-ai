@@ -10,5 +10,5 @@ RUN unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 FROM gcr.io/cloud-builders/gcloud
 
 COPY --from=build terraform /usr/bin/terraform
-COPY entrypoint.bash /builder/entrypoint.bash
-ENTRYPOINT ["/builder/entrypoint.bash"]
+# COPY entrypoint.bash /builder/entrypoint.bash
+ENTRYPOINT ["/usr/bin/terraform"]
