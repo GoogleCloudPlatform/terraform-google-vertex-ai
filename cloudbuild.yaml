@@ -10,23 +10,23 @@ steps:
   - --build-arg
   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}
+  - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest
+  - ${_TERRAFORM_IMAGE}:latest
   - .
   
-- name: 'asia-east2.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
+- name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
   args: ['version']
   
-- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+- name: '${_TERRAFORM_IMAGE}'
   args: ['init']
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
 images:
-  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
-  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest'
+  - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+  - '${_TERRAFORM_IMAGE}:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
@@ -37,3 +37,4 @@ tags:
 
 substitutions:
   _TERRAFORM_VERSION: 1.9.5
+  _TERRAFORM_IMAGE: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
