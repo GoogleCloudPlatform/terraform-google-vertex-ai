@@ -31,12 +31,12 @@ steps:
   - --tag
   - gcr.io/${PROJECT_ID}/terraform:latest
   - .
-- name: 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
+- name: 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
   args: ['version']
 
 images:
-  - 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
-  - 'gcr.io/${PROJECT_ID}/terraform:latest'
+  - 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
+  - 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
