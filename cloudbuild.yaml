@@ -14,9 +14,9 @@
 
 timeout: 3600s
 steps:
-- name: 'asia-east2.pkg.dev/cloud-builders/wget'
+- name: 'gcr.io/cloud-builders/wget'
   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-- name: 'asia-east2.pkg.dev/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker'
   env:
   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
   - 'TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}'
