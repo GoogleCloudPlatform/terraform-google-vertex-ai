@@ -1,5 +1,5 @@
 timeout: 3600s
-# steps:
+steps:
 # - name: 'gcr.io/cloud-builders/wget'
 #   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
 # - name: 'gcr.io/cloud-builders/docker'
