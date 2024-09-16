@@ -58,7 +58,7 @@ steps:
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
 
-- name: 'gcr.io/cloudbuild/curl:latest'
+- name: 'gcr.io/cloud-builders/curl:latest'
   entrypoint: 'bash'
   args:
     - '-c'
