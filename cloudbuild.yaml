@@ -54,7 +54,7 @@ steps:
   args:
     - '-c'
     - |
-      terraform show -np-color tf.plan 
+      terraform show -no-color tf.plan 
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
