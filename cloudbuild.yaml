@@ -58,18 +58,18 @@ steps:
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
 
- - name: 'gcr.io/cloudbuild-templates/github-comment:latest'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        echo "## Terraform Plan Results" >> $GITHUB_OUTPUT
-        cat tfoutput.plan >> $GITHUB_OUTPUT
-        curl -X POST -H "Authorization: token $_GITHUB" \
-          -H "Accept: application/vnd.github+json" \
-          -d "{\"body\": \"$(cat $GITHUB_OUTPUT)\"}" \
-          https://api.github.com/repos/randyguogithub/terraform-google-vertex-ai/issues/1/comments
-    secretEnv: ['_GITHUB']
+- name: 'gcr.io/cloudbuild-templates/github-comment:latest'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "## Terraform Plan Results" >> $GITHUB_OUTPUT
+      cat tfoutput.plan >> $GITHUB_OUTPUT
+      curl -X POST -H "Authorization: token $_GITHUB" \
+        -H "Accept: application/vnd.github+json" \
+        -d "{\"body\": \"$(cat $GITHUB_OUTPUT)\"}" \
+        https://api.github.com/repos/randyguogithub/terraform-google-vertex-ai/issues/1/comments
+  secretEnv: ['_GITHUB']
     
 # - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
 #   args: ['apply']
