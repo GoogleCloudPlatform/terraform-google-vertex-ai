@@ -31,8 +31,8 @@ steps:
   - --tag
   - asia-east2.pkg.dev/${PROJECT_ID}/terraform:latest
   - .
-- name: 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
-  args: ['version']
+# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
+#   args: ['version']
 
 images:
   - 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
