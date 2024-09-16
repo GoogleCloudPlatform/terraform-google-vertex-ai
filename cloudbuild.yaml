@@ -4,17 +4,19 @@ steps:
   args: ['init']
   dir: 'examples/workbench_simple_example'
   env:
-    - "project_id=${PROJECT_ID}"
+    - "TF_VAR_project_id=${PROJECT_ID}"
+    
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
   args: ['validate']
   dir: 'examples/workbench_simple_example'
   env:
-    - "project_id=${PROJECT_ID}"
+    - "TF_VAR_project_id=${PROJECT_ID}"
+    
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
   args: ['plan']
   dir: 'examples/workbench_simple_example'
   env:
-    - "project_id=${PROJECT_ID}"
+    - "TF_VAR_project_id=${PROJECT_ID}"
 
 options:
   logging: CLOUD_LOGGING_ONLY
