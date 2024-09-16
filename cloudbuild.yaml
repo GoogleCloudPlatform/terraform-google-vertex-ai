@@ -18,7 +18,7 @@ steps:
 # - name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
 #   args: ['version']
   
-- name: '${_TERRAFORM_IMAGE}'
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
   args: ['init']
   dir: 'examples/workbench_simple_example'
   env:
