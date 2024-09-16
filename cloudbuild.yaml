@@ -1,22 +1,22 @@
 timeout: 3600s
 steps:
-# - name: 'gcr.io/cloud-builders/wget'
-#   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-# - name: 'gcr.io/cloud-builders/docker'
-#   env:
-#   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
-#   args:
-#   - build
-#   - --build-arg
-#   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
-#   - --tag
-#   - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
-#   - --tag
-#   - ${_TERRAFORM_IMAGE}:latest
-#   - .
+- name: 'gcr.io/cloud-builders/wget'
+  args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
+- name: 'gcr.io/cloud-builders/docker'
+  env:
+  - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
+  args:
+  - build
+  - --build-arg
+  - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
+  - --tag
+  - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
+  - --tag
+  - ${_TERRAFORM_IMAGE}:latest
+  - .
   
-# - name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-#   args: ['version']
+- name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+  args: ['version']
   
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
   entrypoint: 'bash'
@@ -43,8 +43,7 @@ steps:
   args:
     - '-c'
     - |
-      terraform plan -out=tfoutput.plan && \
-      echo "::set-output name=plan_file::tfoutput.plan"
+      terraform plan -out=tfoutput.plan
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
@@ -76,9 +75,9 @@ steps:
 #   dir: 'examples/workbench_simple_example'
 #   env:
 #     - "TF_VAR_project_id=${PROJECT_ID}"     
-# images:
-#   - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-#   - '${_TERRAFORM_IMAGE}:latest'
+images:
+  - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+  - '${_TERRAFORM_IMAGE}:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
