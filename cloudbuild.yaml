@@ -31,13 +31,13 @@ steps:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['plan','-out tf.plan']
+  args: ['plan','-out', 'tf.plan']
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['show','-no-color tf.plan > tfplan.txt']
+  args: ['show','-no-color', 'tf.plan > tfplan.txt']
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"    
