@@ -63,7 +63,7 @@ steps:
   args:
     - '-c'
     - |
-      curl -X POST -H "Authorization: token $_GITHUB" \
+      curl -X POST -H "Authorization: token ${_GITHUB}" \
         -H "Accept: application/vnd.github+json" \
         -d "{\"body\": \"$(cat tfoutput.plan)\"}" \
         https://api.github.com/repos/randyguogithub/terraform-google-vertex-ai/issues/1/comments
