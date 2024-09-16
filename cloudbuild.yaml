@@ -25,16 +25,17 @@ steps:
   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
   - --build-arg
   - --tag
-  - asia-east2.pkg.dev/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
+  - asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2.pkg.dev/${PROJECT_ID}/terraform:latest
+  - asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:latest
   - .
-# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
+  
+# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}'
 #   args: ['version']
 
 images:
-  - 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
-  - 'asia-east2.pkg.dev/${PROJECT_ID}/python:latest'
+  - 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}'
+  - 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
