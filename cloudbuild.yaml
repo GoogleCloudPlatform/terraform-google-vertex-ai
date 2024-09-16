@@ -1,40 +1,20 @@
-# Copyright 2019 Google LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 timeout: 3600s
 steps:
-- name: 'gcr.io/cloud-builders/wget'
-  args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+  args: ['init']
+  dir: 'examples/workbench_simple_example'
   env:
-  - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
-  args:
-  - build
-  - --build-arg
-  - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
-  - --tag
-  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}
-  - --tag
-  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest
-  - .
-  
-# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
-#   args: ['version']
-
-images:
-  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
-  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest'
+    - "project_id=${PROJECT_ID}"
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+  args: ['validate']
+  dir: 'examples/workbench_simple_example'
+  env:
+    - "project_id=${PROJECT_ID}"
+- name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+  args: ['plan']
+  dir: 'examples/workbench_simple_example'
+  env:
+    - "project_id=${PROJECT_ID}"
 
 options:
   logging: CLOUD_LOGGING_ONLY
