@@ -19,28 +19,58 @@ steps:
 #   args: ['version']
   
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['init']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      terraform init 
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
 
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['validate']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      terraform validate 
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['plan','-out', 'tf.plan']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      terraform plan -out=output.plan && \
+      echo "::set-output name=plan_file::output.plan"
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
-  args: ['show','-no-color', 'tf.plan']
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      terraform show -np-color tf.plan 
   dir: 'examples/workbench_simple_example'
   env:
-    - "TF_VAR_project_id=${PROJECT_ID}"    
+    - "TF_VAR_project_id=${PROJECT_ID}"   
+
+ # - name: 'gcr.io/cloudbuild-templates/github-comment:latest'
+ #    entrypoint: 'bash'
+ #    args:
+ #      - '-c'
+ #      - |
+ #        echo "## Terraform Plan Results" >> $GITHUB_OUTPUT
+ #        cat output.plan >> $GITHUB_OUTPUT
+ #        curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+ #          -H "Accept: application/vnd.github+json" \
+ #          -d "{\"body\": \"$(cat $GITHUB_OUTPUT)\"}" \
+ #          https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$GITHUB_PULL_REQUEST_NUMBER/comments
+    
 # - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
 #   args: ['apply']
 #   dir: 'examples/workbench_simple_example'
