@@ -24,17 +24,17 @@ steps:
   - --build-arg
   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}
+  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:latest
+  - asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest
   - .
   
-# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}'
+# - name: 'asia-east2.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
 #   args: ['version']
 
 images:
-  - 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:${_TERRAFORM_VERSION}'
-  - 'asia-east2.pkg.dev/${PROJECT_ID}/python/terraform:latest'
+  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:${_TERRAFORM_VERSION}'
+  - 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
