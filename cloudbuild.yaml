@@ -15,8 +15,8 @@ steps:
   - ${_TERRAFORM_IMAGE}:latest
   - .
   
-- name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-  args: ['version']
+# - name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+#   args: ['version']
   
 - name: '${_TERRAFORM_IMAGE}'
   args: ['init']
