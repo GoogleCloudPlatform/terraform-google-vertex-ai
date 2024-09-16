@@ -14,40 +14,37 @@
 
 timeout: 3600s
 steps:
-- id: swap-module-refs
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['module-swapper']
-- id: prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'source /usr/local/bin/task_helper_functions.sh && prepare_environment && sleep 120']
+- name: 'gcr.io/cloud-builders/wget'
+  args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
+- name: 'gcr.io/cloud-builders/docker'
   env:
-  - 'TF_VAR_org_id=$_ORG_ID'
-  - 'TF_VAR_folder_id=$_FOLDER_ID'
-  - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
+  - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
+  - 'TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}'
+  args:
+  - build
+  - --build-arg
+  - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
+  - --build-arg
+  - TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}
+  - --tag
+  - gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
+  - --tag
+  - gcr.io/${PROJECT_ID}/terraform:latest
+  - .
+- name: 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
+  args: ['version']
 
-- id: init-all
-  waitFor:
-    - prepare
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run all --stage init --verbose']
-- id: complete-workbench-example-apply
-  waitFor:
-    - init-all
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestCompleteWorkbench --stage apply --verbose']
-- id: complete-workbench-example-verify
-  waitFor:
-    - complete-workbench-example-apply
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestCompleteWorkbench --stage verify --verbose']
-- id: complete-workbench-example-teardown
-  waitFor:
-    - complete-workbench-example-verify
-  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run TestCompleteWorkbench --stage teardown --verbose']
+images:
+  - 'gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}'
+  - 'gcr.io/${PROJECT_ID}/terraform:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
 tags:
 - 'ci'
 - 'integration'
+
 substitutions:
-  _DOCKER_IMAGE_DEVELOPER_TOOLS: 'cft/developer-tools'
-  _DOCKER_TAG_VERSION_DEVELOPER_TOOLS: '1.20'
+  _TERRAFORM_VERSION: 1.0.9
+  _TERRAFORM_VERSION_SHA256SUM: f06ac64c6a14ed6a923d255788e4a5daefa2b50e35f32d7a3b5a2f9a5a91e255
