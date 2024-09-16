@@ -35,10 +35,15 @@ steps:
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
-     
-images:
-  - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-  - '${_TERRAFORM_IMAGE}:latest'
+    
+# - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+#   args: ['apply']
+#   dir: 'examples/workbench_simple_example'
+#   env:
+#     - "TF_VAR_project_id=${PROJECT_ID}"     
+# images:
+#   - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+#   - '${_TERRAFORM_IMAGE}:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
