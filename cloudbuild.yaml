@@ -14,9 +14,9 @@
 
 timeout: 3600s
 steps:
-- name: 'gcr.io/cloud-builders/wget'
+- name: 'asia-east2-python.pkg.dev/cloud-builders/wget'
   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'asia-east2-python.pkg.dev/cloud-builders/docker'
   env:
   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
   - 'TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}'
@@ -27,9 +27,9 @@ steps:
   - --build-arg
   - TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}
   - --tag
-  - gcr.io/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
+  - asia-east2-python.pkg.dev/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
   - --tag
-  - gcr.io/${PROJECT_ID}/terraform:latest
+  - asia-east2-python.pkg.dev/${PROJECT_ID}/terraform:latest
   - .
 - name: 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
   args: ['version']
