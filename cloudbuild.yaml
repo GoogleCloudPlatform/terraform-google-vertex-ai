@@ -14,9 +14,9 @@
 
 timeout: 3600s
 steps:
-- name: 'asia-east2-python.pkg.dev/cloud-builders/wget'
+- name: 'asia-east2.pkg.dev/cloud-builders/wget'
   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-- name: 'asia-east2-python.pkg.dev/cloud-builders/docker'
+- name: 'asia-east2.pkg.dev/cloud-builders/docker'
   env:
   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
   - 'TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}'
@@ -27,16 +27,16 @@ steps:
   - --build-arg
   - TERRAFORM_VERSION_SHA256SUM=${_TERRAFORM_VERSION_SHA256SUM}
   - --tag
-  - asia-east2-python.pkg.dev/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
+  - asia-east2.pkg.dev/${PROJECT_ID}/terraform:${_TERRAFORM_VERSION}
   - --tag
-  - asia-east2-python.pkg.dev/${PROJECT_ID}/terraform:latest
+  - asia-east2.pkg.dev/${PROJECT_ID}/terraform:latest
   - .
-- name: 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
+- name: 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
   args: ['version']
 
 images:
-  - 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
-  - 'asia-east2-python.pkg.dev/${PROJECT_ID}/python:latest'
+  - 'asia-east2.pkg.dev/${PROJECT_ID}/python:${_TERRAFORM_VERSION}'
+  - 'asia-east2.pkg.dev/${PROJECT_ID}/python:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
