@@ -43,8 +43,8 @@ steps:
   args:
     - '-c'
     - |
-      terraform plan -out=output.plan && \
-      echo "::set-output name=plan_file::output.plan"
+      terraform plan -out=tfoutput.plan && \
+      echo "::set-output name=plan_file::tfoutput.plan"
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
@@ -54,7 +54,7 @@ steps:
   args:
     - '-c'
     - |
-      terraform show -no-color tf.plan 
+      terraform show -no-color tfoutput.plan 
   dir: 'examples/workbench_simple_example'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
