@@ -24,7 +24,7 @@ steps:
     - '-c'
     - |
       terraform init 
-  dir: 'examples/workbench_simple_example'
+  dir: 'test-project-ai'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
 
@@ -34,7 +34,7 @@ steps:
     - '-c'
     - |
       terraform validate 
-  dir: 'examples/workbench_simple_example'
+  dir: 'test-project-ai'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
@@ -44,7 +44,7 @@ steps:
     - '-c'
     - |
       terraform plan -out=tfoutput.plan
-  dir: 'examples/workbench_simple_example'
+  dir: 'test-project-ai'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"
     
@@ -54,7 +54,7 @@ steps:
     - '-c'
     - |
       terraform show -no-color tfoutput.plan 
-  dir: 'examples/workbench_simple_example'
+  dir: 'test-project-ai'
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
 
@@ -71,7 +71,7 @@ steps:
     
 # - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
 #   args: ['apply']
-#   dir: 'examples/workbench_simple_example'
+#   dir: 'test-project-ai'
 #   env:
 #     - "TF_VAR_project_id=${PROJECT_ID}"     
 # images:
