@@ -1,22 +1,22 @@
 timeout: 3600s
 steps:
-- name: 'gcr.io/cloud-builders/wget'
-  args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
-- name: 'gcr.io/cloud-builders/docker'
-  env:
-  - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
-  args:
-  - build
-  - --build-arg
-  - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
-  - --tag
-  - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
-  - --tag
-  - ${_TERRAFORM_IMAGE}:latest
-  - .
+# - name: 'gcr.io/cloud-builders/wget'
+#   args: ["https://releases.hashicorp.com/terraform/${_TERRAFORM_VERSION}/terraform_${_TERRAFORM_VERSION}_linux_amd64.zip"]
+# - name: 'gcr.io/cloud-builders/docker'
+#   env:
+#   - 'TERRAFORM_VERSION=${_TERRAFORM_VERSION}'
+#   args:
+#   - build
+#   - --build-arg
+#   - TERRAFORM_VERSION=${_TERRAFORM_VERSION}
+#   - --tag
+#   - ${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}
+#   - --tag
+#   - ${_TERRAFORM_IMAGE}:latest
+#   - .
   
-- name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-  args: ['version']
+# - name: '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+#   args: ['version']
   
 - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
   entrypoint: 'bash'
@@ -58,26 +58,25 @@ steps:
   env:
     - "TF_VAR_project_id=${PROJECT_ID}"   
 
- # - name: 'gcr.io/cloudbuild-templates/github-comment:latest'
- #    entrypoint: 'bash'
- #    args:
- #      - '-c'
- #      - |
- #        echo "## Terraform Plan Results" >> $GITHUB_OUTPUT
- #        cat output.plan >> $GITHUB_OUTPUT
- #        curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
- #          -H "Accept: application/vnd.github+json" \
- #          -d "{\"body\": \"$(cat $GITHUB_OUTPUT)\"}" \
- #          https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$GITHUB_PULL_REQUEST_NUMBER/comments
+- name: 'gcr.io/cloud-builders/curl:latest'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      curl -X POST -H "Authorization: token ${_GITHUB}" \
+        -H "Accept: application/vnd.github+json" \
+        -d "{\"body\": \"$(cat tfoutput.plan)\"}" \
+        https://api.github.com/repos/randyguogithub/terraform-google-vertex-ai/issues/1/comments
+  secretEnv: ['_GITHUB']
     
 # - name: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
 #   args: ['apply']
 #   dir: 'examples/workbench_simple_example'
 #   env:
 #     - "TF_VAR_project_id=${PROJECT_ID}"     
-images:
-  - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
-  - '${_TERRAFORM_IMAGE}:latest'
+# images:
+#   - '${_TERRAFORM_IMAGE}:${_TERRAFORM_VERSION}'
+#   - '${_TERRAFORM_IMAGE}:latest'
 
 options:
   logging: CLOUD_LOGGING_ONLY
@@ -89,3 +88,7 @@ tags:
 substitutions:
   _TERRAFORM_VERSION: 1.9.5
   _TERRAFORM_IMAGE: 'asia-east2-docker.pkg.dev/${PROJECT_ID}/polaris/terraform'
+availableSecrets:
+  secretManager:
+  - versionName: projects/${PROJECT_ID}/secrets/github_token/versions/latest
+    env: '_GITHUB'
