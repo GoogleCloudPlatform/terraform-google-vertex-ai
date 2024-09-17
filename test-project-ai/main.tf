@@ -4,19 +4,17 @@
  *
  */
 
-
-
 resource "google_service_account" "workbench_sa" {
   account_id   = "vertex-ai-workbench-sa"
   display_name = "Vertex AI Workbench Service Account"
   project      = var.project_id
 }
 
-module "simple_vertex_ai_workbench" {
+module "test-project-ai_workbench" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
   version = "~> 0.1"
 
-  name       = "simple-vertex-ai-workbench"
+  name       = "test-project-ai-workbench"
   location   = var.workbench_region
   project_id = var.project_id
 
