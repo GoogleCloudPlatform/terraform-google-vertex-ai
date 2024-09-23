@@ -23,7 +23,7 @@ resource "google_service_account" "workbench_sa" {
 
 module "simple_vertex_ai_workbench" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
-  version = "~> 0.1"
+  version = "~> 0.2"
 
   name       = "simple-vertex-ai-workbench"
   location   = "us-central1-a"
