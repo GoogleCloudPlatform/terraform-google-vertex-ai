@@ -33,7 +33,7 @@ resource "google_service_account" "workbench_sa" {
 
 module "complete_vertex_ai_workbench" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
-  version = "~> 0.1"
+  version = "~> 0.2"
 
   name                 = "complete-vertex-ai-workbench"
   location             = local.location
