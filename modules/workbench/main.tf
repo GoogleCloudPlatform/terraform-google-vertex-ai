@@ -16,14 +16,15 @@
 
 resource "google_workbench_instance" "vertex_ai_workbench" {
 
-  disable_proxy_access = var.disable_proxy_access
-  instance_id          = var.instance_id
-  instance_owners      = var.instance_owners
-  labels               = var.labels
-  location             = var.location
-  name                 = var.name
-  project              = var.project_id
-  desired_state        = var.desired_state
+  disable_proxy_access        = var.disable_proxy_access
+  instance_id                 = var.instance_id
+  instance_owners             = var.instance_owners
+  labels                      = var.labels
+  location                    = var.location
+  name                        = var.name
+  project                     = var.project_id
+  desired_state               = var.desired_state
+  enable_third_party_identity = var.enable_third_party_identity
 
   gce_setup {
     disable_public_ip    = var.disable_public_ip
@@ -100,6 +101,13 @@ resource "google_workbench_instance" "vertex_ai_workbench" {
         enable_secure_boot          = lookup(var.shielded_instance_config, "enable_secure_boot", null)
         enable_vtpm                 = lookup(var.shielded_instance_config, "enable_vtpm", null)
         enable_integrity_monitoring = lookup(var.shielded_instance_config, "enable_integrity_monitoring", null)
+      }
+    }
+
+    dynamic "confidential_instance_config" {
+      for_each = var.confidential_instance_type == null ? [] : ["confidential_instance_config"]
+      content {
+        confidential_instance_type = var.confidential_instance_type
       }
     }
 
