@@ -16,7 +16,7 @@
 
 module "kms" {
   source          = "terraform-google-modules/kms/google"
-  version         = "~> 3.0"
+  version         = "~> 4.0"
   project_id      = var.project_id
   location        = "us-central1"
   keyring         = "vertex-keyring-test-${random_id.suffix.hex}"
