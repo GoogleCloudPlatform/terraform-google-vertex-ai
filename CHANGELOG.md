@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [1.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v0.2.0...v1.0.0) (2025-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG >= 6.29:** added confidential_instance_type and enable_third_party_identity ([#38](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/38))
+
+### Features
+
+* **TPG >= 6.29:** added confidential_instance_type and enable_third_party_identity ([#38](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/38)) ([2b25c71](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/2b25c71862aacad6534521c6eef50a1a215e85e9))
+
 ## [0.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v0.1.0...v0.2.0) (2024-09-11)
 
 
