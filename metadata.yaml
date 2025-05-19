@@ -1,0 +1,64 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vertex-ai
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Google Module for Vertex AI resources
+    source:
+      repo: https://github.com/imrannayer/terraform-google-vertex-ai.git
+      sourceType: git
+    description: {}
+  content:
+    subBlueprints:
+      - name: workbench
+        location: modules/workbench
+    examples:
+      - name: workbench_complete_example
+        location: examples/workbench_complete_example
+      - name: workbench_simple_example
+        location: examples/workbench_simple_example
+  interfaces: {}
+  requirements:
+    roles:
+      - level: Project
+        roles:
+          - roles/aiplatform.admin
+          - roles/compute.admin
+          - roles/compute.networkAdmin
+          - roles/notebooks.admin
+          - roles/iam.securityAdmin
+          - roles/iam.serviceAccountAdmin
+          - roles/iam.serviceAccountUser
+          - roles/cloudkms.admin
+          - roles/iam.roleAdmin
+          - roles/storage.admin
+          - roles/cloudkms.cryptoKeyEncrypterDecrypter
+    services:
+      - cloudresourcemanager.googleapis.com
+      - serviceusage.googleapis.com
+      - iamcredentials.googleapis.com
+      - iam.googleapis.com
+      - cloudbilling.googleapis.com
+      - cloudkms.googleapis.com
+      - servicenetworking.googleapis.com
+      - secretmanager.googleapis.com
+      - notebooks.googleapis.com
+      - aiplatform.googleapis.com
+      - iap.googleapis.com

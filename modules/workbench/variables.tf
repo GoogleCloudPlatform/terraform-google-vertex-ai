@@ -201,3 +201,15 @@ variable "shielded_instance_config" {
   })
   default = null
 }
+
+variable "enable_third_party_identity" {
+  description = "Flag that specifies that a notebook can be accessed with third party identity provider"
+  type        = bool
+  default     = null
+}
+
+variable "confidential_instance_type" {
+  description = "Defines the type of technology used by the confidential instance. Possible values are: SEV"
+  default     = null
+  type        = string
+}

@@ -50,6 +50,7 @@ module "simple_vertex_ai_workbench" {
 | accelerator\_configs | The hardware accelerators used on this instance. If you use accelerators, make sure that your configuration has enough vCPUs and memory to support the machine\_type you have selected. Currently supports only one accelerator configuration. Possible values for type: NVIDIA\_TESLA\_P100, NVIDIA\_TESLA\_V100, NVIDIA\_TESLA\_P4, NVIDIA\_TESLA\_T4, NVIDIA\_TESLA\_A100, NVIDIA\_A100\_80GB, NVIDIA\_L4, NVIDIA\_TESLA\_T4\_VWS, NVIDIA\_TESLA\_P100\_VWS, NVIDIA\_TESLA\_P4\_VWS | <pre>list(object({<br>    type       = optional(string)<br>    core_count = optional(number)<br>  }))</pre> | `null` | no |
 | boot\_disk\_size\_gb | The size of the boot disk in GB attached to this instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to the recommended value of 150GB | `number` | `150` | no |
 | boot\_disk\_type | Indicates the type of the boot disk. Possible values are: PD\_STANDARD, PD\_SSD, PD\_BALANCED, PD\_EXTREME | `string` | `"PD_BALANCED"` | no |
+| confidential\_instance\_type | Defines the type of technology used by the confidential instance. Possible values are: SEV | `string` | `null` | no |
 | container\_image | Use a container image to start the workbench instance. reposory path in format gcr.io/{project\_id}/{imageName}. If tag is not specified, this defaults to the latest tag | <pre>object({<br>    repository = optional(string)<br>    tag        = optional(string)<br>  })</pre> | `null` | no |
 | data\_disks | Data disks attached to the VM instance. Currently supports only one data disk | <pre>list(object({<br>    disk_size_gb = optional(number, 100)<br>    disk_type    = optional(string, "PD_BALANCED")<br>  }))</pre> | `null` | no |
 | desired\_state | Desired state of the Workbench Instance. Set this field to ACTIVE to start the Instance, and STOPPED to stop the Instance | `string` | `null` | no |
@@ -57,6 +58,7 @@ module "simple_vertex_ai_workbench" {
 | disable\_public\_ip | If true, no external IP will be assigned to this VM instance | `bool` | `true` | no |
 | disk\_encryption | Disk encryption method used on the boot and data disks, defaults to GMEK. Possible values are: GMEK, CMEK | `string` | `"GMEK"` | no |
 | enable\_ip\_forwarding | Flag to enable ip forwarding or not, default false/off | `bool` | `false` | no |
+| enable\_third\_party\_identity | Flag that specifies that a notebook can be accessed with third party identity provider | `bool` | `null` | no |
 | instance\_id | User-defined unique ID of this instance | `string` | `null` | no |
 | instance\_owners | The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | `[]` | no |
 | kms\_key | The KMS key used to encrypt the disks, only applicable if disk\_encryption is CMEK. Format: projects/{project\_id}/locations/{location}/keyRings/{key\_ring\_id}/cryptoKeys/{key\_id} | `string` | `null` | no |
