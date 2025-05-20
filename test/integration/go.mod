@@ -2,10 +2,10 @@ module github.com/GoogleCloudPlatform/terraform-google-vertex-ai/test/integratio
 
 go 1.23.0
 
-toolchain go1.23.6
+toolchain go1.23.9
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.5
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.17.6
 	github.com/stretchr/testify v1.10.0
 )
 
@@ -33,7 +33,7 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.0 // indirect
-	github.com/gruntwork-io/terratest v0.48.1 // indirect
+	github.com/gruntwork-io/terratest v0.48.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-getter v1.7.4 // indirect
@@ -43,7 +43,7 @@ require (
 	github.com/hashicorp/go-version v1.7.0 // indirect
 	github.com/hashicorp/hcl v0.0.0-20170504190234-a4b07c25de5f // indirect
 	github.com/hashicorp/hcl/v2 v2.22.0 // indirect
-	github.com/hashicorp/terraform-config-inspect v0.0.0-20241129133400-c404f8227ea6 // indirect
+	github.com/hashicorp/terraform-config-inspect v0.0.0-20250203082807-efaa306e97b4 // indirect
 	github.com/hashicorp/terraform-json v0.24.0 // indirect
 	github.com/jinzhu/copier v0.4.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
@@ -64,12 +64,12 @@ require (
 	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/zclconf/go-cty v1.15.1 // indirect
 	go.opencensus.io v0.24.0 // indirect
-	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/crypto v0.32.0 // indirect
+	golang.org/x/mod v0.23.0 // indirect
+	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
+	golang.org/x/sys v0.29.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/tools v0.26.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
