@@ -14,15 +14,7 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 6.42, < 7"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:workbench/v1.0.0"
-  }
+output "template" {
+  value       = google_model_armor_template.model_armor_template
+  description = "Model armor template created"
 }

@@ -3,6 +3,7 @@
 This is a collection of submodules for vertex AI related resources.
 
 - [Vertex AI workbench](./modules/workbench/)
+- [Model Armor template](./modules/model-armor-template/)
 
 ## Requirements
 

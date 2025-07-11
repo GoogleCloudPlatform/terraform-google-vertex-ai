@@ -79,6 +79,7 @@ module "complete_vertex_ai_workbench" {
     idle-timeout-seconds         = 3600
     notebook-disable-root        = true
     notebook-upgrade-schedule    = "00 19 * * SAT"
+    serial-port-logging-enable   = false
   }
 
   shielded_instance_config = {

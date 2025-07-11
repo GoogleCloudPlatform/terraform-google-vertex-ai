@@ -66,7 +66,7 @@ module "simple_vertex_ai_workbench" {
 | location | Zone in which workbench instance should be created | `string` | n/a | yes |
 | machine\_type | The machine type of the VM instance | `string` | `null` | no |
 | metadata | Custom metadata to apply to this instance | `map(string)` | `{}` | no |
-| metadata\_configs | predefined metadata to apply to this instance | <pre>object({<br>    idle-timeout-seconds            = optional(number)<br>    notebook-upgrade-schedule       = optional(string)<br>    notebook-disable-downloads      = optional(bool)<br>    notebook-disable-root           = optional(bool)<br>    post-startup-script             = optional(string)<br>    post-startup-script-behavior    = optional(string)<br>    nbconvert                       = optional(bool)<br>    notebook-enable-delete-to-trash = optional(bool)<br>    disable-mixer                   = optional(bool)<br>    jupyter-user                    = optional(string)<br>    report-event-health             = optional(bool)<br>  })</pre> | `{}` | no |
+| metadata\_configs | predefined metadata to apply to this instance | <pre>object({<br>    idle-timeout-seconds            = optional(number)<br>    notebook-upgrade-schedule       = optional(string)<br>    notebook-disable-downloads      = optional(bool)<br>    notebook-disable-root           = optional(bool)<br>    post-startup-script             = optional(string)<br>    post-startup-script-behavior    = optional(string)<br>    nbconvert                       = optional(bool)<br>    notebook-enable-delete-to-trash = optional(bool)<br>    disable-mixer                   = optional(bool)<br>    jupyter-user                    = optional(string)<br>    report-event-health             = optional(bool)<br>    serial-port-logging-enable      = optional(bool)<br>  })</pre> | `{}` | no |
 | name | The name of this workbench instance | `string` | n/a | yes |
 | network\_interfaces | The network interfaces for the VM. Supports only one interface. The nic\_type of vNIC to be used on this interface. This may be gVNIC or VirtioNet. Possible values are: VIRTIO\_NET, GVNIC | <pre>list(object({<br>    network  = optional(string)<br>    nic_type = optional(string)<br>    subnet   = optional(string)<br>  }))</pre> | `null` | no |
 | project\_id | The ID of the project in which the resource belongs | `string` | n/a | yes |
@@ -103,7 +103,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v5.18+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.42+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:

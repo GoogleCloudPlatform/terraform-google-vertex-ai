@@ -37,6 +37,8 @@ module "project" {
     "notebooks.googleapis.com",
     "aiplatform.googleapis.com",
     "iap.googleapis.com",
+    "modelarmor.googleapis.com",
+    "dlp.googleapis.com",
   ]
 
   disable_dependent_services  = false

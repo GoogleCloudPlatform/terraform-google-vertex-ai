@@ -19,10 +19,10 @@ terraform {
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = ">= 6.42, < 7"
+      version = ">= 6.43, < 7"
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:workbench/v1.0.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor/v1.0.0"
   }
 }

@@ -22,16 +22,18 @@ spec:
   info:
     title: Module for Vertex AI Workbench Instance
     source:
-      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      repo: https://github.com/imrannayer/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/workbench
     version: 1.0.0
     actuationTool:
       flavor: Terraform
-      version: ">= 1.3.0"
+      version: ">= 1.3"
     description: {}
   content:
     examples:
+      - name: model-armor-complete
+        location: examples/model-armor-complete
       - name: workbench_complete_example
         location: examples/workbench_complete_example
       - name: workbench_simple_example
@@ -98,6 +100,7 @@ spec:
               disable-mixer                   = optional(bool)
               jupyter-user                    = optional(string)
               report-event-health             = optional(bool)
+              serial-port-logging-enable      = optional(bool)
             })
         defaultValue: {}
       - name: tags
@@ -209,6 +212,8 @@ spec:
           - roles/iam.roleAdmin
           - roles/storage.admin
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
+          - roles/modelarmor.admin
+          - roles/modelarmor.floorSettingsAdmin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -221,6 +226,7 @@ spec:
       - notebooks.googleapis.com
       - aiplatform.googleapis.com
       - iap.googleapis.com
+      - modelarmor.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.29, < 7"
+        version: ">= 6.42, < 7"
