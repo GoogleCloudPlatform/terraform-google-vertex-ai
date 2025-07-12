@@ -16,9 +16,8 @@
 
 
 module "model_armor_template" {
-  # source  = "GoogleCloudPlatform/vertex-ai/google//modules/model_armor"
-  # version = "~> 2.0"
-  source = "../../modules/model-armor-template"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-template"
+  version = "~> 2.0"
 
   template_id = "test-model-armor-template"
   location    = "us"
