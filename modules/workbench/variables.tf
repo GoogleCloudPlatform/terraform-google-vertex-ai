@@ -30,7 +30,7 @@ variable "project_id" {
 }
 
 variable "instance_owners" {
-  description = "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
+  description = "The owner of this instance after creation. Format: test@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
   type        = list(string)
   default     = []
 }
@@ -100,6 +100,7 @@ variable "metadata_configs" {
     disable-mixer                   = optional(bool)
     jupyter-user                    = optional(string)
     report-event-health             = optional(bool)
+    enable-guest-attributes         = optional(bool)
     serial-port-logging-enable      = optional(bool)
   })
   default = {}

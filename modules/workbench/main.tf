@@ -112,4 +112,9 @@ resource "google_workbench_instance" "vertex_ai_workbench" {
     }
 
   }
+
+  timeouts {
+    create = "15m"
+    delete = "15m"
+  }
 }
