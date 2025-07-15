@@ -20,9 +20,9 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Module for Model Armor
+    title: Module for Model Armor Template
     source:
-      repo: https://github.com/imrannayer/terraform-google-vertex-ai.git
+      repo: github.com/GoogleCloudPlatform/terraform-google-vertex-ai
       sourceType: git
       dir: /modules/model-armor-template
     version: 1.0.0
@@ -32,12 +32,12 @@ spec:
     description: {}
   content:
     examples:
-      - name: model-armor-complete
-        location: examples/model-armor-complete
-      - name: workbench_complete_example
-        location: examples/workbench_complete_example
-      - name: workbench_simple_example
-        location: examples/workbench_simple_example
+      - name: model-armor-template-example
+        location: examples/model-armor-template-example
+      - name: workbench-complete-example
+        location: examples/workbench-complete-example
+      - name: workbench-simple-example
+        location: examples/workbench-simple-example
   interfaces:
     variables:
       - name: template_id
@@ -53,27 +53,13 @@ spec:
         varType: string
         required: true
       - name: labels
-        description: Labels to apply to this template
+        description: Labels to apply to this model armor template
         varType: map(string)
         defaultValue: {}
       - name: enable_malicious_uri_filter_settings
         description: Enable Malicious URI filter settings
         varType: bool
         defaultValue: false
-      - name: metadata_configs
-        description: Message describing Template Metadata
-        varType: |-
-          object({
-              enforcement_type                         = optional(string, "")
-              enable_multi_language_detection          = optional(bool)
-              log_sanitize_operations                  = optional(bool, false)
-              log_template_operations                  = optional(bool, false)
-              ignore_partial_invocation_failures       = optional(bool, false)
-              custom_prompt_safety_error_code          = optional(string)
-              custom_prompt_safety_error_message       = optional(string)
-              custom_llm_response_safety_error_message = optional(string)
-              custom_llm_response_safety_error_code    = optional(string)
-            })
       - name: rai_filters
         description: Confidence level for Responsible AI filters
         varType: |-
@@ -96,6 +82,20 @@ spec:
       - name: pi_and_jailbreak_filter_settings
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
+      - name: metadata_configs
+        description: Message describing Template Metadata
+        varType: |-
+          object({
+              enforcement_type                         = optional(string, "")
+              enable_multi_language_detection          = optional(bool)
+              log_sanitize_operations                  = optional(bool, false)
+              log_template_operations                  = optional(bool, false)
+              ignore_partial_invocation_failures       = optional(bool, false)
+              custom_prompt_safety_error_code          = optional(string)
+              custom_prompt_safety_error_message       = optional(string)
+              custom_llm_response_safety_error_message = optional(string)
+              custom_llm_response_safety_error_code    = optional(string)
+            })
     outputs:
       - name: template
         description: Model armor template created
@@ -129,6 +129,7 @@ spec:
       - aiplatform.googleapis.com
       - iap.googleapis.com
       - modelarmor.googleapis.com
+      - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 6.43, < 7"

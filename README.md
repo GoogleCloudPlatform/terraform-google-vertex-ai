@@ -2,8 +2,8 @@
 
 This is a collection of submodules for vertex AI related resources.
 
-- [Vertex AI workbench](./modules/workbench/)
-- [Model Armor template](./modules/model-armor-template/)
+- [Vertex AI workbench](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/workbench)
+- [Model Armor template](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/model-armor-template)
 
 ## Requirements
 

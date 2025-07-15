@@ -49,7 +49,6 @@ resource "google_kms_crypto_key_iam_member" "sa_notebooks" {
   crypto_key_id = module.kms.keys["test"]
   role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   member        = "serviceAccount:${google_project_service_identity.sa_notebooks.email}"
-  # depends_on = [ google_project_iam_member.workbench_sa ]
 }
 
 resource "google_kms_crypto_key_iam_member" "sa_aiplatform" {

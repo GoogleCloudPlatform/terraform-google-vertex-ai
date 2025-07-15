@@ -4,9 +4,8 @@ This module is used to create [Model Armor template](https://cloud.google.com/se
 
 ```hcl
 module "model_armor_template" {
-  # source  = "GoogleCloudPlatform/vertex-ai/google//modules/model_armor"
-  # version = "~> 2.0"
-  source = "../../modules/model-armor"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-template"
+  version = "~> 2.0"
 
   template_id = "test-model-armor-template"
   location    = "us"
@@ -49,7 +48,7 @@ module "model_armor_template" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
-| labels | Labels to apply to this template | `map(string)` | `{}` | no |
+| labels | Labels to apply to this model armor template | `map(string)` | `{}` | no |
 | location | the location of the template | `string` | n/a | yes |
 | metadata\_configs | Message describing Template Metadata | <pre>object({<br>    enforcement_type                         = optional(string, "")<br>    enable_multi_language_detection          = optional(bool)<br>    log_sanitize_operations                  = optional(bool, false)<br>    log_template_operations                  = optional(bool, false)<br>    ignore_partial_invocation_failures       = optional(bool, false)<br>    custom_prompt_safety_error_code          = optional(string)<br>    custom_prompt_safety_error_message       = optional(string)<br>    custom_llm_response_safety_error_message = optional(string)<br>    custom_llm_response_safety_error_code    = optional(string)<br>  })</pre> | `null` | no |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |
@@ -66,8 +65,47 @@ module "model_armor_template" {
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-## Manage template metadata
-Values for metadata_configs parameters are available [here](https://cloud.google.com/security-command-center/docs/manage-model-armor-templates#templates-metadata)
+
+## rai_filters
+You can set the confidence level for each content filter. Possible values are:
+
+- LOW_AND_ABOVE 
+- MEDIUM_AND_ABOVE 
+- HIGH
+
+## sdp_settings
+- `basic_config_filter_enforcement:` enables Predefined infoTypes to detect [sensitive data types](https://cloud.google.com/security-command-center/docs/sanitize-prompts-responses#basic_sdp_configuration).
+
+- `advanced_config:` Model Armor lets you screen LLM prompts and responses using [Sensitive Data Protection](https://cloud.google.com/security-command-center/docs/sanitize-prompts-responses#advanced_sdp_configuration) templates. 
+
+## pi_and_jailbreak_filter_settings
+Detects [malicious content and jailbreak](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-prompt-injection) attempts in a prompt. Possible values are
+
+- LOW_AND_ABOVE 
+- MEDIUM_AND_ABOVE 
+- HIGH
+
+## metadata_configs
+`log_template_operations` - (Optional) If true, log template crud operations.
+
+`log_sanitize_operations` - (Optional) If true, log sanitize operations.
+
+`multi_language_detection` - (Optional) Metadata to enable multi language detection via template. Structure is documented below.
+
+`ignore_partial_invocation_failures` - (Optional) If true, partial detector failures should be ignored.
+
+`custom_prompt_safety_error_code` - (Optional) Indicates the custom error code set by the user to be returned to the end user by the service extension if the prompt trips Model Armor filters.
+
+`custom_prompt_safety_error_message` - (Optional) Indicates the custom error message set by the user to be returned to the end user if the prompt trips Model Armor filters.
+
+`custom_llm_response_safety_error_code` - (Optional) Indicates the custom error code set by the user to be returned to the end user if the LLM response trips Model Armor filters.
+
+`custom_llm_response_safety_error_message` - (Optional) Indicates the custom error message set by the user to be returned to the end user if the LLM response trips Model Armor filters.
+
+`enforcement_type` - (Optional) Possible values: INSPECT_ONLY INSPECT_AND_BLOCK
+
+
+`enable_multi_language_detection` - (Optional) If true, multi language detection will be enabled.
 
 ## Requirements
 

@@ -22,7 +22,7 @@ spec:
   info:
     title: Module for Vertex AI Workbench Instance
     source:
-      repo: https://github.com/imrannayer/terraform-google-vertex-ai.git
+      repo: github.com/GoogleCloudPlatform/terraform-google-vertex-ai
       sourceType: git
       dir: /modules/workbench
     version: 1.0.0
@@ -32,12 +32,12 @@ spec:
     description: {}
   content:
     examples:
-      - name: model-armor-complete
-        location: examples/model-armor-complete
-      - name: workbench_complete_example
-        location: examples/workbench_complete_example
-      - name: workbench_simple_example
-        location: examples/workbench_simple_example
+      - name: model-armor-template-example
+        location: examples/model-armor-template-example
+      - name: workbench-complete-example
+        location: examples/workbench-complete-example
+      - name: workbench-simple-example
+        location: examples/workbench-simple-example
   interfaces:
     variables:
       - name: name
@@ -53,7 +53,7 @@ spec:
         varType: string
         required: true
       - name: instance_owners
-        description: "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
+        description: "The owner of this instance after creation. Format: test@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
         varType: list(string)
         defaultValue: []
       - name: instance_id
@@ -100,7 +100,10 @@ spec:
               disable-mixer                   = optional(bool)
               jupyter-user                    = optional(string)
               report-event-health             = optional(bool)
+              enable-guest-attributes         = optional(bool)
               serial-port-logging-enable      = optional(bool)
+              container-allow-fuse            = optional(bool)
+              install-unattended-upgrades     = optional(bool)
             })
         defaultValue: {}
       - name: tags
@@ -158,7 +161,7 @@ spec:
               project = optional(string)
             })
       - name: container_image
-        description: Use a container image to start the workbench instance. reposory path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag
+        description: Use a container image to start the workbench instance. repository path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag
         varType: |-
           object({
               repository = optional(string)
@@ -227,6 +230,7 @@ spec:
       - aiplatform.googleapis.com
       - iap.googleapis.com
       - modelarmor.googleapis.com
+      - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 6.42, < 7"

@@ -30,7 +30,7 @@ variable "project_id" {
 }
 
 variable "labels" {
-  description = "Labels to apply to this template"
+  description = "Labels to apply to this model armor template"
   type        = map(string)
   default     = {}
 }
@@ -39,22 +39,6 @@ variable "enable_malicious_uri_filter_settings" {
   description = "Enable Malicious URI filter settings"
   type        = bool
   default     = false
-}
-
-variable "metadata_configs" {
-  description = "Message describing Template Metadata"
-  type = object({
-    enforcement_type                         = optional(string, "")
-    enable_multi_language_detection          = optional(bool)
-    log_sanitize_operations                  = optional(bool, false)
-    log_template_operations                  = optional(bool, false)
-    ignore_partial_invocation_failures       = optional(bool, false)
-    custom_prompt_safety_error_code          = optional(string)
-    custom_prompt_safety_error_message       = optional(string)
-    custom_llm_response_safety_error_message = optional(string)
-    custom_llm_response_safety_error_code    = optional(string)
-  })
-  default = null
 }
 
 variable "rai_filters" {
@@ -84,4 +68,20 @@ variable "pi_and_jailbreak_filter_settings" {
   description = "Confidence level for Prompt injection and Jailbreak Filter settings"
   type        = string
   default     = null
+}
+
+variable "metadata_configs" {
+  description = "Message describing Template Metadata"
+  type = object({
+    enforcement_type                         = optional(string, "")
+    enable_multi_language_detection          = optional(bool)
+    log_sanitize_operations                  = optional(bool, false)
+    log_template_operations                  = optional(bool, false)
+    ignore_partial_invocation_failures       = optional(bool, false)
+    custom_prompt_safety_error_code          = optional(string)
+    custom_prompt_safety_error_message       = optional(string)
+    custom_llm_response_safety_error_message = optional(string)
+    custom_llm_response_safety_error_code    = optional(string)
+  })
+  default = null
 }

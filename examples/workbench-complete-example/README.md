@@ -1,5 +1,5 @@
 # Vertex AI Workbench Instance end to end complete example
-Deploy vertex AI Workbench Instance. Instance will be accessed using proxy.
+Deploy vertex AI Workbench Instance. Instance will be accessed using external IP address and proxy.
 
 This example creates:
 - Vertex AI workbench with CMEK encryption and custom service account [main.tf](./main.tf).

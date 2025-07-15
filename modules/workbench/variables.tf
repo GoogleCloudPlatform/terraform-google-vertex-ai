@@ -102,6 +102,8 @@ variable "metadata_configs" {
     report-event-health             = optional(bool)
     enable-guest-attributes         = optional(bool)
     serial-port-logging-enable      = optional(bool)
+    container-allow-fuse            = optional(bool)
+    install-unattended-upgrades     = optional(bool)
   })
   default = {}
 }
@@ -186,7 +188,7 @@ variable "vm_image" {
 }
 
 variable "container_image" {
-  description = "Use a container image to start the workbench instance. reposory path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag"
+  description = "Use a container image to start the workbench instance. repository path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag"
   type = object({
     repository = optional(string)
     tag        = optional(string)
