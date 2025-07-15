@@ -69,8 +69,8 @@ module "model_armor_template" {
 ## rai_filters
 You can set the confidence level for each content filter. Possible values are:
 
-- LOW_AND_ABOVE 
-- MEDIUM_AND_ABOVE 
+- LOW_AND_ABOVE
+- MEDIUM_AND_ABOVE
 - HIGH
 
 ## sdp_settings
@@ -81,8 +81,8 @@ You can set the confidence level for each content filter. Possible values are:
 ## pi_and_jailbreak_filter_settings
 Detects [malicious content and jailbreak](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-prompt-injection) attempts in a prompt. Possible values are
 
-- LOW_AND_ABOVE 
-- MEDIUM_AND_ABOVE 
+- LOW_AND_ABOVE
+- MEDIUM_AND_ABOVE
 - HIGH
 
 ## metadata_configs
