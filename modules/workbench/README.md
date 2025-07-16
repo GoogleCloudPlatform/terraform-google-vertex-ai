@@ -51,7 +51,7 @@ module "simple_vertex_ai_workbench" {
 | boot\_disk\_size\_gb | The size of the boot disk in GB attached to this instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to the recommended value of 150GB | `number` | `150` | no |
 | boot\_disk\_type | Indicates the type of the boot disk. Possible values are: PD\_STANDARD, PD\_SSD, PD\_BALANCED, PD\_EXTREME | `string` | `"PD_BALANCED"` | no |
 | confidential\_instance\_type | Defines the type of technology used by the confidential instance. Possible values are: SEV | `string` | `null` | no |
-| container\_image | Use a container image to start the workbench instance. reposory path in format gcr.io/{project\_id}/{imageName}. If tag is not specified, this defaults to the latest tag | <pre>object({<br>    repository = optional(string)<br>    tag        = optional(string)<br>  })</pre> | `null` | no |
+| container\_image | Use a container image to start the workbench instance. repository path in format gcr.io/{project\_id}/{imageName}. If tag is not specified, this defaults to the latest tag | <pre>object({<br>    repository = optional(string)<br>    tag        = optional(string)<br>  })</pre> | `null` | no |
 | data\_disks | Data disks attached to the VM instance. Currently supports only one data disk | <pre>list(object({<br>    disk_size_gb = optional(number, 100)<br>    disk_type    = optional(string, "PD_BALANCED")<br>  }))</pre> | `null` | no |
 | desired\_state | Desired state of the Workbench Instance. Set this field to ACTIVE to start the Instance, and STOPPED to stop the Instance | `string` | `null` | no |
 | disable\_proxy\_access | If true, the workbench instance will not register with the proxy | `bool` | `false` | no |
@@ -60,13 +60,13 @@ module "simple_vertex_ai_workbench" {
 | enable\_ip\_forwarding | Flag to enable ip forwarding or not, default false/off | `bool` | `false` | no |
 | enable\_third\_party\_identity | Flag that specifies that a notebook can be accessed with third party identity provider | `bool` | `null` | no |
 | instance\_id | User-defined unique ID of this instance | `string` | `null` | no |
-| instance\_owners | The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | `[]` | no |
+| instance\_owners | The owner of this instance after creation. Format: test@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | `[]` | no |
 | kms\_key | The KMS key used to encrypt the disks, only applicable if disk\_encryption is CMEK. Format: projects/{project\_id}/locations/{location}/keyRings/{key\_ring\_id}/cryptoKeys/{key\_id} | `string` | `null` | no |
 | labels | Labels to apply to this instance | `map(string)` | `{}` | no |
 | location | Zone in which workbench instance should be created | `string` | n/a | yes |
 | machine\_type | The machine type of the VM instance | `string` | `null` | no |
 | metadata | Custom metadata to apply to this instance | `map(string)` | `{}` | no |
-| metadata\_configs | predefined metadata to apply to this instance | <pre>object({<br>    idle-timeout-seconds            = optional(number)<br>    notebook-upgrade-schedule       = optional(string)<br>    notebook-disable-downloads      = optional(bool)<br>    notebook-disable-root           = optional(bool)<br>    post-startup-script             = optional(string)<br>    post-startup-script-behavior    = optional(string)<br>    nbconvert                       = optional(bool)<br>    notebook-enable-delete-to-trash = optional(bool)<br>    disable-mixer                   = optional(bool)<br>    jupyter-user                    = optional(string)<br>    report-event-health             = optional(bool)<br>  })</pre> | `{}` | no |
+| metadata\_configs | predefined metadata to apply to this instance | <pre>object({<br>    idle-timeout-seconds            = optional(number)<br>    notebook-upgrade-schedule       = optional(string)<br>    notebook-disable-downloads      = optional(bool)<br>    notebook-disable-root           = optional(bool)<br>    post-startup-script             = optional(string)<br>    post-startup-script-behavior    = optional(string)<br>    nbconvert                       = optional(bool)<br>    notebook-enable-delete-to-trash = optional(bool)<br>    disable-mixer                   = optional(bool)<br>    jupyter-user                    = optional(string)<br>    report-event-health             = optional(bool)<br>    enable-guest-attributes         = optional(bool)<br>    serial-port-logging-enable      = optional(bool)<br>    container-allow-fuse            = optional(bool)<br>    install-unattended-upgrades     = optional(bool)<br>  })</pre> | `{}` | no |
 | name | The name of this workbench instance | `string` | n/a | yes |
 | network\_interfaces | The network interfaces for the VM. Supports only one interface. The nic\_type of vNIC to be used on this interface. This may be gVNIC or VirtioNet. Possible values are: VIRTIO\_NET, GVNIC | <pre>list(object({<br>    network  = optional(string)<br>    nic_type = optional(string)<br>    subnet   = optional(string)<br>  }))</pre> | `null` | no |
 | project\_id | The ID of the project in which the resource belongs | `string` | n/a | yes |
@@ -103,7 +103,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v5.18+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.42+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:

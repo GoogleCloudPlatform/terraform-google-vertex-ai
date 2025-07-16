@@ -1,12 +1,12 @@
 # Vertex AI Workbench Instance end to end complete example
-Deploy private vertex AI Workbench Instance without proxy. Instance will be accessed using IAP (Identity aware proxy).
+Deploy vertex AI Workbench Instance. Instance will be accessed using external IP address and proxy.
 
 This example creates:
 - Vertex AI workbench with CMEK encryption and custom service account [main.tf](./main.tf).
 - CMEK key and IAM permissions needed for google managed service accounts [CMEK](./kms.tf).
 - Metadata GCS bucket for hosting startup script [metadata startup script bucket](./metadata_gcs.tf).
 - BYOD (Bring your own data) bucket for training model on user's data [BYOD bucket](./byod_gcs.tf).
-- Set IAM permissions for instnace owner to access instance using [IAP](./iap.tf).
+- Set IAM permissions for instnace owner to [access instance](./iap.tf).
 - Network & firewall rules [network](./network.tf).
 
 
@@ -29,7 +29,7 @@ terraform apply
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| instance\_owners | The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | <pre>[<br>  "test@example.com"<br>]</pre> | no |
+| instance\_owners | The owner of this instance after creation. Format: test@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance | `list(string)` | <pre>[<br>  "test@example.com"<br>]</pre> | no |
 | project\_id | The ID of the project in which the resource belongs | `string` | n/a | yes |
 
 ## Outputs

@@ -38,18 +38,6 @@ resource "google_project_service_identity" "sa_notebooks" {
   service = "notebooks.googleapis.com"
 }
 
-# resource "google_project_iam_member" "sa_notebooks" {
-#   project = var.project_id
-#   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-#   member  = "serviceAccount:${google_project_service_identity.sa_notebooks.email}"
-# }
-resource "google_kms_crypto_key_iam_member" "sa_notebooks" {
-  crypto_key_id = module.kms.keys["test"]
-  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member        = "serviceAccount:${google_project_service_identity.sa_notebooks.email}"
-}
-
-
 resource "google_project_service_identity" "sa_aiplatform" {
   provider = google-beta
 
@@ -57,18 +45,11 @@ resource "google_project_service_identity" "sa_aiplatform" {
   service = "aiplatform.googleapis.com"
 }
 
-# resource "google_project_iam_member" "sa_aiplatform" {
-#   project = var.project_id
-#   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-#   member  = "serviceAccount:${google_project_service_identity.sa_aiplatform.email}"
-# }
-
-# resource "google_project_iam_member" "sa_compute_engine" {
-#   project = var.project_id
-#   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-#   member  = "serviceAccount:service-${data.google_project.project.number}@compute-system.iam.gserviceaccount.com"
-# }
-
+resource "google_kms_crypto_key_iam_member" "sa_notebooks" {
+  crypto_key_id = module.kms.keys["test"]
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  member        = "serviceAccount:${google_project_service_identity.sa_notebooks.email}"
+}
 
 resource "google_kms_crypto_key_iam_member" "sa_aiplatform" {
   crypto_key_id = module.kms.keys["test"]

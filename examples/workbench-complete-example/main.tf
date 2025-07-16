@@ -31,21 +31,28 @@ resource "google_service_account" "workbench_sa" {
   project      = var.project_id
 }
 
+resource "google_project_iam_member" "workbench_sa" {
+  for_each = toset(["roles/logging.logWriter", "roles/monitoring.metricWriter"])
+  project  = var.project_id
+  role     = each.value
+  member   = "serviceAccount:${google_service_account.workbench_sa.email}"
+}
+
 module "complete_vertex_ai_workbench" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
   version = "~> 0.2"
 
-  name                 = "complete-vertex-ai-workbench"
-  location             = local.location
-  project_id           = var.project_id
-  labels               = local.labels
-  disable_proxy_access = true
+  name         = "complete-vertex-ai-workbench"
+  location     = local.location
+  project_id   = var.project_id
+  labels       = local.labels
+  machine_type = "e2-standard-2"
 
   kms_key         = module.kms.keys["test"]
   disk_encryption = "CMEK"
 
-  machine_type         = "e2-standard-2"
-  disable_public_ip    = true
+  disable_public_ip    = false
+  disable_proxy_access = false
   enable_ip_forwarding = false
   tags                 = ["abc", "def"]
 
@@ -79,6 +86,9 @@ module "complete_vertex_ai_workbench" {
     idle-timeout-seconds         = 3600
     notebook-disable-root        = true
     notebook-upgrade-schedule    = "00 19 * * SAT"
+    serial-port-logging-enable   = false
+    report-event-health          = true
+    enable-guest-attributes      = true
   }
 
   shielded_instance_config = {
@@ -86,10 +96,14 @@ module "complete_vertex_ai_workbench" {
   }
 
   depends_on = [
+    google_project_iam_member.workbench_sa,
     google_storage_bucket_iam_member.member,
     google_kms_crypto_key_iam_member.sa_notebooks,
     google_kms_crypto_key_iam_member.sa_aiplatform,
     google_kms_crypto_key_iam_member.sa_compute_engine,
     google_storage_bucket_object.startup_script,
+    module.cloud_router,
+    google_service_account_iam_member.instance_owner_sa_role,
   ]
+
 }

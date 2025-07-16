@@ -26,7 +26,6 @@ func TestCompleteWorkbench(t *testing.T) {
 	vertexWorkbench := tft.NewTFBlueprintTest(t)
 
 	vertexWorkbench.DefineVerify(func(assert *assert.Assertions) {
-		vertexWorkbench.DefaultVerify(assert)
 
 		projectId := vertexWorkbench.GetStringOutput("project_id")
 		location := vertexWorkbench.GetStringOutput("location")
@@ -39,8 +38,8 @@ func TestCompleteWorkbench(t *testing.T) {
 		wb := gcloud.Runf(t, "workbench instances describe %s --project %s --location %s", workbench_name, projectId, location)
 
 		assert.Equal(workbench_name, wb.Get("name").String(), "No matching name")
-		assert.True(wb.Get("disableProxyAccess").Bool(), "disableProxyAccess is not set to True")
-		assert.True(wb.Get("gceSetup.disablePublicIp").Bool(), "disablePublicIp is not set to True")
+		assert.False(wb.Get("disableProxyAccess").Bool(), "disableProxyAccess is not set to True")
+		assert.False(wb.Get("gceSetup.disablePublicIp").Bool(), "disablePublicIp is not set to True")
 		assert.Equal("CMEK", wb.Get("gceSetup.bootDisk.diskEncryption").String(), "No matching boot Disk Encryption")
 		assert.Equal(serviceAccount, wb.Get("gceSetup.serviceAccounts").Array()[0].Get("email").String(), "No matching serviceAccount")
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2023 Google LLC
+ * Copyright 2025 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ variable "project_id" {
 }
 
 variable "instance_owners" {
-  description = "The owner of this instance after creation. Format: alias@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
+  description = "The owner of this instance after creation. Format: test@example.com Currently supports one owner only. If not specified, all of the service account users of your VM instance''s service account can use the instance"
   type        = list(string)
   default     = []
 }
@@ -100,6 +100,10 @@ variable "metadata_configs" {
     disable-mixer                   = optional(bool)
     jupyter-user                    = optional(string)
     report-event-health             = optional(bool)
+    enable-guest-attributes         = optional(bool)
+    serial-port-logging-enable      = optional(bool)
+    container-allow-fuse            = optional(bool)
+    install-unattended-upgrades     = optional(bool)
   })
   default = {}
 }
@@ -184,7 +188,7 @@ variable "vm_image" {
 }
 
 variable "container_image" {
-  description = "Use a container image to start the workbench instance. reposory path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag"
+  description = "Use a container image to start the workbench instance. repository path in format gcr.io/{project_id}/{imageName}. If tag is not specified, this defaults to the latest tag"
   type = object({
     repository = optional(string)
     tag        = optional(string)

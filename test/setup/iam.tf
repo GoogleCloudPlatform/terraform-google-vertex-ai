@@ -27,6 +27,8 @@ locals {
     "roles/iam.roleAdmin",
     "roles/storage.admin",
     "roles/cloudkms.cryptoKeyEncrypterDecrypter",
+    "roles/modelarmor.admin",
+    "roles/modelarmor.floorSettingsAdmin",
   ]
 }
 

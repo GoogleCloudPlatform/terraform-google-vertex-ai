@@ -49,3 +49,23 @@ module "test-vpc-module" {
     },
   ]
 }
+
+module "cloud_router" {
+  source  = "terraform-google-modules/cloud-router/google"
+  version = "~> 6.0"
+
+  name    = "test-ca-us-central1-cr"
+  project = var.project_id
+  region  = "us-central1"
+  network = module.test-vpc-module.network_self_link
+  nats = [
+    {
+      name                               = "test-ca-us-central1-nat"
+      source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+      min_ports_per_vm                   = 4096
+      log_config = {
+        "filter" = "ERRORS_ONLY"
+      }
+    },
+  ]
+}
