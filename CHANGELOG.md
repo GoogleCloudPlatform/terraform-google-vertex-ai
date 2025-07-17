@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v1.0.0...v2.0.0) (2025-07-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* added model-armor-template sub-module ([#41](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/41))
+
+### Features
+
+* added model-armor-template sub-module ([#41](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/41)) ([9df0942](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/9df09426dc41c75df72b9ac9068d167924f785ba))
+
 ## [1.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v0.2.0...v1.0.0) (2025-05-19)
 
 
