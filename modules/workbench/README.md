@@ -1,11 +1,11 @@
 # Module for Vertex AI Workbench Instance
 
-This module is used to create Vertex AI Workbench Instance. You can find example(s) for this module [here](../../examples/)
+This module is used to create Vertex AI Workbench Instance. You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples)
 
 ```hcl
 module "simple_vertex_ai_workbench" {
   source   = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
-  version  = "~> 0.1"
+  version  = "~> 2.0"
 
   name       = "simple-vertex-ai-workbench"
   location   = "us-central1-a"
