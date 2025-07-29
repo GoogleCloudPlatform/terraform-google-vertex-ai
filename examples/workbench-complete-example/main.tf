@@ -40,7 +40,7 @@ resource "google_project_iam_member" "workbench_sa" {
 
 module "complete_vertex_ai_workbench" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
-  version = "~> 0.2"
+  version = "~> 1.0"
 
   name         = "complete-vertex-ai-workbench"
   location     = local.location
