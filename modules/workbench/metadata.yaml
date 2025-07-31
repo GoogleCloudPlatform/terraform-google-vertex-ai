@@ -22,7 +22,7 @@ spec:
   info:
     title: Module for Vertex AI Workbench Instance
     source:
-      repo: github.com/GoogleCloudPlatform/terraform-google-vertex-ai
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/workbench
     version: 2.0.0
@@ -32,6 +32,8 @@ spec:
     description: {}
   content:
     examples:
+      - name: model-armor-floorsetting-example
+        location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
       - name: workbench-complete-example
