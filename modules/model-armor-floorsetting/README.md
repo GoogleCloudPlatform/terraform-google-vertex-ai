@@ -1,6 +1,6 @@
 # Module for Model Armor Floor Settings
 
-This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example)
+This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example).
 
 ```hcl
 module "model_armor_floorsetting" {
