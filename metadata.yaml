@@ -22,7 +22,7 @@ spec:
   info:
     title: Google Module for Vertex AI resources
     source:
-      repo: https://github.com/imrannayer/terraform-google-vertex-ai.git
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
     description: {}
   content:
