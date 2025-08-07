@@ -15,16 +15,16 @@
 apiVersion: blueprints.cloud.google.com/v1alpha1
 kind: BlueprintMetadata
 metadata:
-  name: terraform-google-vertex-ai-model-armor-template
+  name: terraform-google-vertex-ai-model-armor-floorsetting
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Module for Model Armor Template
+    title: Module for Model Armor Floor Settings
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
-      dir: /modules/model-armor-template
+      dir: /modules/model-armor-floorsetting
     version: 2.0.0
     actuationTool:
       flavor: Terraform
@@ -42,22 +42,22 @@ spec:
         location: examples/workbench-simple-example
   interfaces:
     variables:
-      - name: template_id
-        description: The ID of the template
-        varType: string
-        required: true
       - name: location
-        description: the location of the template
+        description: The location of the floor setting
+        varType: string
+        defaultValue: global
+      - name: parent_id
+        description: The ID of organization, folder, or project to create the floor settings in
         varType: string
         required: true
-      - name: project_id
-        description: The ID of the project in which the resource belongs
+      - name: parent_type
+        description: Parent type. Can be organization, folder, or project to create the floor settings in
         varType: string
         required: true
-      - name: labels
-        description: Labels to apply to this model armor template
-        varType: map(string)
-        defaultValue: {}
+      - name: enable_floor_setting_enforcement
+        description: Floor Settings enforcement status
+        varType: bool
+        defaultValue: true
       - name: enable_malicious_uri_filter_settings
         description: Enable Malicious URI filter settings
         varType: bool
@@ -84,23 +84,25 @@ spec:
       - name: pi_and_jailbreak_filter_settings
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
-      - name: metadata_configs
-        description: Message describing Template Metadata
+      - name: ai_platform_floor_setting
+        description: " AI Platform floor setting"
         varType: |-
           object({
-              enforcement_type                         = optional(string, "")
-              enable_multi_language_detection          = optional(bool)
-              log_sanitize_operations                  = optional(bool, false)
-              log_template_operations                  = optional(bool, false)
-              ignore_partial_invocation_failures       = optional(bool, false)
-              custom_prompt_safety_error_code          = optional(string)
-              custom_prompt_safety_error_message       = optional(string)
-              custom_llm_response_safety_error_message = optional(string)
-              custom_llm_response_safety_error_code    = optional(string)
+              inspect_only         = optional(bool)
+              inspect_and_block    = optional(bool)
+              enable_cloud_logging = optional(bool)
             })
+      - name: enable_multi_language_detection
+        description: If true, multi language detection will be enabled
+        varType: bool
+        defaultValue: true
+      - name: integrated_services
+        description: List of integrated services for which the floor setting is applicable. Possible value is AI_PLATFORM
+        varType: list(any)
+        defaultValue: []
     outputs:
-      - name: template
-        description: Model armor template created
+      - name: floorsetting
+        description: Model armor floor setting created
   requirements:
     roles:
       - level: Project
@@ -134,4 +136,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.43, < 7"
+        version: ">= 6.45, < 7"
