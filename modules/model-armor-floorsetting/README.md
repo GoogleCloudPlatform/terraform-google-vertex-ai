@@ -40,7 +40,7 @@ module "model_armor_floorsetting" {
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
 | enable\_multi\_language\_detection | If true, multi language detection will be enabled | `bool` | `true` | no |
 | integrated\_services | List of integrated services for which the floor setting is applicable. Possible value is AI\_PLATFORM | `list(any)` | `[]` | no |
-| location | The location of the template | `string` | `"global"` | no |
+| location | The location of the floor setting | `string` | `"global"` | no |
 | parent\_id | The ID of organization, folder, or project to create the floor settings in | `string` | n/a | yes |
 | parent\_type | Parent type. Can be organization, folder, or project to create the floor settings in | `string` | n/a | yes |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |

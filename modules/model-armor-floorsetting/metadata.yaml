@@ -43,7 +43,7 @@ spec:
   interfaces:
     variables:
       - name: location
-        description: The location of the template
+        description: The location of the floor setting
         varType: string
         defaultValue: global
       - name: parent_id

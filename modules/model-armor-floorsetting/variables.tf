@@ -15,7 +15,7 @@
  */
 
 variable "location" {
-  description = "The location of the template"
+  description = "The location of the floor setting"
   type        = string
   default     = "global"
 }
@@ -28,6 +28,10 @@ variable "parent_id" {
 variable "parent_type" {
   type        = string
   description = "Parent type. Can be organization, folder, or project to create the floor settings in"
+  validation {
+    condition     = contains(["organization", "folder", "project"], var.parent_type)
+    error_message = "parent_type must be one of organization, folder, project"
+  }
 }
 
 variable "enable_floor_setting_enforcement" {
