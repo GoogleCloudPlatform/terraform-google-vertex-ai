@@ -5,7 +5,7 @@ This module is used to create [Model Armor template](https://cloud.google.com/se
 ```hcl
 module "model_armor_template" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-template"
-  version = "~> 2.0"
+  version = "~> 2.1"
 
   template_id = "test-model-armor-template"
   location    = "us"
