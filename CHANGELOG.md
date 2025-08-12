@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.1.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.1.0...v2.1.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* updated docs and example ([#51](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/51)) ([2cad6e6](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/2cad6e6666f743064a147e84f17723168f969ab2))
+
 ## [2.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.0.0...v2.1.0) (2025-08-07)
 
 
