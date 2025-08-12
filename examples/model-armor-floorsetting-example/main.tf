@@ -14,6 +14,21 @@
  * limitations under the License.
  */
 
+# Grant the Model Armor user permission to the Vertex AI service account. 
+# https://cloud.google.com/security-command-center/docs/model-armor-vertex-integration#before_you_begin
+
+resource "google_project_service_identity" "ma_sa" {
+  provider = google-beta
+
+  project = var.project_id
+  service = "aiplatform.googleapis.com"
+}
+
+resource "google_project_iam_member" "ma_sa_member" {
+  project = var.project_id
+  role    = "roles/modelarmor.user"
+  member  = google_project_service_identity.ma_sa.member
+}
 
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"

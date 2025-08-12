@@ -1,6 +1,6 @@
 # Module for Model Armor Floor Settings
 
-This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example).
+This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example). `terraform destroy` deletes state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
 
 ```hcl
 module "model_armor_floorsetting" {
@@ -81,6 +81,17 @@ Detects [malicious content and jailbreak](https://cloud.google.com/security-comm
 `inspect_and_block` - (Optional) If true, Model Armor filters will be run in inspect and block mode. Requests that trip Model Armor filters will be blocked.
 
 `enable_cloud_logging` - (Optional) If true, log Model Armor filter results to Cloud Logging.
+
+
+## reset-model-armor-setting
+
+```
+curl -X PATCH \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -d '{"filterConfig" : {},"enableFloorSettingEnforcement" : "false"}' \
+  -H "Content-Type: application/json" \
+  "https://modelarmor.googleapis.com/v1/projects/${PROJECT_ID}/locations/global/floorSetting"
+```
 
 
 ## Requirements
