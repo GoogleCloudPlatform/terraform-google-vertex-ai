@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-# Grant the Model Armor user permission to the Vertex AI service account. 
+# Grant the Model Armor user permission to the Vertex AI service account.
 # https://cloud.google.com/security-command-center/docs/model-armor-vertex-integration#before_you_begin
 
 resource "google_project_service_identity" "ma_sa" {
