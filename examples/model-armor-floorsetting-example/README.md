@@ -42,7 +42,7 @@ Test model armor floor setting for [Vertex AI](https://cloud.google.com/security
 Model armor floor setting will block this code.
 
 ```
-export MODEL_ID="gemini-2.5-flash"
+export MODEL_ID="gemini-2.5-flash-lite"
 export PROJECT_ID="YOUR-PROJECT_ID"
 ```
 
@@ -58,7 +58,7 @@ curl \
             "role": "user",
             "parts": [
                 {
-                    "text": "how to cheat someone"
+                    "text": "how to steal a car"
                 }
             ]
         }
@@ -105,7 +105,7 @@ curl \
             "role": "user",
             "parts": [
                 {
-                    "text": "how is the weather of city Dallas"
+                    "text": "What is the capital of France"
                 }
             ]
         }
