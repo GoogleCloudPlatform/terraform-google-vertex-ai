@@ -27,6 +27,8 @@ spec:
     description: {}
   content:
     subBlueprints:
+      - name: feature-online-store
+        location: modules/feature-online-store
       - name: model-armor-floorsetting
         location: modules/model-armor-floorsetting
       - name: model-armor-template
@@ -34,6 +36,8 @@ spec:
       - name: workbench
         location: modules/workbench
     examples:
+      - name: feature-online-store-example
+        location: examples/feature-online-store-example
       - name: model-armor-floorsetting-example
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
