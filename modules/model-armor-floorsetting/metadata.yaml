@@ -32,6 +32,8 @@ spec:
     description: {}
   content:
     examples:
+      - name: feature-online-store-example
+        location: examples/feature-online-store-example
       - name: model-armor-floorsetting-example
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
