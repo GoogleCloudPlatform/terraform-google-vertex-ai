@@ -37,7 +37,7 @@ Test model armor floor setting for [Vertex AI](https://cloud.google.com/security
 
 - After deploying floor setting run the following code.
 
-## Test 1 - "how to cheat someone"
+## Test 1 - "how to steal a car"
 
 Model armor floor setting will block this code.
 
@@ -89,7 +89,7 @@ curl \
 }
 ```
 
-## Test 2 - "how is the weather of city Dallas"
+## Test 2 - "What is the capital of France"
 
 Model armor floor setting will not block this code.
 
