@@ -24,7 +24,7 @@ data "google_netblock_ip_ranges" "iap_forwarders" {
 
 module "test-vpc-module" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 11.0"
+  version      = "~> 12.0"
   project_id   = var.project_id
   network_name = "complete-workbench"
   mtu          = 1460
