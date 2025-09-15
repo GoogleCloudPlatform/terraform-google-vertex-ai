@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.1.1...v2.2.0) (2025-09-03)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v7 (major) ([#54](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/54)) ([e32ec99](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/e32ec99c9e075cba5e34bc0c50c6ad234941c2ca))
+
 ## [2.1.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.1.0...v2.1.1) (2025-08-12)
 
 
