@@ -138,4 +138,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.45, < 7"
+        version: ">= 6.45, < 8"
