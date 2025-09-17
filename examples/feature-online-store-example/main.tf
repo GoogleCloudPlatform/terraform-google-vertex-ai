@@ -21,9 +21,7 @@ module "feature_online_store" {
   region            = "us-central1"
   featurestore_name = "example_feature_store"
 
-  labels = {
-    environment = "dev"
-  }
+  labels = {}
 
   storage_type                    = "optimized"
   bigtable_min_node_count         = 1
