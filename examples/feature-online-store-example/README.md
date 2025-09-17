@@ -10,7 +10,6 @@
 | delete\_timeout | The timeout for deleting the Feature Online Store. | `string` | `"30m"` | no |
 | enable\_private\_service\_connect | Set to true to enable Private Service Connect. | `bool` | `true` | no |
 | featurestore\_name | The name of the Vertex AI Feature Online Store. | `string` | `"my-online-featurestore"` | no |
-| kms\_key\_name | The full resource name of the KMS key to use for encryption. NOTE: This is not currently supported by the Terraform resource but is included for future compatibility. | `string` | `null` | no |
 | labels | A map of labels to assign to the feature online store. | `map(string)` | <pre>{<br>  "env": "dev"<br>}</pre> | no |
 | project\_id | The ID of the Google Cloud project. | `string` | n/a | yes |
 | psc\_project\_allowlist | A list of project IDs from which to allow Private Service Connect connections. | `list(string)` | `[]` | no |

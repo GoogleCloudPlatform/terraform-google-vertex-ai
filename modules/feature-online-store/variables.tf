@@ -34,9 +34,7 @@ variable "featurestore_name" {
 variable "labels" {
   description = "A map of labels to assign to the feature online store."
   type        = map(string)
-  default = {
-    env = "dev"
-  }
+  default     = {}
 }
 
 # --- New variables for Storage, Scaling, and Embeddings ---

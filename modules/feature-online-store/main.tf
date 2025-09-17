@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-# Configure the Google Cloud provider
-provider "google" {
-  project = var.project_id
-  region  = var.region
-}
-
 # Create a Vertex AI Feature Online Store
 # NOTE: Switched from the legacy 'google_vertex_ai_featurestore' to the
 # newer 'google_vertex_ai_feature_online_store' to support Private Service Connect.
 resource "google_vertex_ai_feature_online_store" "feature_online_store" {
-  name   = var.featurestore_name
-  labels = var.labels
+  project = var.project_id
+  region  = var.region
+  name    = var.featurestore_name
+  labels  = var.labels
 
   # Dynamically configure the storage type based on the 'storage_type' variable.
   # This allows choosing between 'optimized' and 'bigtable'.

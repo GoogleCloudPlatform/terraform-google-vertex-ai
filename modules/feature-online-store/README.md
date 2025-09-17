@@ -15,9 +15,8 @@ This module allows you to create and configure a Google Cloud Vertex AI Feature 
 | create\_timeout | The timeout for creating the Feature Online Store. | `string` | `"30m"` | no |
 | delete\_timeout | The timeout for deleting the Feature Online Store. | `string` | `"30m"` | no |
 | enable\_private\_service\_connect | Set to true to enable Private Service Connect. | `bool` | `true` | no |
-| featurestore\_name | The name of the Vertex AI Feature Online Store. | `string` | `"my-online-featurestore"` | no |
-| kms\_key\_name | The full resource name of the KMS key to use for encryption. NOTE: This is not currently supported by the Terraform resource but is included for future compatibility. | `string` | `null` | no |
-| labels | A map of labels to assign to the feature online store. | `map(string)` | <pre>{<br>  "env": "dev"<br>}</pre> | no |
+| featurestore\_name | The name of the Vertex AI Feature Online Store. | `string` | `"my_online_featurestore"` | no |
+| labels | A map of labels to assign to the feature online store. | `map(string)` | `{}` | no |
 | project\_id | The ID of the Google Cloud project. | `string` | n/a | yes |
 | psc\_project\_allowlist | A list of project IDs from which to allow Private Service Connect connections. | `list(string)` | `[]` | no |
 | region | The region where the Vertex AI Feature Online Store will be created. | `string` | `"us-central1"` | no |
@@ -26,6 +25,10 @@ This module allows you to create and configure a Google Cloud Vertex AI Feature 
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| feature\_online\_store\_id | The full resource ID of the created Vertex AI Feature Online Store. |
+| feature\_online\_store\_name\_output | The name of the created Vertex AI Feature Online Store. |
+| psc\_service\_attachment | The service attachment URI for the Private Service Connect endpoint. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

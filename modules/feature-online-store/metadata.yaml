@@ -54,12 +54,11 @@ spec:
       - name: featurestore_name
         description: The name of the Vertex AI Feature Online Store.
         varType: string
-        defaultValue: my-online-featurestore
+        defaultValue: my_online_featurestore
       - name: labels
         description: A map of labels to assign to the feature online store.
         varType: map(string)
-        defaultValue:
-          env: dev
+        defaultValue: {}
       - name: storage_type
         description: The storage type for the feature online store. Must be either 'optimized' or 'bigtable'.
         varType: string
@@ -96,6 +95,13 @@ spec:
         description: A list of project IDs from which to allow Private Service Connect connections.
         varType: list(string)
         defaultValue: []
+    outputs:
+      - name: feature_online_store_id
+        description: The full resource ID of the created Vertex AI Feature Online Store.
+      - name: feature_online_store_name_output
+        description: The name of the created Vertex AI Feature Online Store.
+      - name: psc_service_attachment
+        description: The service attachment URI for the Private Service Connect endpoint.
   requirements:
     roles:
       - level: Project
@@ -127,3 +133,6 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 6.45, < 8"
