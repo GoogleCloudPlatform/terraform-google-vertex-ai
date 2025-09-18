@@ -19,3 +19,7 @@ variable "project_id" {
   type        = string
 }
 
+variable "featurestore_name" {
+  description = "The name of the Vertex AI feature online store."
+  type        = string
+}

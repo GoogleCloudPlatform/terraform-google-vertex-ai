@@ -3,6 +3,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| featurestore\_name | The name of the Vertex AI feature online store. | `string` | n/a | yes |
 | project\_id | The ID of the Google Cloud project. | `string` | n/a | yes |
 
 ## Outputs

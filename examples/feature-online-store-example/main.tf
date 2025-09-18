@@ -18,8 +18,8 @@ module "feature_online_store" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/feature-online-store"
 
   project_id        = var.project_id
+  featurestore_name = var.featurestore_name
   region            = "us-central1"
-  featurestore_name = "example_feature_store"
 
   labels = {}
 

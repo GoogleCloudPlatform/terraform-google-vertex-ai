@@ -47,14 +47,14 @@ spec:
         description: The ID of the Google Cloud project.
         varType: string
         required: true
+      - name: featurestore_name
+        description: The name of the Vertex AI Feature Online Store.
+        varType: string
+        required: true
       - name: region
         description: The region where the Vertex AI Feature Online Store will be created.
         varType: string
         defaultValue: us-central1
-      - name: featurestore_name
-        description: The name of the Vertex AI Feature Online Store.
-        varType: string
-        defaultValue: my_online_featurestore
       - name: labels
         description: A map of labels to assign to the feature online store.
         varType: map(string)

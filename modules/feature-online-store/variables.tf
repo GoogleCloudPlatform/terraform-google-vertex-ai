@@ -19,16 +19,15 @@ variable "project_id" {
   type        = string
 }
 
+variable "featurestore_name" {
+  description = "The name of the Vertex AI Feature Online Store."
+  type        = string
+}
+
 variable "region" {
   description = "The region where the Vertex AI Feature Online Store will be created."
   type        = string
   default     = "us-central1"
-}
-
-variable "featurestore_name" {
-  description = "The name of the Vertex AI Feature Online Store."
-  type        = string
-  default     = "my_online_featurestore"
 }
 
 variable "labels" {
