@@ -35,4 +35,3 @@ module "feature_online_store" {
   enable_private_service_connect = true
   psc_project_allowlist          = []
 }
-
