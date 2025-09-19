@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
+resource "random_id" "suffix" {
+  byte_length = 4
+}
+
 module "feature_online_store" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/feature-online-store"
 
   project_id        = var.project_id
-  featurestore_name = var.featurestore_name
+  featurestore_name = "example_featurestore_name_${random_id.suffix.hex}"
   region            = "us-central1"
 
   labels = {}
