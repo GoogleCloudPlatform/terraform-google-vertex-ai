@@ -14,6 +14,16 @@
  * limitations under the License.
  */
 
+output "project_id" {
+  value       = var.project_id
+  description = "The project ID"
+}
+
+output "region" {
+  value       = var.region
+  description = "The region"
+}
+
 output "feature_online_store_id" {
   description = "The full resource ID of the created Vertex AI Feature Online Store."
   value       = module.feature_online_store.feature_online_store_id
