@@ -19,8 +19,3 @@ variable "project_id" {
   type        = string
 }
 
-variable "region" {
-  description = "The GCP region for the Feature Online Store."
-  type        = string
-  default     = "us-central1"
-}
