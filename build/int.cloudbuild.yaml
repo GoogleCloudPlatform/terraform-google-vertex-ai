@@ -70,7 +70,7 @@ steps:
     - feature-online-store-example-apply
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestFeatureOnlineStore --stage verify --verbose']
-- id: feature-online-store-example-teardown 
+- id: feature-online-store-example-teardown
   waitFor:
     - feature-online-store-example-verify
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
