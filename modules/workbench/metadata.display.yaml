@@ -1,0 +1,111 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vertex-ai-workbench-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Module for Vertex AI Workbench Instance
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      sourceType: git
+      dir: /modules/workbench
+  ui:
+    input:
+      variables:
+        accelerator_configs:
+          name: accelerator_configs
+          title: Accelerator Configs
+        boot_disk_size_gb:
+          name: boot_disk_size_gb
+          title: Boot Disk Size Gb
+        boot_disk_type:
+          name: boot_disk_type
+          title: Boot Disk Type
+        confidential_instance_type:
+          name: confidential_instance_type
+          title: Confidential Instance Type
+        container_image:
+          name: container_image
+          title: Container Image
+        data_disks:
+          name: data_disks
+          title: Data Disks
+        desired_state:
+          name: desired_state
+          title: Desired State
+        disable_proxy_access:
+          name: disable_proxy_access
+          title: Disable Proxy Access
+        disable_public_ip:
+          name: disable_public_ip
+          title: Disable Public Ip
+        disk_encryption:
+          name: disk_encryption
+          title: Disk Encryption
+        enable_ip_forwarding:
+          name: enable_ip_forwarding
+          title: Enable Ip Forwarding
+        enable_third_party_identity:
+          name: enable_third_party_identity
+          title: Enable Third Party Identity
+        instance_id:
+          name: instance_id
+          title: Instance Id
+        instance_owners:
+          name: instance_owners
+          title: Instance Owners
+        kms_key:
+          name: kms_key
+          title: Kms Key
+        labels:
+          name: labels
+          title: Labels
+        location:
+          name: location
+          title: Location
+        machine_type:
+          name: machine_type
+          title: Machine Type
+        metadata:
+          name: metadata
+          title: Metadata
+        metadata_configs:
+          name: metadata_configs
+          title: Metadata Configs
+        name:
+          name: name
+          title: Name
+        network_interfaces:
+          name: network_interfaces
+          title: Network Interfaces
+        project_id:
+          name: project_id
+          title: Project Id
+        service_accounts:
+          name: service_accounts
+          title: Service Accounts
+        shielded_instance_config:
+          name: shielded_instance_config
+          title: Shielded Instance Config
+        tags:
+          name: tags
+          title: Tags
+        vm_image:
+          name: vm_image
+          title: Vm Image
