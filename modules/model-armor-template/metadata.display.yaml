@@ -1,0 +1,57 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vertex-ai-model-armor-template-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Module for Model Armor Template
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      sourceType: git
+      dir: /modules/model-armor-template
+  ui:
+    input:
+      variables:
+        enable_malicious_uri_filter_settings:
+          name: enable_malicious_uri_filter_settings
+          title: Enable Malicious Uri Filter Settings
+        labels:
+          name: labels
+          title: Labels
+        location:
+          name: location
+          title: Location
+        metadata_configs:
+          name: metadata_configs
+          title: Metadata Configs
+        pi_and_jailbreak_filter_settings:
+          name: pi_and_jailbreak_filter_settings
+          title: Pi And Jailbreak Filter Settings
+        project_id:
+          name: project_id
+          title: Project Id
+        rai_filters:
+          name: rai_filters
+          title: Rai Filters
+        sdp_settings:
+          name: sdp_settings
+          title: Sdp Settings
+        template_id:
+          name: template_id
+          title: Template Id
