@@ -16,7 +16,7 @@
 
 module "byod_bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
-  version = "~> 11.0"
+  version = "~> 12.0"
 
   name          = local.byod_bucket_name
   project_id    = var.project_id
