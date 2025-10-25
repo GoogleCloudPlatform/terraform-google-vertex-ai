@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.3.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.3.0...v2.3.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* Metadata update for ADC compliance of feature online store module ([9ca8a5f](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/9ca8a5f7cabd20dd28ede88050bd4a7ae7820a8e))
+
 ## [2.3.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.2.0...v2.3.0) (2025-10-02)
 
 
