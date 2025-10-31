@@ -33,6 +33,8 @@ spec:
         location: modules/model-armor-floorsetting
       - name: model-armor-template
         location: modules/model-armor-template
+      - name: reasoning-engine
+        location: modules/reasoning-engine
       - name: workbench
         location: modules/workbench
     examples:
@@ -42,6 +44,8 @@ spec:
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
+      - name: reasoning-engine-example
+        location: examples/reasoning-engine-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example

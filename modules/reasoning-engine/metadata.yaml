@@ -15,16 +15,16 @@
 apiVersion: blueprints.cloud.google.com/v1alpha1
 kind: BlueprintMetadata
 metadata:
-  name: terraform-google-vertex-ai-model-armor-template
+  name: terraform-google-vertex-ai-reasoning-engine
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Module for Model Armor Template
+    title: Vertex AI Reasoning Engine Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
-      dir: /modules/model-armor-template
+      dir: /modules/reasoning-engine
     version: 2.3.1
     actuationTool:
       flavor: Terraform
@@ -46,65 +46,63 @@ spec:
         location: examples/workbench-simple-example
   interfaces:
     variables:
-      - name: template_id
-        description: The ID of the template
+      - name: display_name
+        description: The display name of the Reasoning Engine.
         varType: string
         required: true
-      - name: location
-        description: the location of the template
+      - name: project
+        description: The ID of the project in which the resource belongs.
         varType: string
         required: true
-      - name: project_id
-        description: The ID of the project in which the resource belongs
+      - name: region
+        description: The region of the reasoning engine. eg us-central1.
         varType: string
         required: true
-      - name: labels
-        description: Labels to apply to this model armor template
-        varType: map(string)
-        defaultValue: {}
-      - name: enable_malicious_uri_filter_settings
-        description: Enable Malicious URI filter settings
-        varType: bool
-        defaultValue: false
-      - name: rai_filters
-        description: Confidence level for Responsible AI filters
+      - name: description
+        description: The description of the Reasoning Engine.
+        varType: string
+      - name: encryption_spec
+        description: Customer-managed encryption key spec for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources of this ReasoningEngine will be secured by this key.
         varType: |-
           object({
-              dangerous         = optional(string)
-              sexually_explicit = optional(string)
-              hate_speech       = optional(string)
-              harassment        = optional(string)
+              kms_key_name = string
             })
-      - name: sdp_settings
-        description: Sensitive Data Protection settings
+      - name: spec
+        description: Configurations of the ReasoningEngine.
         varType: |-
           object({
-              basic_config_filter_enforcement = optional(bool, false)
-              advanced_config = optional(object({
-                inspect_template    = optional(string)
-                deidentify_template = optional(string)
+              agent_framework = optional(string)
+              class_methods   = optional(list(any)) # Adjust 'any' if a more specific type is known
+              deployment_spec = optional(object({
+                env = optional(list(object({
+                  name  = string
+                  value = string
+                })))
+                secret_env = optional(list(object({
+                  name       = string
+                  secret_ref = object({
+                    secret  = string
+                    version = optional(string)
+                  })
+                })))
               }))
-            })
-      - name: pi_and_jailbreak_filter_settings
-        description: Confidence level for Prompt injection and Jailbreak Filter settings
-        varType: string
-      - name: metadata_configs
-        description: Message describing Template Metadata
-        varType: |-
-          object({
-              enforcement_type                         = optional(string, "")
-              enable_multi_language_detection          = optional(bool)
-              log_sanitize_operations                  = optional(bool, false)
-              log_template_operations                  = optional(bool, false)
-              ignore_partial_invocation_failures       = optional(bool, false)
-              custom_prompt_safety_error_code          = optional(string)
-              custom_prompt_safety_error_message       = optional(string)
-              custom_llm_response_safety_error_message = optional(string)
-              custom_llm_response_safety_error_code    = optional(string)
+              package_spec = optional(object({
+                dependency_files_gcs_uri = optional(string)
+                pickle_object_gcs_uri    = optional(string)
+                python_version           = optional(string)
+                requirements_gcs_uri     = optional(string)
+              }))
+              service_account = optional(string)
             })
     outputs:
-      - name: template
-        description: Model armor template created
+      - name: reasoning_engine_create_time
+        description: The timestamp of when the Reasoning Engine was created.
+      - name: reasoning_engine_id
+        description: The unique identifier for the Reasoning Engine resource.
+      - name: reasoning_engine_name
+        description: The generated name of the Reasoning Engine.
+      - name: reasoning_engine_update_time
+        description: The timestamp of when the Reasoning Engine was last updated.
   requirements:
     roles:
       - level: Project
@@ -138,4 +136,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.43, < 8"
+        version: ">= 6.45, < 8"
