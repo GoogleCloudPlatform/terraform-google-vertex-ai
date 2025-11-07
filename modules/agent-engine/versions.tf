@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-module "reasoning_engine" {
-  //source = "GoogleCloudPlatform/vertex-ai/google//modules/reasoning-engine"
-  source = "../../modules/reasoning-engine"
-  
-  project           = var.project
-  display_name      = "Vertex AI Reasoning Engine"
-  region            = "us-central1"
-  description       = "Reasoning Engine example"
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 7.6, < 8"
+    }
+  }
+  required_version = ">= 1.3"
 }

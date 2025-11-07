@@ -20,11 +20,11 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Reasoning Engine Module
+    title: Vertex AI Agent Engine Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
-      dir: /modules/reasoning-engine
+      dir: /modules/agent-engine
   ui:
     input:
       variables:
@@ -37,6 +37,9 @@ spec:
         encryption_spec:
           name: encryption_spec
           title: Encryption Spec
+        kms_key_name:
+          name: kms_key_name
+          title: Kms Key Name
         project:
           name: project
           title: Project

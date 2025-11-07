@@ -20,11 +20,11 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Reasoning Engine Module
+    title: Vertex AI Agent Engine Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
-      dir: /modules/reasoning-engine
+      dir: /modules/agent-engine
     version: 2.3.1
     actuationTool:
       flavor: Terraform
@@ -32,14 +32,14 @@ spec:
     description: {}
   content:
     examples:
+      - name: agent-engine-example
+        location: examples/agent-engine-example
       - name: feature-online-store-example
         location: examples/feature-online-store-example
       - name: model-armor-floorsetting-example
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
-      - name: reasoning-engine-example
-        location: examples/reasoning-engine-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -61,14 +61,11 @@ spec:
       - name: description
         description: The description of the Reasoning Engine.
         varType: string
-      - name: encryption_spec
-        description: Customer-managed encryption key spec for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources of this ReasoningEngine will be secured by this key.
-        varType: |-
-          object({
-              kms_key_name = string
-            })
+      - name: kms_key_name
+        description: Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key.
+        varType: string
       - name: spec
-        description: Configurations of the ReasoningEngine.
+        description: Configurations of the Reasoning Engine.
         varType: |-
           object({
               agent_framework = optional(string)
@@ -94,6 +91,13 @@ spec:
               }))
               service_account = optional(string)
             })
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-secret-manager/modules/simple-secret
+              version: ~> 0.9.0
+            spec:
+              outputExpr: env_vars["SECRET"]
+              inputPath: deployment_spec.secret_env[0].secret_ref
     outputs:
       - name: reasoning_engine_create_time
         description: The timestamp of when the Reasoning Engine was created.
@@ -136,4 +140,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.45, < 8"
+        version: ">= 7.6, < 8"

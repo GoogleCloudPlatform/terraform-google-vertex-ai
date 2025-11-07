@@ -35,16 +35,14 @@ variable "description" {
   default     = null
 }
 
-variable "encryption_spec" {
-  description = "Customer-managed encryption key spec for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources of this ReasoningEngine will be secured by this key."
-  type = object({
-    kms_key_name = string
-  })
-  default = null
+variable "kms_key_name" {
+  description = "Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key."
+  type        = string
+  default     = null 
 }
 
 variable "spec" {
-  description = "Configurations of the ReasoningEngine."
+  description = "Configurations of the Reasoning Engine."
   type = object({
     agent_framework = optional(string)
     class_methods   = optional(list(any)) # Adjust 'any' if a more specific type is known
