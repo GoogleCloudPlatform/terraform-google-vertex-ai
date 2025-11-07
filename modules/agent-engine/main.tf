@@ -21,9 +21,9 @@ resource "google_vertex_ai_reasoning_engine" "main" {
   description  = var.description
 
   dynamic "encryption_spec" {
-    for_each = var.encryption_spec != null ? [var.encryption_spec] : []
+    for_each = (var.kms_key_name != null && var.kms_key_name != "") ? [1] : []
     content {
-      kms_key_name = encryption_spec.value.kms_key_name
+      kms_key_name = var.kms_key_name
     }
   }
 
