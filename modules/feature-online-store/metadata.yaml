@@ -25,6 +25,7 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/feature-online-store
+    version: 2.3.1
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
