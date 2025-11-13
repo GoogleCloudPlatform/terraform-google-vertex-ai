@@ -52,7 +52,7 @@ module "test-vpc-module" {
 
 module "cloud_router" {
   source  = "terraform-google-modules/cloud-router/google"
-  version = "~> 7.0"
+  version = "~> 8.0"
 
   name    = "test-ca-us-central1-cr"
   project = var.project_id
