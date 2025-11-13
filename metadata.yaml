@@ -27,6 +27,8 @@ spec:
     description: {}
   content:
     subBlueprints:
+      - name: agent-engine
+        location: modules/agent-engine
       - name: feature-online-store
         location: modules/feature-online-store
       - name: model-armor-floorsetting
@@ -36,6 +38,8 @@ spec:
       - name: workbench
         location: modules/workbench
     examples:
+      - name: agent-engine-example
+        location: examples/agent-engine-example
       - name: feature-online-store-example
         location: examples/feature-online-store-example
       - name: model-armor-floorsetting-example

@@ -15,16 +15,16 @@
 apiVersion: blueprints.cloud.google.com/v1alpha1
 kind: BlueprintMetadata
 metadata:
-  name: terraform-google-vertex-ai-feature-online-store
+  name: terraform-google-vertex-ai-reasoning-engine
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Feature Online Store Module
+    title: Vertex AI Agent Engine Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
-      dir: /modules/feature-online-store
+      dir: /modules/agent-engine
     version: 2.3.1
     actuationTool:
       flavor: Terraform
@@ -46,65 +46,67 @@ spec:
         location: examples/workbench-simple-example
   interfaces:
     variables:
-      - name: project_id
-        description: The ID of the Google Cloud project.
+      - name: display_name
+        description: The display name of the Reasoning Engine.
         varType: string
         required: true
-      - name: featurestore_name
-        description: The name of the Vertex AI Feature Online Store.
+      - name: project
+        description: The ID of the project in which the resource belongs.
         varType: string
         required: true
       - name: region
-        description: The region where the Vertex AI Feature Online Store will be created.
+        description: The region of the reasoning engine. eg us-central1.
         varType: string
-        defaultValue: us-central1
-      - name: labels
-        description: A map of labels to assign to the feature online store.
-        varType: map(string)
-        defaultValue: {}
-      - name: storage_type
-        description: The storage type for the feature online store. Must be either 'optimized' or 'bigtable'.
+        required: true
+      - name: description
+        description: The description of the Reasoning Engine.
         varType: string
-        defaultValue: optimized
-      - name: bigtable_min_node_count
-        description: The minimum number of nodes for Bigtable autoscaling.
-        varType: number
-        defaultValue: 1
-      - name: bigtable_max_node_count
-        description: The maximum number of nodes for Bigtable autoscaling.
-        varType: number
-        defaultValue: 5
-      - name: bigtable_cpu_utilization_target
-        description: The target CPU utilization percentage for Bigtable autoscaling.
-        varType: number
-        defaultValue: 50
-      - name: create_timeout
-        description: The timeout for creating the Feature Online Store.
+      - name: kms_key_name
+        description: Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key.
         varType: string
-        defaultValue: 30m
-      - name: update_timeout
-        description: The timeout for updating the Feature Online Store.
-        varType: string
-        defaultValue: 30m
-      - name: delete_timeout
-        description: The timeout for deleting the Feature Online Store.
-        varType: string
-        defaultValue: 30m
-      - name: enable_private_service_connect
-        description: Set to true to enable Private Service Connect.
-        varType: bool
-        defaultValue: true
-      - name: psc_project_allowlist
-        description: A list of project IDs from which to allow Private Service Connect connections.
-        varType: list(string)
-        defaultValue: []
+      - name: spec
+        description: Configurations of the Reasoning Engine.
+        varType: |-
+          object({
+              agent_framework = optional(string)
+              class_methods   = optional(list(any)) # Adjust 'any' if a more specific type is known
+              deployment_spec = optional(object({
+                env = optional(list(object({
+                  name  = string
+                  value = string
+                })))
+                secret_env = optional(list(object({
+                  name       = string
+                  secret_ref = object({
+                    secret  = string
+                    version = optional(string)
+                  })
+                })))
+              }))
+              package_spec = optional(object({
+                dependency_files_gcs_uri = optional(string)
+                pickle_object_gcs_uri    = optional(string)
+                python_version           = optional(string)
+                requirements_gcs_uri     = optional(string)
+              }))
+              service_account = optional(string)
+            })
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-secret-manager/modules/simple-secret
+              version: ~> 0.9.0
+            spec:
+              outputExpr: env_vars["SECRET"]
+              inputPath: deployment_spec.secret_env[0].secret_ref
     outputs:
-      - name: feature_online_store_id
-        description: The full resource ID of the created Vertex AI Feature Online Store.
-      - name: feature_online_store_name_output
-        description: The name of the created Vertex AI Feature Online Store.
-      - name: psc_service_attachment
-        description: The service attachment URI for the Private Service Connect endpoint.
+      - name: reasoning_engine_create_time
+        description: The timestamp of when the Reasoning Engine was created.
+      - name: reasoning_engine_id
+        description: The unique identifier for the Reasoning Engine resource.
+      - name: reasoning_engine_name
+        description: The generated name of the Reasoning Engine.
+      - name: reasoning_engine_update_time
+        description: The timestamp of when the Reasoning Engine was last updated.
   requirements:
     roles:
       - level: Project
@@ -138,4 +140,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.45, < 8"
+        version: ">= 7.6, < 8"
