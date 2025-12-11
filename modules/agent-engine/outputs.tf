@@ -24,12 +24,7 @@ output "reasoning_engine_name" {
   value       = google_vertex_ai_reasoning_engine.main.name
 }
 
-output "reasoning_engine_create_time" {
-  description = "The timestamp of when the Reasoning Engine was created."
-  value       = google_vertex_ai_reasoning_engine.main.create_time
-}
-
-output "reasoning_engine_update_time" {
-  description = "The timestamp of when the Reasoning Engine was last updated."
-  value       = google_vertex_ai_reasoning_engine.main.update_time
+output "reasoning_engine" {
+  description = "The full google_vertex_ai_reasoning_engine resource object."
+  value       = google_vertex_ai_reasoning_engine.main
 }
