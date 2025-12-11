@@ -19,7 +19,7 @@ variable "display_name" {
   type        = string
 }
 
-variable "project" {
+variable "project_id" {
   description = "The ID of the project in which the resource belongs."
   type        = string
 }
@@ -38,21 +38,18 @@ variable "description" {
 variable "kms_key_name" {
   description = "Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key."
   type        = string
-  default     = null 
+  default     = null
 }
 
 variable "spec" {
   description = "Configurations of the Reasoning Engine."
   type = object({
     agent_framework = optional(string)
-    class_methods   = optional(list(any)) # Adjust 'any' if a more specific type is known
+    class_methods   = optional(list(any))
     deployment_spec = optional(object({
-      env = optional(list(object({
-        name  = string
-        value = string
-      })))
+      env = optional(map(string), {})
       secret_env = optional(list(object({
-        name       = string
+        name = string
         secret_ref = object({
           secret  = string
           version = optional(string)

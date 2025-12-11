@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-variable "project" {
+variable "project_id" {
   description = "The ID of the Google Cloud project in which to deploy the Reasoning Engine."
   type        = string
 }

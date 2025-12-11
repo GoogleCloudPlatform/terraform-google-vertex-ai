@@ -40,12 +40,16 @@ spec:
         kms_key_name:
           name: kms_key_name
           title: Kms Key Name
-        project:
-          name: project
-          title: Project
+        project_id:
+          name: project_id
+          title: Project Id
         region:
           name: region
           title: Region
         spec:
           name: spec
           title: Spec
+    runtime:
+      outputs:
+        reasoning_engine:
+          visibility: VISIBILITY_ROOT
