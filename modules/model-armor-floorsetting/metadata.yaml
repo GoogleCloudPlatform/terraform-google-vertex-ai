@@ -32,6 +32,8 @@ spec:
     description: {}
   content:
     examples:
+      - name: agent-engine-example
+        location: examples/agent-engine-example
       - name: feature-online-store-example
         location: examples/feature-online-store-example
       - name: model-armor-floorsetting-example
