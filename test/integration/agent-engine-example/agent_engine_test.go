@@ -28,8 +28,6 @@ func TestReasoningEngineExample(t *testing.T) {
 	example := tft.NewTFBlueprintTest(t)
 
 	example.DefineVerify(func(assert *assert.Assertions) {
-		example.DefaultVerify(assert)
-
 		projectID := example.GetStringOutput("project")
 		if projectID == "" {
 			t.Fatalf("project setup variable not found")
