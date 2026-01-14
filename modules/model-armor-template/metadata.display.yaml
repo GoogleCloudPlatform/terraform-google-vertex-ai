@@ -61,6 +61,9 @@ spec:
               value: MEDIUM_AND_ABOVE
             - label: HIGH
               value: HIGH
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value: MEDIUM_AND_ABOVE
         project_id:
           name: project_id
           title: Project Id
@@ -79,6 +82,9 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
+              altDefaults:
+                - type: ALTERNATE_TYPE_DC
+                  value: MEDIUM_AND_ABOVE
             sexually_explicit:
               name: sexually_explicit
               title: Sexually Explicit
@@ -89,6 +95,9 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
+              altDefaults:
+                - type: ALTERNATE_TYPE_DC
+                  value: MEDIUM_AND_ABOVE
             hate_speech:
               name: hate_speech
               title: Hate Speech
@@ -99,6 +108,9 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
+              altDefaults:
+                - type: ALTERNATE_TYPE_DC
+                  value: MEDIUM_AND_ABOVE
             harassment:
               name: harassment
               title: Harassment
@@ -109,6 +121,9 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
+              altDefaults:
+                - type: ALTERNATE_TYPE_DC
+                  value: MEDIUM_AND_ABOVE
         sdp_settings:
           name: sdp_settings
           title: Sdp Settings
