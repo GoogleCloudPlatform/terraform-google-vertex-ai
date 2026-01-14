@@ -115,7 +115,7 @@ spec:
         template_id:
           name: template_id
           title: Template Id
-          regexValidation: ^(?!-)[a-zA-Z0-9\-_]{1,63}$
+          regexValidation: ^[a-zA-Z0-9][a-zA-Z0-9_-]{0,62}$
           validation: Template IDs can have letters, numbers, underscores, and hyphens, must be 63 characters or less, and cannot start with a hyphen or contain spaces.
     runtime:
       outputs:
