@@ -20,6 +20,6 @@ output "template" {
 }
 
 output "template_id" {
-  value       = google_model_armor_template.template_id
+  value       = google_model_armor_template.model_armor_template.template_id
   description = "Model armor template ID"
 }
