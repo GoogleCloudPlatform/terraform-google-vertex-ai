@@ -103,6 +103,8 @@ spec:
     outputs:
       - name: template
         description: Model armor template created
+      - name: template_id
+        description: Model armor template ID
   requirements:
     roles:
       - level: Project

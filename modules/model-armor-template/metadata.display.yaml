@@ -53,7 +53,6 @@ spec:
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings
-          level: 1
           enumValueLabels:
             - label: LOW_AND_ABOVE
               value: LOW_AND_ABOVE
@@ -61,6 +60,7 @@ spec:
               value: MEDIUM_AND_ABOVE
             - label: HIGH
               value: HIGH
+          level: 1
           altDefaults:
             - type: ALTERNATE_TYPE_DC
               value: MEDIUM_AND_ABOVE
@@ -71,6 +71,13 @@ spec:
           name: rai_filters
           title: Rai Filters
           level: 1
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value:
+                - dangerous: MEDIUM_AND_ABOVE
+                - harassment: MEDIUM_AND_ABOVE
+                - sexually_explicit: MEDIUM_AND_ABOVE
+                - hate_speech: MEDIUM_AND_ABOVE
           properties:
             dangerous:
               name: dangerous
@@ -82,35 +89,6 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
-              altDefaults:
-                - type: ALTERNATE_TYPE_DC
-                  value: MEDIUM_AND_ABOVE
-            sexually_explicit:
-              name: sexually_explicit
-              title: Sexually Explicit
-              enumValueLabels:
-                - label: LOW_AND_ABOVE
-                  value: LOW_AND_ABOVE
-                - label: MEDIUM_AND_ABOVE
-                  value: MEDIUM_AND_ABOVE
-                - label: HIGH
-                  value: HIGH
-              altDefaults:
-                - type: ALTERNATE_TYPE_DC
-                  value: MEDIUM_AND_ABOVE
-            hate_speech:
-              name: hate_speech
-              title: Hate Speech
-              enumValueLabels:
-                - label: LOW_AND_ABOVE
-                  value: LOW_AND_ABOVE
-                - label: MEDIUM_AND_ABOVE
-                  value: MEDIUM_AND_ABOVE
-                - label: HIGH
-                  value: HIGH
-              altDefaults:
-                - type: ALTERNATE_TYPE_DC
-                  value: MEDIUM_AND_ABOVE
             harassment:
               name: harassment
               title: Harassment
@@ -121,9 +99,26 @@ spec:
                   value: MEDIUM_AND_ABOVE
                 - label: HIGH
                   value: HIGH
-              altDefaults:
-                - type: ALTERNATE_TYPE_DC
+            hate_speech:
+              name: hate_speech
+              title: Hate Speech
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
                   value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            sexually_explicit:
+              name: sexually_explicit
+              title: Sexually Explicit
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
         sdp_settings:
           name: sdp_settings
           title: Sdp Settings
@@ -134,5 +129,5 @@ spec:
           validation: Template IDs can have letters, numbers, underscores, and hyphens, must be 63 characters or less, and cannot start with a hyphen or contain spaces.
     runtime:
       outputs:
-        template:
+        template_id:
           visibility: VISIBILITY_ROOT
