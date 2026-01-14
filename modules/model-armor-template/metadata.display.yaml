@@ -31,6 +31,7 @@ spec:
         enable_malicious_uri_filter_settings:
           name: enable_malicious_uri_filter_settings
           title: Enable Malicious Uri Filter Settings
+          level: 1
         labels:
           name: labels
           title: Labels
@@ -40,18 +41,83 @@ spec:
         metadata_configs:
           name: metadata_configs
           title: Metadata Configs
+          properties:
+            enforcement_type:
+              name: enforcement_type
+              title: Enforcement Type
+              enumValueLabels:
+                - label: INSPECT_ONLY
+                  value: INSPECT_ONLY
+                - label: INSPECT_AND_BLOCK
+                  value: INSPECT_AND_BLOCK
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings
+          level: 1
+          enumValueLabels:
+            - label: LOW_AND_ABOVE
+              value: LOW_AND_ABOVE
+            - label: MEDIUM_AND_ABOVE
+              value: MEDIUM_AND_ABOVE
+            - label: HIGH
+              value: HIGH
         project_id:
           name: project_id
           title: Project Id
         rai_filters:
           name: rai_filters
           title: Rai Filters
+          level: 1
+          properties:
+            dangerous:
+              name: dangerous
+              title: Dangerous
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            sexually_explicit:
+              name: sexually_explicit
+              title: Sexually Explicit
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            hate_speech:
+              name: hate_speech
+              title: Hate Speech
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            harassment:
+              name: harassment
+              title: Harassment
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
         sdp_settings:
           name: sdp_settings
           title: Sdp Settings
         template_id:
           name: template_id
           title: Template Id
+          regexValidation: ^(?!-)[a-zA-Z0-9_-]{1,63}$
+          validation: Template IDs can have letters, numbers, underscores, and hyphens, must be 63 characters or less, and cannot start with a hyphen or contain spaces.
+    runtime:
+      outputs:
+        template:
+          visibility: VISIBILITY_ROOT

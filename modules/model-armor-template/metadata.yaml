@@ -73,6 +73,11 @@ spec:
               hate_speech       = optional(string)
               harassment        = optional(string)
             })
+        defaultValue:
+          dangerous: MEDIUM_AND_ABOVE
+          sexually_explicit: MEDIUM_AND_ABOVE
+          hate_speech: MEDIUM_AND_ABOVE
+          harassment: MEDIUM_AND_ABOVE
       - name: sdp_settings
         description: Sensitive Data Protection settings
         varType: |-
@@ -86,6 +91,7 @@ spec:
       - name: pi_and_jailbreak_filter_settings
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
+        defaultValue: MEDIUM_AND_ABOVE
       - name: metadata_configs
         description: Message describing Template Metadata
         varType: |-
