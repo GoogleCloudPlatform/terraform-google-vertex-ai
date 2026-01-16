@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [2.4.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.3.1...v2.4.0) (2026-01-16)
+
+
+### Features
+
+* Add Vertex AI Reasoning Engine module ([#67](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/67)) ([a01ca9c](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/a01ca9c938578eaa0fd2b90a27b869e5d1a41971))
+
 ## [2.3.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.3.0...v2.3.1) (2025-10-24)
 
 
