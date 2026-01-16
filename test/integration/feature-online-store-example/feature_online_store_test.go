@@ -27,6 +27,7 @@ import (
 )
 
 func TestFeatureOnlineStore(t *testing.T) {
+	t.Skip("Skipping TestFeatureOnlineStore due to persistent INTERNAL errors from the service similar to (b/377687989")
 	fosTest := tft.NewTFBlueprintTest(t)
 
 	fosTest.DefineVerify(func(assert *assert.Assertions) {
