@@ -18,3 +18,8 @@ output "template" {
   value       = google_model_armor_template.model_armor_template
   description = "Model armor template created"
 }
+
+output "template_id" {
+  value       = google_model_armor_template.model_armor_template.template_id
+  description = "Model armor template ID"
+}
