@@ -1,4 +1,4 @@
-# Copyright 2025 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -105,6 +105,66 @@ spec:
     outputs:
       - name: template
         description: Model armor template created
+        type:
+          - object
+          - filter_config:
+              - list
+              - - object
+                - malicious_uri_filter_settings:
+                    - list
+                    - - object
+                      - filter_enforcement: string
+                  pi_and_jailbreak_filter_settings:
+                    - list
+                    - - object
+                      - confidence_level: string
+                        filter_enforcement: string
+                  rai_settings:
+                    - list
+                    - - object
+                      - rai_filters:
+                          - list
+                          - - object
+                            - confidence_level: string
+                              filter_type: string
+                  sdp_settings:
+                    - list
+                    - - object
+                      - advanced_config:
+                          - list
+                          - - object
+                            - deidentify_template: string
+                              inspect_template: string
+                        basic_config:
+                          - list
+                          - - object
+                            - filter_enforcement: string
+            id: string
+            labels:
+              - map
+              - string
+            location: string
+            name: string
+            project: string
+            template_id: string
+            template_metadata:
+              - list
+              - - object
+                - custom_llm_response_safety_error_code: string
+                  custom_llm_response_safety_error_message: string
+                  custom_prompt_safety_error_code: string
+                  custom_prompt_safety_error_message: string
+                  enforcement_type: string
+                  ignore_partial_invocation_failures: bool
+                  log_sanitize_operations: bool
+                  log_template_operations: bool
+                  multi_language_detection:
+                    - list
+                    - - object
+                      - enable_multi_language_detection: bool
+      - name: template_id
+        description: Model armor template ID
+        type: string
   requirements:
     roles:
       - level: Project

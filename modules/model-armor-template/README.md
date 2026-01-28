@@ -62,6 +62,7 @@ module "model_armor_template" {
 | Name | Description |
 |------|-------------|
 | template | Model armor template created |
+| template\_id | Model armor template ID |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
