@@ -1,11 +1,11 @@
 # Module for Model Armor Floor Settings
 
-This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example). `terraform destroy` deletes state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
+This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example). `terraform destroy` will not reset model armor floor setting, instead if will delete resource from state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
 
 ```hcl
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
-  version = "~> 2.4"
+  version = "~> 3.0"
 
   parent_id           = var.project_id
   parent_type         = "project"
@@ -39,7 +39,8 @@ module "model_armor_floorsetting" {
 | enable\_floor\_setting\_enforcement | Floor Settings enforcement status | `bool` | `true` | no |
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
 | enable\_multi\_language\_detection | If true, multi language detection will be enabled | `bool` | `true` | no |
-| integrated\_services | List of integrated services for which the floor setting is applicable. Possible value is AI\_PLATFORM | `list(any)` | `[]` | no |
+| google\_mcp\_server\_floor\_setting | Google MCP Server floor setting | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
+| integrated\_services | List of integrated services for which the floor setting is applicable. Possible values are AI\_PLATFORM, GOOGLE\_MCP\_SERVER | `list(any)` | `[]` | no |
 | location | The location of the floor setting | `string` | `"global"` | no |
 | parent\_id | The ID of organization, folder, or project to create the floor settings in | `string` | n/a | yes |
 | parent\_type | Parent type. Can be organization, folder, or project to create the floor settings in | `string` | n/a | yes |
@@ -85,6 +86,11 @@ Detects [malicious content and jailbreak](https://cloud.google.com/security-comm
 
 ## reset-model-armor-setting
 
+```shell
+export PROJECT_ID="YOUR-PROJECT_ID"
+gcloud model-armor floorsettings update--full-uri=projects/${PROJECT_ID}/locations/global/floorSetting --enable-floor-setting-enforcement=false
+```
+
 ```
 curl -X PATCH \
   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
@@ -103,7 +109,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.45+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v7.13+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:

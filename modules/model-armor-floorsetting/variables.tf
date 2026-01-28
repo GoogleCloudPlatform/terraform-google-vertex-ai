@@ -76,7 +76,7 @@ variable "pi_and_jailbreak_filter_settings" {
 }
 
 variable "ai_platform_floor_setting" {
-  description = " AI Platform floor setting"
+  description = "AI Platform floor setting"
   type = object({
     inspect_only         = optional(bool)
     inspect_and_block    = optional(bool)
@@ -92,7 +92,17 @@ variable "enable_multi_language_detection" {
 }
 
 variable "integrated_services" {
-  description = "List of integrated services for which the floor setting is applicable. Possible value is AI_PLATFORM"
+  description = "List of integrated services for which the floor setting is applicable. Possible values are AI_PLATFORM, GOOGLE_MCP_SERVER"
   type        = list(any)
   default     = []
+}
+
+variable "google_mcp_server_floor_setting" {
+  description = "Google MCP Server floor setting"
+  type = object({
+    inspect_only         = optional(bool)
+    inspect_and_block    = optional(bool)
+    enable_cloud_logging = optional(bool)
+  })
+  default = null
 }

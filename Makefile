@@ -24,6 +24,7 @@ REGISTRY_URL := gcr.io/cloud-foundation-cicd
 docker_run:
 	docker run --rm -it \
 		-e SERVICE_ACCOUNT_JSON \
+		-e CLOUDSDK_API_ENDPOINT_OVERRIDES_MODELARMOR \
 		-v $(CURDIR):/workspace \
 		$(REGISTRY_URL)/${DOCKER_IMAGE_DEVELOPER_TOOLS}:${DOCKER_TAG_VERSION_DEVELOPER_TOOLS} \
 		/bin/bash

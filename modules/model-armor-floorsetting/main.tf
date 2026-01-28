@@ -117,4 +117,12 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
     }
   }
 
+  dynamic "google_mcp_server_floor_setting" {
+    for_each = var.google_mcp_server_floor_setting == null ? [] : ["google_mcp_server_floor_setting"]
+    content {
+      inspect_only         = lookup(var.google_mcp_server_floor_setting, "inspect_only")
+      inspect_and_block    = lookup(var.google_mcp_server_floor_setting, "inspect_and_block")
+      enable_cloud_logging = lookup(var.google_mcp_server_floor_setting, "enable_cloud_logging")
+    }
+  }
 }
