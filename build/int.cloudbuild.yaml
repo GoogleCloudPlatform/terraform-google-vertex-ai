@@ -24,7 +24,6 @@ steps:
   - 'TF_VAR_org_id=$_ORG_ID'
   - 'TF_VAR_folder_id=$_FOLDER_ID'
   - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
-
 - id: init-all
   waitFor:
     - prepare
@@ -75,6 +74,23 @@ steps:
     - reasoning-engine-verify
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestReasoningEngineExample --stage teardown --verbose']
+- id: model-armor-floorsetting-apply
+  waitFor:
+    - init-all
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestModelArmorFloorsetting --stage apply --verbose']
+- id: model-armor-floorsetting-verify
+  waitFor:
+    - model-armor-floorsetting-apply
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestModelArmorFloorsetting --stage verify --verbose']
+  env:
+  - 'CLOUDSDK_API_ENDPOINT_OVERRIDES_MODELARMOR=https://modelarmor.googleapis.com/'
+- id: model-armor-floorsetting-teardown
+  waitFor:
+    - model-armor-floorsetting-verify
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestModelArmorFloorsetting --stage teardown --verbose']
 
 
 tags:

@@ -32,11 +32,11 @@ resource "google_project_iam_member" "ma_sa_member" {
 
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
-  version = "~> 2.0"
+  version = "~> 3.0"
 
   parent_id           = var.project_id
   parent_type         = "project"
-  integrated_services = ["AI_PLATFORM"]
+  integrated_services = ["AI_PLATFORM", "GOOGLE_MCP_SERVER"]
 
   rai_filters = {
     dangerous         = "LOW_AND_ABOVE"
@@ -52,6 +52,11 @@ module "model_armor_floorsetting" {
   ai_platform_floor_setting = {
     inspect_and_block    = true
     enable_cloud_logging = true
+  }
+
+  google_mcp_server_floor_setting = {
+    inspect_and_block    = true
+    enable_cloud_logging = false
   }
 
 }
