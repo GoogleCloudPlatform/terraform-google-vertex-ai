@@ -166,7 +166,7 @@ curl \
 
 ```shell
 export PROJECT_ID="YOUR-PROJECT_ID"
-gcloud model-armor floorsettings update--full-uri=projects/${PROJECT_ID}/locations/global/floorSetting --enable-floor-setting-enforcement=false
+gcloud model-armor floorsettings update --full-uri=projects/${PROJECT_ID}/locations/global/floorSetting --enable-floor-setting-enforcement=false
 ```
 OR
 
