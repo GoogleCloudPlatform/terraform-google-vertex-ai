@@ -85,6 +85,8 @@ steps:
     - model-armor-floorsetting-apply
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestModelArmorFloorsetting --stage verify --verbose']
+  env:
+  - 'CLOUDSDK_API_ENDPOINT_OVERRIDES_MODELARMOR="https://modelarmor.googleapis.com/"'
 - id: model-armor-floorsetting-teardown
   waitFor:
     - model-armor-floorsetting-verify
