@@ -1,5 +1,5 @@
 # Model Armor Floor Setting example
-Deploy Model Armor floor setting. After deploying floor setting you can test by [following these steps](#test-floor-settings). `terraform destroy` deletes state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
+Deploy Model Armor floor setting. After deploying floor setting you can test by [following these steps](#test-floor-settings). `terraform destroy` will not reset model armor floor setting, instead if will delete resource from state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
 
 
 ## Usage
@@ -164,7 +164,14 @@ curl \
 
 # reset-model-armor-setting
 
+```shell
+export PROJECT_ID="YOUR-PROJECT_ID"
+gcloud model-armor floorsettings update--full-uri=projects/${PROJECT_ID}/locations/global/floorSetting --enable-floor-setting-enforcement=false
 ```
+OR
+
+```
+export PROJECT_ID="YOUR-PROJECT_ID"
 curl -X PATCH \
   -H "Authorization: Bearer $(gcloud auth print-access-token)" \
   -d '{"filterConfig" : {},"enableFloorSettingEnforcement" : "false"}' \

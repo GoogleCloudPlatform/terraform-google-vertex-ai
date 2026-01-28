@@ -1,6 +1,6 @@
 # Module for Model Armor Floor Settings
 
-This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example). `terraform destroy` deletes state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
+This module is used to create [Model Armor floor settings](https://cloud.google.com/security-command-center/docs/model_armor_floor_settings). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-floorsetting-example). `terraform destroy` will not reset model armor floor setting, instead if will delete resource from state file. If you want to reset model armor setting [follow these steps](#reset-model-armor-setting).
 
 ```hcl
 module "model_armor_floorsetting" {
@@ -85,6 +85,11 @@ Detects [malicious content and jailbreak](https://cloud.google.com/security-comm
 
 
 ## reset-model-armor-setting
+
+```shell
+export PROJECT_ID="YOUR-PROJECT_ID"
+gcloud model-armor floorsettings update--full-uri=projects/${PROJECT_ID}/locations/global/floorSetting --enable-floor-setting-enforcement=false
+```
 
 ```
 curl -X PATCH \
