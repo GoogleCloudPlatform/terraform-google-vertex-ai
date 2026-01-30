@@ -8,6 +8,22 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.4.0...v3.0.0) (2026-01-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **TPG>7.13:** added google_mcp_server_floor_setting in model armor floor setting sub-module ([#76](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/76))
+
+### Features
+
+* **TPG>7.13:** added google_mcp_server_floor_setting in model armor floor setting sub-module ([#76](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/76)) ([cffd0ea](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/cffd0ea20bb4dff2a5b28d2653e916a0e60875bd))
+
+
+### Bug Fixes
+
+* Changes to make model armour adc compliant ([#73](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/73)) ([28ed3e7](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/28ed3e770c730e457551489a20e4193c47b2a7e1))
+
 ## [2.4.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.3.1...v2.4.0) (2026-01-16)
 
 
