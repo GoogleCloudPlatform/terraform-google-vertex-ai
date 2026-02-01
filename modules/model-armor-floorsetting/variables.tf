@@ -20,7 +20,7 @@ variable "location" {
   default     = "global"
 }
 
-variable "parent_id" {
+variable "project_id" {
   type        = string
   description = "The ID of organization, folder, or project to create the floor settings in"
 }

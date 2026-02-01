@@ -50,7 +50,7 @@ spec:
         description: The location of the floor setting
         varType: string
         defaultValue: global
-      - name: parent_id
+      - name: project_id
         description: The ID of organization, folder, or project to create the floor settings in
         varType: string
         required: true
