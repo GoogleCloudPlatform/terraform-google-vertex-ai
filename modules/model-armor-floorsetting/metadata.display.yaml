@@ -55,6 +55,13 @@ spec:
         parent_type:
           name: parent_type
           title: Parent Type
+          enumValueLabels:
+            - label: organization
+              value: organization
+            - label: folder
+              value: folder
+            - label: project
+              value: project
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings
@@ -78,8 +85,8 @@ spec:
               value:
                 dangerous: MEDIUM_AND_ABOVE
                 harassment: MEDIUM_AND_ABOVE
-                sexually_explicit: MEDIUM_AND_ABOVE
                 hate_speech: MEDIUM_AND_ABOVE
+                sexually_explicit: MEDIUM_AND_ABOVE
           properties:
             dangerous:
               name: dangerous

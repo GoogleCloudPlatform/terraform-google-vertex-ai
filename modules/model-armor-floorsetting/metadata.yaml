@@ -89,7 +89,7 @@ spec:
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
       - name: ai_platform_floor_setting
-        description: AI Platform floor setting
+        description: "Configure the AI Platform floor setting; Note: Value AI_PLATFORM must be in Integrated Services Field."
         varType: |-
           object({
               inspect_only         = optional(bool)
@@ -102,10 +102,10 @@ spec:
         defaultValue: true
       - name: integrated_services
         description: List of integrated services for which the floor setting is applicable. Possible values are AI_PLATFORM, GOOGLE_MCP_SERVER
-        varType: list(any)
+        varType: list(string)
         defaultValue: []
       - name: google_mcp_server_floor_setting
-        description: Google MCP Server floor setting
+        description: "Configure the Google MCP Server floor setting; Note: Value GOOGLE_MCP_SERVER must be in Integrated Services Field."
         varType: |-
           object({
               inspect_only         = optional(bool)
