@@ -15,7 +15,7 @@
  */
 
 resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
-  location                         = var.location
+  location                         = "global"
   parent                           = "${var.parent_type}s/${var.project_id}"
   enable_floor_setting_enforcement = var.enable_floor_setting_enforcement
   integrated_services              = var.integrated_services
