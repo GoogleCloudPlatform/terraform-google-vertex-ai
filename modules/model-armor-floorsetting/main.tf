@@ -14,9 +14,22 @@
  * limitations under the License.
  */
 
+locals {
+  # Maps the type to the actual ID provided
+  parent_id_map = {
+    "project"      = var.project_id
+    "folder"       = var.folder_id
+    "organization" = var.org_id
+  }
+
+  # Constructs the string: e.g., "projects/my-project-id" or "folders/12345"
+  # Note: Model Armor uses "projects/", "folders/", or "organizations/" (plural)
+  parent_path = "${var.parent_type}s/${local.parent_id_map[var.parent_type]}"
+}
+
 resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
   location                         = "global"
-  parent                           = "${var.parent_type}s/${var.project_id}"
+  parent                           = local.parent_path
   enable_floor_setting_enforcement = var.enable_floor_setting_enforcement
   integrated_services              = var.integrated_services
 
@@ -123,6 +136,17 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
       inspect_only         = lookup(var.google_mcp_server_floor_setting, "inspect_only")
       inspect_and_block    = lookup(var.google_mcp_server_floor_setting, "inspect_and_block")
       enable_cloud_logging = lookup(var.google_mcp_server_floor_setting, "enable_cloud_logging")
+    }
+  }
+
+  lifecycle {
+    precondition {
+      condition = (
+        (var.parent_type == "project"      && var.project_id != null) ||
+        (var.parent_type == "folder"       && var.folder_id != null) ||
+        (var.parent_type == "organization" && var.org_id != null)
+      )
+      error_message = "The ID variable corresponding to the selected parent_type must not be null."
     }
   }
 }

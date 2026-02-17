@@ -22,7 +22,20 @@ variable "location" {
 
 variable "project_id" {
   type        = string
-  description = "The ID of organization, folder, or project to create the floor settings in"
+  default     = null
+  description = "The ID of project to create the floor settings in"
+}
+
+variable "folder_id" {
+  type        = string
+  default     = null
+  description = "The ID of folder to create the floor settings in"
+}
+
+variable "org_id" {
+  type        = string
+  default     = null
+  description = "The ID of organization to create the floor settings in"
 }
 
 variable "parent_type" {

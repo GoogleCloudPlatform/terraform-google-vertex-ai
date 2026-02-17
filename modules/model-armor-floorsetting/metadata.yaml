@@ -51,9 +51,14 @@ spec:
         varType: string
         defaultValue: global
       - name: project_id
-        description: The ID of organization, folder, or project to create the floor settings in
+        description: The ID of project to create the floor settings in
         varType: string
-        required: true
+      - name: folder_id
+        description: The ID of folder to create the floor settings in
+        varType: string
+      - name: org_id
+        description: The ID of organization to create the floor settings in
+        varType: string
       - name: parent_type
         description: Parent type. Can be organization, folder, or project to create the floor settings in
         varType: string
