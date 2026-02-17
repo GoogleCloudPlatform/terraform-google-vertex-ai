@@ -32,6 +32,8 @@ spec:
     description: {}
   content:
     examples:
+      - name: agent-engine-developer-connect-example
+        location: examples/agent-engine-developer-connect-example
       - name: agent-engine-example
         location: examples/agent-engine-example
       - name: feature-online-store-example

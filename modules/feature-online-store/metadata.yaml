@@ -25,12 +25,18 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/feature-online-store
+<<<<<<< Updated upstream
+=======
+    version: 3.0.0
+>>>>>>> Stashed changes
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
     description: {}
   content:
     examples:
+      - name: agent-engine-developer-connect-example
+        location: examples/agent-engine-developer-connect-example
       - name: agent-engine-example
         location: examples/agent-engine-example
       - name: feature-online-store-example
