@@ -25,10 +25,7 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/agent-engine
-<<<<<<< Updated upstream
-=======
     version: 3.0.0
->>>>>>> Stashed changes
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
