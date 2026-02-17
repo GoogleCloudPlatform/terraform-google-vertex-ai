@@ -66,6 +66,42 @@ resource "google_vertex_ai_reasoning_engine" "main" {
           }
         }
       }
+
+      dynamic "source_code_spec" {
+        for_each = lookup(spec.value, "source_code_spec", null) == null ? [] : [spec.value.source_code_spec]
+        content {
+          dynamic "inline_source" {
+            for_each = lookup(source_code_spec.value, "inline_source", null) == null ? [] : [source_code_spec.value.inline_source]
+            content {
+              source_archive = lookup(inline_source.value, "source_archive", null)
+            }
+          }
+
+          dynamic "python_spec" {
+            for_each = lookup(source_code_spec.value, "python_spec", null) == null ? [] : [source_code_spec.value.python_spec]
+            content {
+              entrypoint_module = lookup(python_spec.value, "entrypoint_module", null)
+              entrypoint_object = lookup(python_spec.value, "entrypoint_object", null)
+              requirements_file = lookup(python_spec.value, "requirements_file", null)
+              version           = lookup(python_spec.value, "version", null)
+            }
+          }
+
+          dynamic "developer_connect_source" {
+            for_each = lookup(source_code_spec.value, "developer_connect_source", null) == null ? [] : [source_code_spec.value.developer_connect_source]
+            content {
+              dynamic "config" {
+                for_each = lookup(developer_connect_source.value, "config", null) == null ? [] : [developer_connect_source.value.config]
+                content {
+                  git_repository_link = lookup(config.value, "git_repository_link", null)
+                  dir                 = lookup(config.value, "dir", null)
+                  revision            = lookup(config.value, "revision", null)
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
