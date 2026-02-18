@@ -35,7 +35,7 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       service_account = lookup(spec.value, "service_account", null)
 
       dynamic "package_spec" {
-        for_each = spec.value.package_spec == null ? [] : [spec.value.package_spec]
+        for_each = lookup(spec.value, "package_spec", null) == null ? [] : [spec.value.package_spec]
         content {
           dependency_files_gcs_uri = lookup(package_spec.value, "dependency_files_gcs_uri", null)
           pickle_object_gcs_uri    = lookup(package_spec.value, "pickle_object_gcs_uri", null)
@@ -45,22 +45,42 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       }
 
       dynamic "deployment_spec" {
-        for_each = spec.value.deployment_spec == null ? [] : [spec.value.deployment_spec]
+        for_each = lookup(spec.value, "deployment_spec", null) == null ? [] : [spec.value.deployment_spec]
         content {
+          container_concurrency = lookup(deployment_spec.value, "container_concurrency", null)
+          max_instances         = lookup(deployment_spec.value, "max_instances", null)
+          min_instances         = lookup(deployment_spec.value, "min_instances", null)
+          resource_limits       = lookup(deployment_spec.value, "resource_limits", null)
+
           dynamic "env" {
-            for_each = deployment_spec.value.env == null ? {} : deployment_spec.value.env
+            for_each = lookup(deployment_spec.value, "env", {})
             content {
               name  = env.key
               value = env.value
             }
           }
           dynamic "secret_env" {
-            for_each = deployment_spec.value.secret_env == null ? [] : deployment_spec.value.secret_env
+            for_each = lookup(deployment_spec.value, "secret_env", [])
             content {
               name = secret_env.value.name
               secret_ref {
                 secret  = secret_env.value.secret_ref.secret
                 version = lookup(secret_env.value.secret_ref, "version", null)
+              }
+            }
+          }
+
+          dynamic "psc_interface_config" {
+            for_each = lookup(deployment_spec.value, "psc_interface_config", null) == null ? [] : [deployment_spec.value.psc_interface_config]
+            content {
+              network_attachment = lookup(psc_interface_config.value, "network_attachment", null)
+              dynamic "dns_peering_configs" {
+                for_each = lookup(psc_interface_config.value, "dns_peering_configs", [])
+                content {
+                  domain         = dns_peering_configs.value.domain
+                  target_project = dns_peering_configs.value.target_project
+                  target_network = dns_peering_configs.value.target_network
+                }
               }
             }
           }
