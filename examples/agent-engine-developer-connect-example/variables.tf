@@ -14,12 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 7.19, < 8"
-    }
-  }
-  required_version = ">= 1.3"
+variable "project_id" {
+  description = "The ID of the Google Cloud project in which to deploy the Reasoning Engine."
+  type        = string
+}
+
+variable "git_repository_dir" {
+  description = "Directory, relative to the source root, in which to run the build."
+  type        = string
+}
+
+variable "git_repository_link" {
+  description = "The Developer Connect Git repository link, formatted as projects//locations//connections//gitRepositoryLink/."
+  type        = string
 }

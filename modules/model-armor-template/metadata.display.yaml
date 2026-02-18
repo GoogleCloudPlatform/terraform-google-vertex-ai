@@ -76,8 +76,8 @@ spec:
               value:
                 dangerous: MEDIUM_AND_ABOVE
                 harassment: MEDIUM_AND_ABOVE
-                sexually_explicit: MEDIUM_AND_ABOVE
                 hate_speech: MEDIUM_AND_ABOVE
+                sexually_explicit: MEDIUM_AND_ABOVE
           properties:
             dangerous:
               name: dangerous
