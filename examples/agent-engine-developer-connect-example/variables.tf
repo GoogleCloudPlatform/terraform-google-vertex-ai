@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 6.43, < 8"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor-template/v3.1.0"
-  }
+variable "project_id" {
+  description = "The ID of the Google Cloud project in which to deploy the Reasoning Engine."
+  type        = string
+}
+
+variable "git_repository_dir" {
+  description = "Directory, relative to the source root, in which to run the build."
+  type        = string
+}
+
+variable "git_repository_link" {
+  description = "The Developer Connect Git repository link, formatted as projects//locations//connections//gitRepositoryLink/."
+  type        = string
 }

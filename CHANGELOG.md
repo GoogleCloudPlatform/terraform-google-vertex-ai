@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.0.0...v3.1.0) (2026-02-18)
+
+
+### Features
+
+* Add source_code_spec in agent engine ([#82](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/82)) ([9bc8529](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/9bc85296a52527b0228c28785b7a661c1664511a))
+
 ## [3.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v2.4.0...v3.0.0) (2026-01-28)
 
 

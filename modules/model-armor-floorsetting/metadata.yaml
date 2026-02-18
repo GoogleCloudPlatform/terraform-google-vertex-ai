@@ -25,13 +25,15 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/model-armor-floorsetting
-    version: 3.0.0
+    version: 3.1.0
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
     description: {}
   content:
     examples:
+      - name: agent-engine-developer-connect-example
+        location: examples/agent-engine-developer-connect-example
       - name: agent-engine-example
         location: examples/agent-engine-example
       - name: feature-online-store-example
