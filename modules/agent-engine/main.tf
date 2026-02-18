@@ -90,13 +90,6 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       dynamic "source_code_spec" {
         for_each = lookup(spec.value, "source_code_spec", null) == null ? [] : [spec.value.source_code_spec]
         content {
-          dynamic "inline_source" {
-            for_each = lookup(source_code_spec.value, "inline_source", null) == null ? [] : [source_code_spec.value.inline_source]
-            content {
-              source_archive = lookup(inline_source.value, "source_archive", null)
-            }
-          }
-
           dynamic "python_spec" {
             for_each = lookup(source_code_spec.value, "python_spec", null) == null ? [] : [source_code_spec.value.python_spec]
             content {

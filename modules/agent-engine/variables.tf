@@ -75,9 +75,6 @@ variable "spec" {
       requirements_gcs_uri     = optional(string)
     }))
     source_code_spec = optional(object({
-      inline_source = optional(object({
-        source_archive = optional(string)
-      }))
       python_spec = optional(object({
         entrypoint_module = optional(string)
         entrypoint_object = optional(string)
