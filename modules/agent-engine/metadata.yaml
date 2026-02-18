@@ -119,6 +119,12 @@ spec:
             })
         connections:
           - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">= 3.0.0"
+            spec:
+              outputExpr: "{\"MODEL_ARMOR_TEMPLATE_ID\": template_id}"
+              inputPath: deployment_spec.env
+          - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
               version: ">= 26.2.2"
             spec:
