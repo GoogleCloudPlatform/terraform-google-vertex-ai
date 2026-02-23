@@ -79,7 +79,7 @@ variable "spec" {
         entrypoint_module = optional(string)
         entrypoint_object = optional(string)
         requirements_file = optional(string)
-        version           = optional(string, "3.10")
+        version           = optional(string)
       }))
       developer_connect_source = optional(object({
         config = object({
