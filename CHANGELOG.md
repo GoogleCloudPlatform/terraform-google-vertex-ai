@@ -8,6 +8,14 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [3.1.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.1.0...v3.1.1) (2026-02-23)
+
+
+### Bug Fixes
+
+* connection between model armour template and agent engine ([#79](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/79)) ([33815de](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/33815de7e65f2586926538c5f12bdf52206a4540))
+* Remove default version for Python spec ([#85](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/85)) ([9076d29](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/9076d2962dd5a21012f8345337659cec4a20d0ba))
+
 ## [3.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.0.0...v3.1.0) (2026-02-18)
 
 
