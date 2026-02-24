@@ -20,7 +20,7 @@ resource "random_id" "suffix" {
 
 module "test-vpc-module" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 12.0"
+  version      = "~> 15.0"
   project_id   = var.project_id
   network_name = "simple-workbench"
   mtu          = 1460
