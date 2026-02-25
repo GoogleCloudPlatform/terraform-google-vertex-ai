@@ -65,6 +65,7 @@ spec:
               value: folder
             - label: project
               value: project
+          level: 1
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings
@@ -82,6 +83,7 @@ spec:
         project_id:
           name: project_id
           title: Project Id
+          level: 1
         rai_filters:
           name: rai_filters
           title: Rai Filters
