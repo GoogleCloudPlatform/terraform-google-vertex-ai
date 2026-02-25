@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-variable "location" {
-  description = "The location of the floor setting"
-  type        = string
-  default     = "global"
-}
-
 variable "project_id" {
   type        = string
   default     = null
@@ -45,6 +39,7 @@ variable "parent_type" {
     condition     = contains(["organization", "folder", "project"], var.parent_type)
     error_message = "parent_type must be one of organization, folder, project"
   }
+  default = "project"
 }
 
 variable "enable_floor_setting_enforcement" {

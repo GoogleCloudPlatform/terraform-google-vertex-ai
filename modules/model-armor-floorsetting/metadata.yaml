@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/model-armor-floorsetting
-    version: 3.0.1
+    version: 3.0.2
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -46,10 +46,6 @@ spec:
         location: examples/workbench-simple-example
   interfaces:
     variables:
-      - name: location
-        description: The location of the floor setting
-        varType: string
-        defaultValue: global
       - name: project_id
         description: The ID of project to create the floor settings in
         varType: string
@@ -62,7 +58,7 @@ spec:
       - name: parent_type
         description: Parent type. Can be organization, folder, or project to create the floor settings in
         varType: string
-        required: true
+        defaultValue: project
       - name: enable_floor_setting_enforcement
         description: Floor Settings enforcement status
         varType: bool

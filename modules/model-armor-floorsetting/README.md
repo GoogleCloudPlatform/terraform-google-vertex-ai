@@ -42,9 +42,8 @@ module "model_armor_floorsetting" {
 | folder\_id | The ID of folder to create the floor settings in | `string` | `null` | no |
 | google\_mcp\_server\_floor\_setting | Configure the Google MCP Server floor setting; Note: Value GOOGLE\_MCP\_SERVER must be in Integrated Services Field. | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
 | integrated\_services | List of integrated services for which the floor setting is applicable. Possible values are AI\_PLATFORM, GOOGLE\_MCP\_SERVER | `list(string)` | `[]` | no |
-| location | The location of the floor setting | `string` | `"global"` | no |
 | org\_id | The ID of organization to create the floor settings in | `string` | `null` | no |
-| parent\_type | Parent type. Can be organization, folder, or project to create the floor settings in | `string` | n/a | yes |
+| parent\_type | Parent type. Can be organization, folder, or project to create the floor settings in | `string` | `"project"` | no |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |
 | project\_id | The ID of project to create the floor settings in | `string` | `null` | no |
 | rai\_filters | Confidence level for Responsible AI filters | <pre>object({<br>    dangerous         = optional(string)<br>    sexually_explicit = optional(string)<br>    hate_speech       = optional(string)<br>    harassment        = optional(string)<br>  })</pre> | `null` | no |
