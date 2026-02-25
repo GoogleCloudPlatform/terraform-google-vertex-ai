@@ -47,20 +47,47 @@ variable "spec" {
     agent_framework = optional(string)
     class_methods   = optional(list(any))
     deployment_spec = optional(object({
-      env = optional(map(string), {})
+      container_concurrency = optional(number, 9)
+      env                   = optional(map(string), {})
+      max_instances         = optional(number, 100)
+      min_instances         = optional(number, 1)
+      psc_interface_config = optional(object({
+        network_attachment = optional(string)
+        dns_peering_configs = optional(list(object({
+          domain         = string
+          target_project = string
+          target_network = string
+        })), [])
+      }))
+      resource_limits = optional(map(string))
       secret_env = optional(list(object({
         name = string
         secret_ref = object({
           secret  = string
           version = optional(string)
         })
-      })))
+      })), [])
     }))
     package_spec = optional(object({
       dependency_files_gcs_uri = optional(string)
       pickle_object_gcs_uri    = optional(string)
       python_version           = optional(string)
       requirements_gcs_uri     = optional(string)
+    }))
+    source_code_spec = optional(object({
+      python_spec = optional(object({
+        entrypoint_module = optional(string)
+        entrypoint_object = optional(string)
+        requirements_file = optional(string)
+        version           = optional(string)
+      }))
+      developer_connect_source = optional(object({
+        config = object({
+          git_repository_link = string
+          dir                 = string
+          revision            = string
+        })
+      }))
     }))
     service_account = optional(string)
   })
