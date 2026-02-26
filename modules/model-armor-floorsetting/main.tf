@@ -17,13 +17,11 @@
 locals {
   # Maps the type to the actual ID provided
   parent_id_map = {
-    "project"      = var.project_id
-    "folder"       = var.folder_id
-    "organization" = var.org_id
+    "project"      = var.parent_type == "project" && var.parent_id == null ? var.project_id : var.parent_id
+    "folder"       = var.parent_id
+    "organization" = var.parent_id
   }
 
-  # Constructs the string: e.g., "projects/my-project-id" or "folders/12345"
-  # Note: Model Armor uses "projects/", "folders/", or "organizations/" (plural)
   parent_path = "${var.parent_type}s/${coalesce(local.parent_id_map[var.parent_type], "undefined")}"
 }
 
@@ -142,9 +140,9 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
   lifecycle {
     precondition {
       condition = (
-        (var.parent_type == "project" && var.project_id != null) ||
-        (var.parent_type == "folder" && var.folder_id != null) ||
-        (var.parent_type == "organization" && var.org_id != null)
+        (var.parent_type == "project" && (var.project_id != null || var.parent_id != null)) ||
+        (var.parent_type == "folder" && var.parent_id != null) ||
+        (var.parent_type == "organization" && var.parent_id != null)
       )
       error_message = "The ID variable corresponding to the selected parent_type must not be null."
     }

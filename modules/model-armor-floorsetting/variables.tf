@@ -20,17 +20,12 @@ variable "project_id" {
   description = "The ID of project to create the floor settings in"
 }
 
-variable "folder_id" {
+variable "parent_id" {
   type        = string
   default     = null
-  description = "The ID of folder to create the floor settings in"
+  description = "The ID of the parent (project, folder, or organization) to create the floor settings in.  If parent_type is project and this is not provided, project_id will be used."
 }
 
-variable "org_id" {
-  type        = string
-  default     = null
-  description = "The ID of organization to create the floor settings in"
-}
 
 variable "parent_type" {
   type        = string
