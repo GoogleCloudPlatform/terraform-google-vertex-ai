@@ -144,7 +144,7 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
         (var.parent_type == "folder" && var.parent_id != null) ||
         (var.parent_type == "organization" && var.parent_id != null)
       )
-      error_message = "The ID variable corresponding to the selected parent_type must not be null."
+      error_message = "Invalid configuration for parent_type: If project, then either project_id or parent_id must be provided and If folder or organization, then parent_id must be provided ,Check your input variables to ensure the correct ID is set."
     }
   }
 }
