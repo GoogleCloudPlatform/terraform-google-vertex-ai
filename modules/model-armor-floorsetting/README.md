@@ -35,16 +35,17 @@ module "model_armor_floorsetting" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| ai\_platform\_floor\_setting | AI Platform floor setting | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
+| ai\_platform\_floor\_setting | Configure the AI Platform floor setting; Note: Value AI\_PLATFORM must be in Integrated Services Field. | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
 | enable\_floor\_setting\_enforcement | Floor Settings enforcement status | `bool` | `true` | no |
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
 | enable\_multi\_language\_detection | If true, multi language detection will be enabled | `bool` | `true` | no |
-| google\_mcp\_server\_floor\_setting | Google MCP Server floor setting | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
-| integrated\_services | List of integrated services for which the floor setting is applicable. Possible values are AI\_PLATFORM, GOOGLE\_MCP\_SERVER | `list(any)` | `[]` | no |
-| location | The location of the floor setting | `string` | `"global"` | no |
-| parent\_id | The ID of organization, folder, or project to create the floor settings in | `string` | n/a | yes |
+| folder\_id | The ID of folder to create the floor settings in. Note: Folder id must be set if Parent type is folder. | `string` | `null` | no |
+| google\_mcp\_server\_floor\_setting | Configure the Google MCP Server floor setting; Note: Value GOOGLE\_MCP\_SERVER must be in Integrated Services Field. | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
+| integrated\_services | List of integrated services for which the floor setting is applicable. Possible values are AI\_PLATFORM, GOOGLE\_MCP\_SERVER | `list(string)` | `[]` | no |
+| org\_id | The ID of organization to create the floor settings in. Note: Org id must be set if Parent type if organization. | `string` | `null` | no |
 | parent\_type | Parent type. Can be organization, folder, or project to create the floor settings in | `string` | n/a | yes |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |
+| project\_id | The ID of project to create the floor settings in. Note: Project id must be set if Parent type is project. | `string` | `null` | no |
 | rai\_filters | Confidence level for Responsible AI filters | <pre>object({<br>    dangerous         = optional(string)<br>    sexually_explicit = optional(string)<br>    hate_speech       = optional(string)<br>    harassment        = optional(string)<br>  })</pre> | `null` | no |
 | sdp\_settings | Sensitive Data Protection settings | <pre>object({<br>    basic_config_filter_enforcement = optional(bool, false)<br>    advanced_config = optional(object({<br>      inspect_template    = optional(string)<br>      deidentify_template = optional(string)<br>    }))<br>  })</pre> | `null` | no |
 

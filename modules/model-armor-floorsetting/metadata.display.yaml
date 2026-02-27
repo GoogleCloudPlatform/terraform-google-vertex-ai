@@ -40,6 +40,9 @@ spec:
         enable_multi_language_detection:
           name: enable_multi_language_detection
           title: Enable Multi Language Detection
+        folder_id:
+          name: folder_id
+          title: Folder Id
         google_mcp_server_floor_setting:
           name: google_mcp_server_floor_setting
           title: Google Mcp Server Floor Setting
@@ -49,18 +52,90 @@ spec:
         location:
           name: location
           title: Location
-        parent_id:
-          name: parent_id
-          title: Parent Id
+        org_id:
+          name: org_id
+          title: Org Id
         parent_type:
           name: parent_type
           title: Parent Type
+          enumValueLabels:
+            - label: organization
+              value: organization
+            - label: folder
+              value: folder
+            - label: project
+              value: project
+          level: 1
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings
+          enumValueLabels:
+            - label: LOW_AND_ABOVE
+              value: LOW_AND_ABOVE
+            - label: MEDIUM_AND_ABOVE
+              value: MEDIUM_AND_ABOVE
+            - label: HIGH
+              value: HIGH
+          level: 1
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value: MEDIUM_AND_ABOVE
+        project_id:
+          name: project_id
+          title: Project Id
+          level: 1
         rai_filters:
           name: rai_filters
           title: Rai Filters
+          level: 1
+          altDefaults:
+            - type: ALTERNATE_TYPE_DC
+              value:
+                dangerous: MEDIUM_AND_ABOVE
+                harassment: MEDIUM_AND_ABOVE
+                hate_speech: MEDIUM_AND_ABOVE
+                sexually_explicit: MEDIUM_AND_ABOVE
+          properties:
+            dangerous:
+              name: dangerous
+              title: Dangerous
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            harassment:
+              name: harassment
+              title: Harassment
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            hate_speech:
+              name: hate_speech
+              title: Hate Speech
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
+            sexually_explicit:
+              name: sexually_explicit
+              title: Sexually Explicit
+              enumValueLabels:
+                - label: LOW_AND_ABOVE
+                  value: LOW_AND_ABOVE
+                - label: MEDIUM_AND_ABOVE
+                  value: MEDIUM_AND_ABOVE
+                - label: HIGH
+                  value: HIGH
         sdp_settings:
           name: sdp_settings
           title: Sdp Settings
