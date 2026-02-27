@@ -17,19 +17,19 @@
 variable "project_id" {
   type        = string
   default     = null
-  description = "The ID of project to create the floor settings in"
+  description = "The ID of project to create the floor settings in. Note: Project id must be set if Parent type is project."
 }
 
 variable "folder_id" {
   type        = string
   default     = null
-  description = "The ID of folder to create the floor settings in"
+  description = "The ID of folder to create the floor settings in. Note: Folder id must be set if Parent type is folder."
 }
 
 variable "org_id" {
   type        = string
   default     = null
-  description = "The ID of organization to create the floor settings in"
+  description = "The ID of organization to create the floor settings in. Note: Org id must be set if Parent type if organization."
 }
 
 variable "parent_type" {
