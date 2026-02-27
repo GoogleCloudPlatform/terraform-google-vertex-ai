@@ -40,6 +40,9 @@ spec:
         enable_multi_language_detection:
           name: enable_multi_language_detection
           title: Enable Multi Language Detection
+        folder_id:
+          name: folder_id
+          title: Folder Id
         google_mcp_server_floor_setting:
           name: google_mcp_server_floor_setting
           title: Google Mcp Server Floor Setting
@@ -49,9 +52,9 @@ spec:
         location:
           name: location
           title: Location
-        parent_id:
-          name: parent_id
-          title: Parent Id
+        org_id:
+          name: org_id
+          title: Org Id
         parent_type:
           name: parent_type
           title: Parent Type

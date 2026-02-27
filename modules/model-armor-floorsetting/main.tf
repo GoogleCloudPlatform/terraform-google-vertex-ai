@@ -17,9 +17,9 @@
 locals {
   # Maps the type to the actual ID provided
   parent_id_map = {
-    "project"      = var.parent_type == "project" && var.parent_id == null ? var.project_id : var.parent_id
-    "folder"       = var.parent_id
-    "organization" = var.parent_id
+    "project"      = var.project_id
+    "folder"       = var.folder_id
+    "organization" = var.org_id
   }
 
   parent_path = "${var.parent_type}s/${coalesce(local.parent_id_map[var.parent_type], "undefined")}"
@@ -140,11 +140,11 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
   lifecycle {
     precondition {
       condition = (
-        (var.parent_type == "project" && (var.project_id != null || var.parent_id != null)) ||
-        (var.parent_type == "folder" && var.parent_id != null) ||
-        (var.parent_type == "organization" && var.parent_id != null)
+        (var.parent_type == "project" && var.project_id != null) ||
+        (var.parent_type == "folder" && var.folder_id != null) ||
+        (var.parent_type == "organization" && var.org_id != null)
       )
-      error_message = "Invalid configuration for parent_type: If project, then either project_id or parent_id must be provided and If folder or organization, then parent_id must be provided ,Check your input variables to ensure the correct ID is set."
+      error_message = "The ID variable corresponding to the selected parent_type must not be null."
     }
   }
 }

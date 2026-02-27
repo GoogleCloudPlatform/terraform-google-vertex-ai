@@ -20,12 +20,17 @@ variable "project_id" {
   description = "The ID of project to create the floor settings in"
 }
 
-variable "parent_id" {
+variable "folder_id" {
   type        = string
   default     = null
-  description = "The ID of the parent (project, folder, or organization) to create the floor settings in.  If parent_type is project and this is not provided, project_id will be used."
+  description = "The ID of folder to create the floor settings in"
 }
 
+variable "org_id" {
+  type        = string
+  default     = null
+  description = "The ID of organization to create the floor settings in"
+}
 
 variable "parent_type" {
   type        = string
@@ -34,7 +39,6 @@ variable "parent_type" {
     condition     = contains(["organization", "folder", "project"], var.parent_type)
     error_message = "parent_type must be one of organization, folder, project"
   }
-  default = "project"
 }
 
 variable "enable_floor_setting_enforcement" {
