@@ -15,14 +15,14 @@
  */
 
 locals {
-  # Maps the type to the actual ID provided
-  parent_id_map = {
-    "project"      = var.project_id
-    "folder"       = var.folder_id
-    "organization" = var.org_id
-  }
+  # Determine parent_type based on which variable is provided (Project > Folder > Organization)
+  parent_type = var.project_id != null ? "project" : (var.folder_id != null ? "folder" : "organization")
 
-  parent_path = "${var.parent_type}s/${coalesce(local.parent_id_map[var.parent_type], "undefined")}"
+  # Select the first non-null ID
+  parent_id = coalesce(var.project_id, var.folder_id, var.org_id, "undefined")
+
+  # Construct the full parent path
+  parent_path = "${local.parent_type}s/${local.parent_id}"
 }
 
 resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
@@ -139,12 +139,8 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
 
   lifecycle {
     precondition {
-      condition = (
-        (var.parent_type == "project" && var.project_id != null) ||
-        (var.parent_type == "folder" && var.folder_id != null) ||
-        (var.parent_type == "organization" && var.org_id != null)
-      )
-      error_message = "The ID variable corresponding to the selected parent_type must not be null."
+      condition     = var.project_id != null || var.folder_id != null || var.org_id != null
+      error_message = "One of project_id, folder_id, or org_id must be provided to determine the parent resource."
     }
   }
 }

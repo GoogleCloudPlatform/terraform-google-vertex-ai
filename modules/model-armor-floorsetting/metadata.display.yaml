@@ -55,17 +55,6 @@ spec:
         org_id:
           name: org_id
           title: Org Id
-        parent_type:
-          name: parent_type
-          title: Parent Type
-          enumValueLabels:
-            - label: organization
-              value: organization
-            - label: folder
-              value: folder
-            - label: project
-              value: project
-          level: 1
         pi_and_jailbreak_filter_settings:
           name: pi_and_jailbreak_filter_settings
           title: Pi And Jailbreak Filter Settings

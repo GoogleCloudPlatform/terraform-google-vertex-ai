@@ -32,15 +32,6 @@ variable "org_id" {
   description = "The ID of organization to create the floor settings in. Note: Org id must be set if Parent type if organization."
 }
 
-variable "parent_type" {
-  type        = string
-  description = "Parent type. Can be organization, folder, or project to create the floor settings in"
-  validation {
-    condition     = contains(["organization", "folder", "project"], var.parent_type)
-    error_message = "parent_type must be one of organization, folder, project"
-  }
-}
-
 variable "enable_floor_setting_enforcement" {
   description = "Floor Settings enforcement status"
   type        = bool
