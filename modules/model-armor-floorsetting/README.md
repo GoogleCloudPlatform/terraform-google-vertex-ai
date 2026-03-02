@@ -39,12 +39,12 @@ module "model_armor_floorsetting" {
 | enable\_floor\_setting\_enforcement | Floor Settings enforcement status | `bool` | `true` | no |
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
 | enable\_multi\_language\_detection | If true, multi language detection will be enabled | `bool` | `true` | no |
-| folder\_id | The ID of folder to create the floor settings in. | `string` | `null` | no |
+| folder\_id | The ID of the folder to create the floor settings in. This takes precedence over org\_id, but is ignored if project\_id is provided. | `string` | `null` | no |
 | google\_mcp\_server\_floor\_setting | Configure the Google MCP Server floor setting; Note: Value GOOGLE\_MCP\_SERVER must be in Integrated Services Field. | <pre>object({<br>    inspect_only         = optional(bool)<br>    inspect_and_block    = optional(bool)<br>    enable_cloud_logging = optional(bool)<br>  })</pre> | `null` | no |
 | integrated\_services | List of integrated services for which the floor setting is applicable. Possible values are AI\_PLATFORM, GOOGLE\_MCP\_SERVER | `list(string)` | `[]` | no |
-| org\_id | The ID of organization to create the floor settings in. | `string` | `null` | no |
+| org\_id | The ID of the organization to create the floor settings in. This is only used if both project\_id and folder\_id are null. | `string` | `null` | no |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |
-| project\_id | The ID of project to create the floor settings in. | `string` | `null` | no |
+| project\_id | The ID of the project to create the floor settings in. This has the highest precedence; if provided, folder\_id and org\_id are ignored. | `string` | `null` | no |
 | rai\_filters | Confidence level for Responsible AI filters | <pre>object({<br>    dangerous         = optional(string)<br>    sexually_explicit = optional(string)<br>    hate_speech       = optional(string)<br>    harassment        = optional(string)<br>  })</pre> | `null` | no |
 | sdp\_settings | Sensitive Data Protection settings | <pre>object({<br>    basic_config_filter_enforcement = optional(bool, false)<br>    advanced_config = optional(object({<br>      inspect_template    = optional(string)<br>      deidentify_template = optional(string)<br>    }))<br>  })</pre> | `null` | no |
 

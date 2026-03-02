@@ -17,19 +17,19 @@
 variable "project_id" {
   type        = string
   default     = null
-  description = "The ID of project to create the floor settings in."
+  description = "The ID of the project to create the floor settings in. This has the highest precedence; if provided, folder_id and org_id are ignored."
 }
 
 variable "folder_id" {
   type        = string
   default     = null
-  description = "The ID of folder to create the floor settings in."
+  description = "The ID of the folder to create the floor settings in. This takes precedence over org_id, but is ignored if project_id is provided."
 }
 
 variable "org_id" {
   type        = string
   default     = null
-  description = "The ID of organization to create the floor settings in."
+  description = "The ID of the organization to create the floor settings in. This is only used if both project_id and folder_id are null."
 }
 
 variable "enable_floor_setting_enforcement" {
