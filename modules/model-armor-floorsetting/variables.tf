@@ -17,19 +17,19 @@
 variable "project_id" {
   type        = string
   default     = null
-  description = "The ID of project to create the floor settings in. Note: Project id must be set if Parent type is project."
+  description = "The ID of project to create the floor settings in."
 }
 
 variable "folder_id" {
   type        = string
   default     = null
-  description = "The ID of folder to create the floor settings in. Note: Folder id must be set if Parent type is folder."
+  description = "The ID of folder to create the floor settings in."
 }
 
 variable "org_id" {
   type        = string
   default     = null
-  description = "The ID of organization to create the floor settings in. Note: Org id must be set if Parent type if organization."
+  description = "The ID of organization to create the floor settings in."
 }
 
 variable "enable_floor_setting_enforcement" {
