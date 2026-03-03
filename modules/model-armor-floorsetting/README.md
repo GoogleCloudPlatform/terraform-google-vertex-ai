@@ -7,8 +7,7 @@ module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
   version = "~> 4.0"
 
-  parent_id           = var.project_id
-  parent_type         = "project"
+  project_id          = var.project_id
   integrated_services = ["AI_PLATFORM"]
 
   rai_filters = {
