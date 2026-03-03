@@ -14,24 +14,22 @@
  * limitations under the License.
  */
 
-variable "location" {
-  description = "The location of the floor setting"
+variable "project_id" {
   type        = string
-  default     = "global"
+  default     = null
+  description = "The ID of the project to create the floor settings in. This has the highest precedence; if provided, folder_id and org_id are ignored."
 }
 
-variable "parent_id" {
+variable "folder_id" {
   type        = string
-  description = "The ID of organization, folder, or project to create the floor settings in"
+  default     = null
+  description = "The ID of the folder to create the floor settings in. This takes precedence over org_id, but is ignored if project_id is provided."
 }
 
-variable "parent_type" {
+variable "org_id" {
   type        = string
-  description = "Parent type. Can be organization, folder, or project to create the floor settings in"
-  validation {
-    condition     = contains(["organization", "folder", "project"], var.parent_type)
-    error_message = "parent_type must be one of organization, folder, project"
-  }
+  default     = null
+  description = "The ID of the organization to create the floor settings in. This is only used if both project_id and folder_id are null."
 }
 
 variable "enable_floor_setting_enforcement" {
@@ -76,7 +74,7 @@ variable "pi_and_jailbreak_filter_settings" {
 }
 
 variable "ai_platform_floor_setting" {
-  description = "AI Platform floor setting"
+  description = "Configure the AI Platform floor setting; Note: Value AI_PLATFORM must be in Integrated Services Field."
   type = object({
     inspect_only         = optional(bool)
     inspect_and_block    = optional(bool)
@@ -93,12 +91,12 @@ variable "enable_multi_language_detection" {
 
 variable "integrated_services" {
   description = "List of integrated services for which the floor setting is applicable. Possible values are AI_PLATFORM, GOOGLE_MCP_SERVER"
-  type        = list(any)
+  type        = list(string)
   default     = []
 }
 
 variable "google_mcp_server_floor_setting" {
-  description = "Google MCP Server floor setting"
+  description = "Configure the Google MCP Server floor setting; Note: Value GOOGLE_MCP_SERVER must be in Integrated Services Field."
   type = object({
     inspect_only         = optional(bool)
     inspect_and_block    = optional(bool)

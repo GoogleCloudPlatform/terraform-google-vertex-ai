@@ -14,9 +14,20 @@
  * limitations under the License.
  */
 
+locals {
+  # Determine parent_type based on which variable is provided (Project > Folder > Organization)
+  parent_type = var.project_id != null ? "project" : (var.folder_id != null ? "folder" : "organization")
+
+  # Select the first non-null ID
+  parent_id = coalesce(var.project_id, var.folder_id, var.org_id, "undefined")
+
+  # Construct the full parent path
+  parent_path = "${local.parent_type}s/${local.parent_id}"
+}
+
 resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
-  location                         = var.location
-  parent                           = "${var.parent_type}s/${var.parent_id}"
+  location                         = "global"
+  parent                           = local.parent_path
   enable_floor_setting_enforcement = var.enable_floor_setting_enforcement
   integrated_services              = var.integrated_services
 
@@ -123,6 +134,13 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
       inspect_only         = lookup(var.google_mcp_server_floor_setting, "inspect_only")
       inspect_and_block    = lookup(var.google_mcp_server_floor_setting, "inspect_and_block")
       enable_cloud_logging = lookup(var.google_mcp_server_floor_setting, "enable_cloud_logging")
+    }
+  }
+
+  lifecycle {
+    precondition {
+      condition     = var.project_id != null || var.folder_id != null || var.org_id != null
+      error_message = "One of project_id, folder_id, or org_id must be provided to determine the parent resource."
     }
   }
 }
