@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.1.1...v4.0.0) (2026-03-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove location input for model armor floorsetting and replaced the parent_id with orgid, folderId and projectid ([#86](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/86))
+
+### Features
+
+* remove location input for model armor floorsetting and replaced the parent_id with orgid, folderId and projectid ([#86](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/86)) ([3f9ac18](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/3f9ac18c074d138e3e224d58c67c88a29d5c201c))
+
 ## [3.1.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.1.0...v3.1.1) (2026-02-23)
 
 
