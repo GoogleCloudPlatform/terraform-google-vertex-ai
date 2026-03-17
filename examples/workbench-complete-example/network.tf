@@ -54,10 +54,11 @@ module "cloud_router" {
   source  = "terraform-google-modules/cloud-router/google"
   version = "~> 8.0"
 
-  name    = "test-ca-us-central1-cr"
-  project = var.project_id
-  region  = "us-central1"
-  network = module.test-vpc-module.network_self_link
+  name        = "test-ca-us-central1-cr"
+  project_id  = var.project_id
+  region      = "us-central1"
+  network     = module.test-vpc-module.network_self_link
+
   nats = [
     {
       name                               = "test-ca-us-central1-nat"
