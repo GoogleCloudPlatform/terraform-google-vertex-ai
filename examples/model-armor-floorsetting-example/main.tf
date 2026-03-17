@@ -32,7 +32,7 @@ resource "google_project_iam_member" "ma_sa_member" {
 
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   project_id          = var.project_id
   integrated_services = ["AI_PLATFORM", "GOOGLE_MCP_SERVER"]
