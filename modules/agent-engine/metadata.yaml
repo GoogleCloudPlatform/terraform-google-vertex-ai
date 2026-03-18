@@ -162,12 +162,10 @@ spec:
           - roles/aiplatform.admin
           - roles/compute.admin
           - roles/compute.networkAdmin
-          - roles/notebooks.admin
           - roles/iam.securityAdmin
           - roles/iam.serviceAccountAdmin
           - roles/iam.serviceAccountUser
           - roles/cloudkms.admin
-          - roles/iam.roleAdmin
           - roles/storage.admin
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
@@ -177,13 +175,10 @@ spec:
       - serviceusage.googleapis.com
       - iamcredentials.googleapis.com
       - iam.googleapis.com
-      - cloudbilling.googleapis.com
       - cloudkms.googleapis.com
       - servicenetworking.googleapis.com
       - secretmanager.googleapis.com
-      - notebooks.googleapis.com
       - aiplatform.googleapis.com
-      - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
     providerVersions:
