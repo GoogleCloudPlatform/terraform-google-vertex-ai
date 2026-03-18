@@ -51,7 +51,5 @@ spec:
           title: Spec
     runtime:
       outputs:
-        reasoning_engine_name:
-          visibility: VISIBILITY_ROOT
         reasoning_engine_id:
           visibility: VISIBILITY_ROOT
