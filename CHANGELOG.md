@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [4.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v4.0.0...v4.0.1) (2026-03-20)
+
+
+### Bug Fixes
+
+* added visibility for reasoning engine id ([#91](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/91)) ([9934598](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/99345986f0fd9b1488e59d02679a803ad15bec71))
+
 ## [4.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v3.1.1...v4.0.0) (2026-03-03)
 
 
