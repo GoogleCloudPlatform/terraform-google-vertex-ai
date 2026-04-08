@@ -46,5 +46,5 @@ output "reasoning_engine_url" {
 
 output "discovery_filter" {
   description = "The pre-formatted filter string to discover this agent in the registry."
-  value       = format("attributes.\"agentregistry.googleapis.com/system/RuntimeIdentity\".principal:\"principal://%s\"", google_vertex_ai_reasoning_engine.main.spec[0].effective_identity)
+  value       = format("agentId:\"urn:agent:projects-%s:projects:%s:locations:%s:aiplatform:reasoningEngines:%s\"", data.google_project.project.number, data.google_project.project.number, var.region, google_vertex_ai_reasoning_engine.main.name)
 }

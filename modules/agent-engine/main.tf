@@ -120,3 +120,7 @@ resource "google_vertex_ai_reasoning_engine" "main" {
     }
   }
 }
+
+data "google_project" "project" {
+  project_id = var.project_id
+}
