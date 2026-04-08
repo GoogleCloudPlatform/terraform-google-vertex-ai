@@ -15,6 +15,7 @@
  */
 
 resource "google_vertex_ai_reasoning_engine" "main" {
+  provider     = google-beta
   display_name = var.display_name
   project      = var.project_id
   region       = var.region
