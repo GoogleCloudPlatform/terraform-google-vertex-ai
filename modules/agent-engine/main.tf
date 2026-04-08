@@ -15,6 +15,7 @@
  */
 
 resource "google_vertex_ai_reasoning_engine" "main" {
+  provider     = google-beta
   display_name = var.display_name
   project      = var.project_id
   region       = var.region
@@ -33,6 +34,7 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       agent_framework = lookup(spec.value, "agent_framework", null)
       class_methods   = lookup(spec.value, "class_methods", null) == null ? null : jsonencode(lookup(spec.value, "class_methods", null))
       service_account = lookup(spec.value, "service_account", null)
+      identity_type   = lookup(spec.value, "identity_type", null)
 
       dynamic "package_spec" {
         for_each = lookup(spec.value, "package_spec", null) == null ? [] : [spec.value.package_spec]
@@ -117,4 +119,8 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       }
     }
   }
+}
+
+data "google_project" "project" {
+  project_id = var.project_id
 }

@@ -116,6 +116,7 @@ spec:
                 }))
               }))
               service_account = optional(string)
+              identity_type   = optional(string)
             })
         connections:
           - source:
@@ -149,12 +150,20 @@ spec:
               outputExpr: env_vars
               inputPath: deployment_spec.env
     outputs:
+      - name: discovery_filter
+        description: The pre-formatted filter string to discover this agent in the registry.
+      - name: effective_identity
+        description: The service identity used for the Reasoning Engine deployment.
       - name: reasoning_engine
         description: The full google_vertex_ai_reasoning_engine resource object.
+      - name: reasoning_engine_console_url
+        description: The URL to the Vertex AI Agent Engine console page.
       - name: reasoning_engine_id
         description: The unique identifier for the Reasoning Engine resource.
       - name: reasoning_engine_name
         description: The generated name of the Reasoning Engine.
+      - name: reasoning_engine_url
+        description: The full regional API URL for the Reasoning Engine interaction.
   requirements:
     roles:
       - level: Project
@@ -188,4 +197,6 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
+        version: ">= 7.19, < 8"
+      - source: hashicorp/google-beta
         version: ">= 7.19, < 8"

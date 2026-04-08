@@ -28,3 +28,23 @@ output "reasoning_engine" {
   description = "The full google_vertex_ai_reasoning_engine resource object."
   value       = google_vertex_ai_reasoning_engine.main
 }
+
+output "effective_identity" {
+  description = "The service identity used for the Reasoning Engine deployment."
+  value       = google_vertex_ai_reasoning_engine.main.spec[0].effective_identity
+}
+
+output "reasoning_engine_console_url" {
+  description = "The URL to the Vertex AI Agent Engine console page."
+  value       = "https://console.cloud.google.com/vertex-ai/agents/agent-engines/locations/${var.region}/agent-engines/${google_vertex_ai_reasoning_engine.main.name}/dashboard?project=${var.project_id}"
+}
+
+output "reasoning_engine_url" {
+  description = "The full regional API URL for the Reasoning Engine interaction."
+  value       = "https://${var.region}-aiplatform.googleapis.com/v1/projects/${var.project_id}/locations/${var.region}/reasoningEngines/${google_vertex_ai_reasoning_engine.main.name}"
+}
+
+output "discovery_filter" {
+  description = "The pre-formatted filter string to discover this agent in the registry."
+  value       = format("agentId:\"urn:agent:projects-%s:projects:%s:locations:%s:aiplatform:reasoningEngines:%s\"", data.google_project.project.number, data.google_project.project.number, var.region, google_vertex_ai_reasoning_engine.main.name)
+}
