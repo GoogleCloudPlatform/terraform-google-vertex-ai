@@ -116,6 +116,7 @@ spec:
                 }))
               }))
               service_account = optional(string)
+              identity_type   = optional(string)
             })
         connections:
           - source:
@@ -196,4 +197,6 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
+        version: ">= 7.19, < 8"
+      - source: hashicorp/google-beta
         version: ">= 7.19, < 8"

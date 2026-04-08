@@ -90,6 +90,7 @@ variable "spec" {
       }))
     }))
     service_account = optional(string)
+    identity_type   = optional(string)
   })
   default = null
 }
