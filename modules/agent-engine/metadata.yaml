@@ -197,5 +197,3 @@ spec:
     providerVersions:
       - source: hashicorp/google
         version: ">= 7.19, < 8"
-      - source: hashicorp/google-beta
-        version: ">= 7.19, < 8"
