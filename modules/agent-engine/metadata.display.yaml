@@ -49,7 +49,24 @@ spec:
         spec:
           name: spec
           title: Spec
+          properties:
+            identity_type:
+              name: identity_type
+              title: Identity Type
+              enumValueLabels:
+                - label: SERVICE_ACCOUNT
+                  value: SERVICE_ACCOUNT
+                - label: AGENT_IDENTITY
+                  value: AGENT_IDENTITY
     runtime:
       outputs:
+        discovery_filter:
+          visibility: VISIBILITY_ROOT
+        effective_identity:
+          visibility: VISIBILITY_ROOT
+        reasoning_engine_console_url:
+          visibility: VISIBILITY_ROOT
         reasoning_engine_id:
+          visibility: VISIBILITY_ROOT
+        reasoning_engine_url:
           visibility: VISIBILITY_ROOT
