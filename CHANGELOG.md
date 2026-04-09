@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v4.0.1...v5.0.0) (2026-04-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* added output fields and identity_type input field ([#94](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/94))
+
+### Bug Fixes
+
+* added output fields and identity_type input field ([#94](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/94)) ([71c41ae](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/71c41aeb1ea5abac4aca4758974a7797cae47cc9))
+
 ## [4.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v4.0.0...v4.0.1) (2026-03-20)
 
 
