@@ -31,6 +31,7 @@ output "reasoning_engine_id" {
 |------|-------------|------|---------|:--------:|
 | description | The description of the Reasoning Engine. | `string` | `null` | no |
 | display\_name | The display name of the Reasoning Engine. | `string` | n/a | yes |
+| google\_managed\_agent\_gateway\_config | Configuration for the Agent Gateway. gateway\_type must be 'CLIENT\_TO\_AGENT' or 'AGENT\_TO\_ANYWHERE'. | <pre>object({<br>    gateway_type = string<br>    gateway_id   = string<br>  })</pre> | `null` | no |
 | kms\_key\_name | Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key. | `string` | `null` | no |
 | project\_id | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | region | The region of the reasoning engine. eg us-central1. | `string` | n/a | yes |

@@ -15,7 +15,7 @@
  */
 
 resource "google_vertex_ai_reasoning_engine" "main" {
-  provider     = google-beta
+  provider     = google-nightly
   display_name = var.display_name
   project      = var.project_id
   region       = var.region
@@ -82,6 +82,26 @@ resource "google_vertex_ai_reasoning_engine" "main" {
                   domain         = dns_peering_configs.value.domain
                   target_project = dns_peering_configs.value.target_project
                   target_network = dns_peering_configs.value.target_network
+                }
+              }
+            }
+          }
+
+          dynamic "agent_gateway_config" {
+            for_each = var.google_managed_agent_gateway_config != null ? [var.google_managed_agent_gateway_config] : []
+            content {
+              
+              dynamic "client_to_agent_config" {
+                for_each = agent_gateway_config.value.gateway_type == "CLIENT_TO_AGENT" ? [1] : []
+                content {
+                  agent_gateway = agent_gateway_config.value.gateway_id
+                }
+              }
+
+              dynamic "agent_to_anywhere_config" {
+                for_each = agent_gateway_config.value.gateway_type == "AGENT_TO_ANYWHERE" ? [1] : []
+                content {
+                  agent_gateway = agent_gateway_config.value.gateway_id
                 }
               }
             }

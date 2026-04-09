@@ -37,6 +37,9 @@ spec:
         encryption_spec:
           name: encryption_spec
           title: Encryption Spec
+        google_managed_agent_gateway_config:
+          name: google_managed_agent_gateway_config
+          title: Google Managed Agent Gateway Config
         kms_key_name:
           name: kms_key_name
           title: Kms Key Name

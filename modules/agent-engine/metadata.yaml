@@ -149,6 +149,26 @@ spec:
             spec:
               outputExpr: env_vars
               inputPath: deployment_spec.env
+      - name: google_managed_agent_gateway_config
+        description: Configuration for the Agent Gateway. gateway_type must be 'CLIENT_TO_AGENT' or 'AGENT_TO_ANYWHERE'.
+        varType: |-
+          object({
+              gateway_type = string
+              gateway_id   = string
+            })
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
+              version: ">= 0.4.1"
+            spec:
+              outputExpr: google_managed_gateway_type
+              inputPath: gateway_type
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
+              version: ">= 0.4.1"
+            spec:
+              outputExpr: agent_gateway_id
+              inputPath: gateway_id
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
