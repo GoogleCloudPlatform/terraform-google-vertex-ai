@@ -24,6 +24,10 @@ terraform {
       source  = "hashicorp/google-beta"
       version = ">= 7.19, < 8"
     }
+    google-nightly = {
+      source  = "hashicorp/google-nightly"
+      version = "2026.4.8-7.27.0"
+    }
   }
   required_version = ">= 1.3"
 }

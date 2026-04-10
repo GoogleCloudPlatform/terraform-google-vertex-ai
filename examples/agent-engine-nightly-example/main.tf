@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 7.19, < 8"
-    }
-    google-beta = {
-      source  = "hashicorp/google-beta"
-      version = ">= 7.19, < 8"
-    }
-  }
-  required_version = ">= 1.3"
+module "agent_engine" {
+  source = "../../modules/agent-engine-nightly"
+
+  project_id   = var.project_id
+  display_name = "Vertex AI Agent Engine"
+  region       = "us-central1"
+  description  = "Agent Engine example"
 }

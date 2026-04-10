@@ -23,6 +23,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor-floorsetting/v4.0.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor-floorsetting/v5.1.0"
   }
 }

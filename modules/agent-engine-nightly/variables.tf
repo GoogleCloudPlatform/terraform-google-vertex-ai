@@ -94,3 +94,12 @@ variable "spec" {
   })
   default = null
 }
+
+variable "google_managed_agent_gateway_config" {
+  description = "Configuration for the Agent Gateway. gateway_type must be 'CLIENT_TO_AGENT' or 'AGENT_TO_ANYWHERE'."
+  type = object({
+    gateway_type = string
+    gateway_id   = string
+  })
+  default = null
+}
