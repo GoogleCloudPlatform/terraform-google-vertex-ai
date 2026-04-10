@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.0.0...v5.1.0) (2026-04-10)
+
+
+### Features
+
+* added agent-engine module using nightly provider ([#97](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/97)) ([3d4c673](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/3d4c67315f723a50548de76de1f5b1a180fc424c))
+
 ## [5.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v4.0.1...v5.0.0) (2026-04-08)
 
 
