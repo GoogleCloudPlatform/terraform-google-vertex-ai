@@ -1,4 +1,8 @@
-# Vertex AI Agent Engine Module
+# Vertex AI Agent Engine Nightly Module
+
+> **⚠️ WARNING: Experimental Module**
+> 
+> Please use this module consciously as it is **not stable** and can introduce **breaking changes** at any time. It relies on the `google-nightly` provider for experimental features and is not recommended for production workloads.
 
 This module provisions a [Vertex AI Agent Engine](https://docs.cloud.google.com/agent-builder/agent-engine/overview)
 
@@ -8,7 +12,7 @@ Here's a basic example of how to use the module:
 
 ```terraform
 module "agent_engine" {
-  source = "GoogleCloudPlatform/vertex-ai/google//modules/agent-engine"
+  source = "GoogleCloudPlatform/vertex-ai/google//modules/agent-engine-nightly"
 
   project_id   = "your-gcp-project-id"
   display_name = "My Awesome Agent"
