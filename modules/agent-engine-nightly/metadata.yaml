@@ -170,7 +170,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
               version: ">= 0.4.1"
             spec:
-              outputExpr: "{\"gateway_type\": gateway_type, \"gateway_id\":gateway_id}"
+              outputExpr: "{\"gateway_type\": google_managed_gateway_type, \"gateway_id\":agent_gateway_id}"
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
