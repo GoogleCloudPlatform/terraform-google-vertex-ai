@@ -75,6 +75,12 @@ variable "spec" {
       requirements_gcs_uri     = optional(string)
     }))
     source_code_spec = optional(object({
+      inline_source = optional(object({
+        source_archive = optional(string)
+      }))
+      image_spec = optional(object({
+        build_args = optional(map(string))
+      }))
       python_spec = optional(object({
         entrypoint_module = optional(string)
         entrypoint_object = optional(string)
@@ -96,10 +102,17 @@ variable "spec" {
 }
 
 variable "google_managed_agent_gateway_config" {
-  description = "Configuration for the Agent Gateway. gateway_type must be 'CLIENT_TO_AGENT' or 'AGENT_TO_ANYWHERE'."
-  type = object({
+  description = "A list of configurations for the Agent Gateway. This list can contain up to two objects, one for 'CLIENT_TO_AGENT' and one for 'AGENT_TO_ANYWHERE', each with their respective gateway_id."
+  type = list(object({
     gateway_type = string
     gateway_id   = string
-  })
-  default = null
+  }))
+  default = []
+  validation {
+    condition = (
+      length([for c in var.google_managed_agent_gateway_config : c if c.gateway_type == "CLIENT_TO_AGENT"]) <= 1 &&
+      length([for c in var.google_managed_agent_gateway_config : c if c.gateway_type == "AGENT_TO_ANYWHERE"]) <= 1
+    )
+    error_message = "The 'google_managed_agent_gateway_config' variable can have at most one configuration for 'CLIENT_TO_AGENT' and one for 'AGENT_TO_ANYWHERE'."
+  }
 }

@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Agent Engine Module
+    title: Vertex AI Agent Engine Nightly Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
@@ -103,6 +103,12 @@ spec:
                 requirements_gcs_uri     = optional(string)
               }))
               source_code_spec = optional(object({
+                inline_source = optional(object({
+                  source_archive = optional(string)
+                }))
+                image_spec = optional(object({
+                  build_args = optional(map(string))
+                }))
                 python_spec = optional(object({
                   entrypoint_module = optional(string)
                   entrypoint_object = optional(string)
@@ -152,25 +158,19 @@ spec:
               outputExpr: env_vars
               inputPath: deployment_spec.env
       - name: google_managed_agent_gateway_config
-        description: Configuration for the Agent Gateway. gateway_type must be 'CLIENT_TO_AGENT' or 'AGENT_TO_ANYWHERE'.
+        description: A list of configurations for the Agent Gateway. This list can contain up to two objects, one for 'CLIENT_TO_AGENT' and one for 'AGENT_TO_ANYWHERE', each with their respective gateway_id.
         varType: |-
-          object({
+          list(object({
               gateway_type = string
               gateway_id   = string
-            })
+            }))
+        defaultValue: []
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
               version: ">= 0.4.1"
             spec:
-              outputExpr: google_managed_gateway_type
-              inputPath: gateway_type
-          - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
-              version: ">= 0.4.1"
-            spec:
-              outputExpr: agent_gateway_id
-              inputPath: gateway_id
+              outputExpr: "{\"google_managed_gateway_type\": gateway_type, \"agent_gateway_id\":gateway_id}"
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
