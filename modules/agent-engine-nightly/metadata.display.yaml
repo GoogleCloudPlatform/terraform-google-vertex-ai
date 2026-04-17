@@ -34,6 +34,9 @@ spec:
         display_name:
           name: display_name
           title: Display Name
+        effective_identity_roles:
+          name: effective_identity_roles
+          title: Effective Identity Roles
         encryption_spec:
           name: encryption_spec
           title: Encryption Spec
@@ -49,6 +52,9 @@ spec:
         region:
           name: region
           title: Region
+        service_account_roles:
+          name: service_account_roles
+          title: Service Account Roles
         spec:
           name: spec
           title: Spec

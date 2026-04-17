@@ -77,6 +77,7 @@ variable "spec" {
     source_code_spec = optional(object({
       inline_source = optional(object({
         source_archive = optional(string)
+        local_archive  = optional(string)
       }))
       image_spec = optional(object({
         build_args = optional(map(string))
@@ -96,7 +97,7 @@ variable "spec" {
       }))
     }))
     service_account = optional(string)
-    identity_type   = optional(string)
+    identity_type   = optional(string, "SERVICE_ACCOUNT")
   })
   default = null
 }
@@ -115,4 +116,16 @@ variable "google_managed_agent_gateway_config" {
     )
     error_message = "The 'google_managed_agent_gateway_config' variable can have at most one configuration for 'CLIENT_TO_AGENT' and one for 'AGENT_TO_ANYWHERE'."
   }
+}
+
+variable "service_account_roles" {
+  description = "A list of roles to assign to the Vertex AI Service Identity."
+  type        = list(string)
+  default     = []
+}
+
+variable "effective_identity_roles" {
+  description = "A list of roles to assign to the Reasoning Engine's effective identity."
+  type        = list(string)
+  default     = []
 }

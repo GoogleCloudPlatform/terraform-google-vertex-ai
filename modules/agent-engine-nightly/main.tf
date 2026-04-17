@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+locals {
+  identity_type = lookup(var.spec, "identity_type", null)
+  member_prefix = local.identity_type == "SERVICE_ACCOUNT" ? "serviceAccount:" : (
+    local.identity_type == "AGENT_IDENTITY" ? "principal:" : ""
+  )
+}
+
 resource "google_vertex_ai_reasoning_engine" "main" {
   provider     = google-nightly
   display_name = var.display_name
@@ -115,7 +122,11 @@ resource "google_vertex_ai_reasoning_engine" "main" {
           dynamic "inline_source" {
             for_each = lookup(source_code_spec.value, "inline_source", null) == null ? [] : [source_code_spec.value.inline_source]
             content {
-              source_archive = lookup(inline_source.value, "source_archive", null)
+              source_archive = lookup(inline_source.value, "source_archive", null) != null ? inline_source.value.source_archive : (
+                lookup(inline_source.value, "local_archive", null) != null
+                ? filebase64(inline_source.value.local_archive)
+                : null
+              )
             }
           }
 
@@ -153,6 +164,30 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       }
     }
   }
+}
+
+resource "google_project_service_identity" "aiplatform_identity" {
+  provider = google-beta
+  project  = var.project_id
+  service  = "aiplatform.googleapis.com"
+}
+
+
+
+# Assign the Custom Role to the Vertex AI Service Identity
+resource "google_project_iam_member" "aiplatform_roles" {
+  for_each = toset(var.service_account_roles)
+  project  = var.project_id
+  role     = each.value
+  member   = google_project_service_identity.aiplatform_identity.member
+}
+
+# Assign roles to the Reasoning Engine's effective identity
+resource "google_project_iam_member" "reasoning_engine_effective_identity_roles" {
+  for_each = toset(var.effective_identity_roles)
+  project  = var.project_id
+  role     = each.value
+  member   = "${local.member_prefix}${google_vertex_ai_reasoning_engine.main.effective_identity}"
 }
 
 data "google_project" "project" {
