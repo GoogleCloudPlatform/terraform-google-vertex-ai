@@ -88,20 +88,20 @@ resource "google_vertex_ai_reasoning_engine" "main" {
           }
 
           dynamic "agent_gateway_config" {
-            for_each = var.google_managed_agent_gateway_config != null ? [var.google_managed_agent_gateway_config] : []
+            for_each = length(var.google_managed_agent_gateway_config) > 0 ? [1] : []
             content {
 
               dynamic "client_to_agent_config" {
-                for_each = agent_gateway_config.value.gateway_type == "CLIENT_TO_AGENT" ? [1] : []
+                for_each = [for c in var.google_managed_agent_gateway_config : c if c.gateway_type == "CLIENT_TO_AGENT"]
                 content {
-                  agent_gateway = agent_gateway_config.value.gateway_id
+                  agent_gateway = client_to_agent_config.value.gateway_id
                 }
               }
 
               dynamic "agent_to_anywhere_config" {
-                for_each = agent_gateway_config.value.gateway_type == "AGENT_TO_ANYWHERE" ? [1] : []
+                for_each = [for c in var.google_managed_agent_gateway_config : c if c.gateway_type == "AGENT_TO_ANYWHERE"]
                 content {
-                  agent_gateway = agent_gateway_config.value.gateway_id
+                  agent_gateway = agent_to_anywhere_config.value.gateway_id
                 }
               }
             }
@@ -112,6 +112,20 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       dynamic "source_code_spec" {
         for_each = lookup(spec.value, "source_code_spec", null) == null ? [] : [spec.value.source_code_spec]
         content {
+          dynamic "inline_source" {
+            for_each = lookup(source_code_spec.value, "inline_source", null) == null ? [] : [source_code_spec.value.inline_source]
+            content {
+              source_archive = lookup(inline_source.value, "source_archive", null)
+            }
+          }
+
+          dynamic "image_spec" {
+            for_each = lookup(source_code_spec.value, "image_spec", null) == null ? [] : [source_code_spec.value.image_spec]
+            content {
+              build_args = lookup(image_spec.value, "build_args", null)
+            }
+          }
+
           dynamic "python_spec" {
             for_each = lookup(source_code_spec.value, "python_spec", null) == null ? [] : [source_code_spec.value.python_spec]
             content {

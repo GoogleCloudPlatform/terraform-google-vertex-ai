@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Agent Engine Module
+    title: Vertex AI Agent Engine Nightly Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
