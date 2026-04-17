@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/agent-engine-nightly
-    version: 5.1.6
+    version: 5.1.7
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -183,8 +183,8 @@ spec:
             spec:
               outputExpr: "[\"roles/networkservices.admin\"]"
           - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
-              version: ">= 3.0.0"
+              source: github.com/Daisyprakash/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\"]"
       - name: effective_identity_roles
@@ -193,8 +193,8 @@ spec:
         defaultValue: []
         connections:
           - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
-              version: ">= 3.0.0"
+              source: github.com/Daisyprakash/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"
     outputs:
