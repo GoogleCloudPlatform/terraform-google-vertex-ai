@@ -131,3 +131,5 @@ spec:
       outputs:
         template_id:
           visibility: VISIBILITY_ROOT
+        template_self_link:
+          visibility: VISIBILITY_ROOT
