@@ -28,6 +28,10 @@ resource "google_vertex_ai_reasoning_engine" "main" {
   region       = var.region
   description  = var.description
 
+  depends_on = [
+    google_project_iam_member.aiplatform_roles
+  ]
+
   dynamic "encryption_spec" {
     for_each = (var.kms_key_name != null && var.kms_key_name != "") ? [1] : []
     content {
@@ -187,7 +191,7 @@ resource "google_project_iam_member" "reasoning_engine_effective_identity_roles"
   for_each = toset(var.effective_identity_roles)
   project  = var.project_id
   role     = each.value
-  member   = "${local.member_prefix}${google_vertex_ai_reasoning_engine.main.effective_identity}"
+  member   = "${local.member_prefix}${google_vertex_ai_reasoning_engine.main.spec[0].effective_identity}"
 }
 
 data "google_project" "project" {
