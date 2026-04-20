@@ -105,7 +105,6 @@ spec:
               source_code_spec = optional(object({
                 inline_source = optional(object({
                   source_archive = optional(string)
-                  local_archive  = optional(string)
                 }))
                 image_spec = optional(object({
                   build_args = optional(map(string))
@@ -129,7 +128,7 @@ spec:
             })
         connections:
           - source:
-              source: github.com/Daisyprakash/terraform-google-vertex-ai//modules/model-armor-template
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.5"
             spec:
               outputExpr: "{\"MODEL_ARMOR_TEMPLATE_ID\": template_self_link}"
@@ -183,7 +182,7 @@ spec:
             spec:
               outputExpr: "[\"roles/networkservices.admin\"]"
           - source:
-              source: github.com/Daisyprakash/terraform-google-vertex-ai//modules/model-armor-template
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\"]"
@@ -193,7 +192,7 @@ spec:
         defaultValue: []
         connections:
           - source:
-              source: github.com/Daisyprakash/terraform-google-vertex-ai//modules/model-armor-template
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"

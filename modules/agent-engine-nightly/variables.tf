@@ -77,7 +77,6 @@ variable "spec" {
     source_code_spec = optional(object({
       inline_source = optional(object({
         source_archive = optional(string)
-        local_archive  = optional(string)
       }))
       image_spec = optional(object({
         build_args = optional(map(string))
