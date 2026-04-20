@@ -8,6 +8,18 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.1.0...v5.2.0) (2026-04-20)
+
+
+### Features
+
+* added inline_source and image_spec in source_code_spec , also update connection with agent-gateway ([#100](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/100)) ([071d04b](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/071d04bcfe241851627242d46d36178555c4aa32))
+
+
+### Bug Fixes
+
+* added service identity logic and added sample agents ([#103](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/103)) ([a91ec57](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/a91ec578cdc329604bb0cd52acd5c68e0bcd7413))
+
 ## [5.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.0.0...v5.1.0) (2026-04-10)
 
 
