@@ -17,13 +17,11 @@
 locals {
   identity_type = lookup(var.spec, "identity_type", "SERVICE_ACCOUNT")
 
-  # Define the mapping in a local variable for clarity
   identity_prefixes = {
     "SERVICE_ACCOUNT" = "serviceAccount:"
     "AGENT_IDENTITY"  = "principal:"
   }
 
-  # Use lookup with a default value of ""
   member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
 }
 
