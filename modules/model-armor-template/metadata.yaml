@@ -169,6 +169,8 @@ spec:
       - name: template_id
         description: Model armor template ID
         type: string
+      - name: template_self_link
+        description: The self link of the model armor template.
   requirements:
     roles:
       - level: Project

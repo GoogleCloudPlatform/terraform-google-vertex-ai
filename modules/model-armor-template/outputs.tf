@@ -23,3 +23,8 @@ output "template_id" {
   value       = google_model_armor_template.model_armor_template.template_id
   description = "Model armor template ID"
 }
+
+output "template_self_link" {
+  description = "The self link of the model armor template."
+  value       = google_model_armor_template.model_armor_template.id
+}

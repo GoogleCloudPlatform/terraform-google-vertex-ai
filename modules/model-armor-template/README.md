@@ -63,6 +63,7 @@ module "model_armor_template" {
 |------|-------------|
 | template | Model armor template created |
 | template\_id | Model armor template ID |
+| template\_self\_link | The self link of the model armor template. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

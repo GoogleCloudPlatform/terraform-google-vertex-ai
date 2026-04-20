@@ -124,14 +124,14 @@ spec:
                 }))
               }))
               service_account = optional(string)
-              identity_type   = optional(string)
+              identity_type   = optional(string, "SERVICE_ACCOUNT")
             })
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
-              version: ">= 3.0.0"
+              version: ">= 5.1.1"
             spec:
-              outputExpr: "{\"MODEL_ARMOR_TEMPLATE_ID\": template_id}"
+              outputExpr: "{\"MODEL_ARMOR_TEMPLATE_ID\": template_self_link}"
               inputPath: deployment_spec.env
           - source:
               source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
@@ -171,6 +171,31 @@ spec:
               version: ">= 0.4.1"
             spec:
               outputExpr: "[{\"gateway_type\": google_managed_gateway_type, \"gateway_id\": agent_gateway_id}]"
+      - name: service_account_roles
+        description: A list of roles to assign to the Vertex AI Service Identity.
+        varType: list(string)
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
+              version: ">= 0.4.1"
+            spec:
+              outputExpr: "[\"roles/networkservices.admin\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">= 5.1.6"
+            spec:
+              outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\"]"
+      - name: effective_identity_roles
+        description: A list of roles to assign to the Reasoning Engine's effective identity.
+        varType: list(string)
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
+              version: ">= 5.1.6"
+            spec:
+              outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.

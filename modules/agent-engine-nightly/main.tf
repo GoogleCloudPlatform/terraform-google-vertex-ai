@@ -14,12 +14,27 @@
  * limitations under the License.
  */
 
+locals {
+  identity_type = lookup(var.spec, "identity_type", "SERVICE_ACCOUNT")
+
+  identity_prefixes = {
+    "SERVICE_ACCOUNT" = "serviceAccount:"
+    "AGENT_IDENTITY"  = "principal:"
+  }
+
+  member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
+}
+
 resource "google_vertex_ai_reasoning_engine" "main" {
   provider     = google-nightly
   display_name = var.display_name
   project      = var.project_id
   region       = var.region
   description  = var.description
+
+  depends_on = [
+    google_project_iam_member.aiplatform_roles
+  ]
 
   dynamic "encryption_spec" {
     for_each = (var.kms_key_name != null && var.kms_key_name != "") ? [1] : []
@@ -153,6 +168,28 @@ resource "google_vertex_ai_reasoning_engine" "main" {
       }
     }
   }
+}
+
+resource "google_project_service_identity" "aiplatform_identity" {
+  provider = google-beta
+  project  = var.project_id
+  service  = "aiplatform.googleapis.com"
+}
+
+# Assign the Custom Role to the Vertex AI Service Identity
+resource "google_project_iam_member" "aiplatform_roles" {
+  for_each = toset(var.service_account_roles)
+  project  = var.project_id
+  role     = each.value
+  member   = google_project_service_identity.aiplatform_identity.member
+}
+
+# Assign roles to the Reasoning Engine's effective identity
+resource "google_project_iam_member" "reasoning_engine_effective_identity_roles" {
+  for_each = toset(var.effective_identity_roles)
+  project  = var.project_id
+  role     = each.value
+  member   = "${local.member_prefix}${google_vertex_ai_reasoning_engine.main.spec[0].effective_identity}"
 }
 
 data "google_project" "project" {
