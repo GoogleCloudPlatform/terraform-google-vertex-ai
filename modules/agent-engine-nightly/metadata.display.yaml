@@ -67,6 +67,22 @@ spec:
                   value: SERVICE_ACCOUNT
                 - label: AGENT_IDENTITY
                   value: AGENT_IDENTITY
+            source_code_spec:
+              name: source_code_spec
+              title: Source Code Spec
+              properties:
+                inline_source:
+                  name: inline_source
+                  title: Inline Source
+                  properties:
+                    local_archive:
+                      name: local_archive
+                      title: Local Archive
+                      enumValueLabels:
+                        - label: Single Agent Model Armor
+                          value: preconfigured-agents/single-agent-model-armor.tar.gz
+                        - label: Simple Agent
+                          value: preconfigured-agents/simple-agent.tar.gz
     runtime:
       outputs:
         discovery_filter:

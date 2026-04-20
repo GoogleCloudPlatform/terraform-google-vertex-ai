@@ -126,10 +126,9 @@ resource "google_vertex_ai_reasoning_engine" "main" {
           dynamic "inline_source" {
             for_each = lookup(source_code_spec.value, "inline_source", null) == null ? [] : [source_code_spec.value.inline_source]
             content {
-              source_archive = lookup(inline_source.value, "source_archive", null) != null ? inline_source.value.source_archive : (
-                lookup(inline_source.value, "local_archive", null) != null
-                ? filebase64(inline_source.value.local_archive)
-                : null
+              source_archive = lookup(inline_source.value, "source_archive", null) != null ? inline_source.value.source_archive : (lookup(inline_source.value, "local_archive", null) != null ?
+                filebase64("${path.module}/${inline_source.value.local_archive}") :
+                null
               )
             }
           }
