@@ -15,10 +15,16 @@
  */
 
 locals {
-  identity_type = lookup(var.spec, "identity_type", null)
-  member_prefix = local.identity_type == "SERVICE_ACCOUNT" ? "serviceAccount:" : (
-    local.identity_type == "AGENT_IDENTITY" ? "principal:" : ""
-  )
+  identity_type = lookup(var.spec, "identity_type", "SERVICE_ACCOUNT")
+
+  # Define the mapping in a local variable for clarity
+  identity_prefixes = {
+    "SERVICE_ACCOUNT" = "serviceAccount:"
+    "AGENT_IDENTITY"  = "principal:"
+  }
+
+  # Use lookup with a default value of ""
+  member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
 }
 
 resource "google_vertex_ai_reasoning_engine" "main" {
@@ -171,8 +177,6 @@ resource "google_project_service_identity" "aiplatform_identity" {
   project  = var.project_id
   service  = "aiplatform.googleapis.com"
 }
-
-
 
 # Assign the Custom Role to the Vertex AI Service Identity
 resource "google_project_iam_member" "aiplatform_roles" {
