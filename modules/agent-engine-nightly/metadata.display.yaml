@@ -67,9 +67,9 @@ spec:
                   value: SERVICE_ACCOUNT
                 - label: AGENT_IDENTITY
                   value: AGENT_IDENTITY
-            source_code_spec:
-              name: source_code_spec
-              title: Source Code Spec
+              altDefaults:
+                - type: ALTERNATE_TYPE_DC
+                  value: SERVICE_ACCOUNT
     runtime:
       outputs:
         discovery_filter:
