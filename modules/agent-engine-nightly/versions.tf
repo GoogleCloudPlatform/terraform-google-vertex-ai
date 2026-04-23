@@ -30,4 +30,7 @@ terraform {
     }
   }
   required_version = ">= 1.3"
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v5.2.0"
+  }
 }

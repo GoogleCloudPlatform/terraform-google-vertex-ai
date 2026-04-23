@@ -1,4 +1,4 @@
-# Module for Model Armor Template
+# Vertex AI (Gemini Enterprise Agent Platform) Model Armor Template Module
 
 This module is used to create [Model Armor template](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-templates). You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/model-armor-template-example)
 
