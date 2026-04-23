@@ -196,6 +196,11 @@ spec:
               version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
+              version: ">= 0.4.1"
+            spec:
+              outputExpr: "[\"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
