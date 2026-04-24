@@ -128,3 +128,9 @@ variable "effective_identity_roles" {
   type        = list(string)
   default     = []
 }
+
+variable "module_depends_on" {
+  description = "A list of resources or modules that this authorization policy depends on."
+  type        = list(string)
+  default     = []
+}
