@@ -253,4 +253,4 @@ spec:
       - source: hashicorp/google-beta
         version: ">= 7.19, < 8"
       - source: hashicorp/google-nightly
-        version: 5.2.0.27.0
+        version: 5.2.0.27
