@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.2.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.2.0...v5.2.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* added roles for re-sa for connection ae-agw ([#105](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/105)) ([a38c206](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/a38c206fc0f7d8c7307401a99fc600cc75d7bc58))
+
 ## [5.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.1.0...v5.2.0) (2026-04-20)
 
 
