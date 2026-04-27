@@ -201,6 +201,16 @@ spec:
               version: ">= 0.4.1"
             spec:
               outputExpr: "[\"roles/modelarmor.user\", \"roles/modelarmor.calloutUser\"]"
+      - name: module_depends_on
+        description: A list of resources or modules that this authorization policy depends on.
+        varType: list(string)
+        defaultValue: []
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-network-security-authz//modules/authz-policy
+              version: ">=0.4.1"
+            spec:
+              outputExpr: ["id"]
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
