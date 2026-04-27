@@ -210,7 +210,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-network-security-authz//modules/authz-policy
               version: ">=0.4.1"
             spec:
-              outputExpr: id
+              outputExpr: ["id"]
     outputs:
       - name: discovery_filter
         description: The pre-formatted filter string to discover this agent in the registry.
