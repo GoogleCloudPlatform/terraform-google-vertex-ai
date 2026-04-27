@@ -22,7 +22,7 @@ spec:
   info:
     title: Vertex AI Agent Engine Nightly Module
     source:
-      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      repo: https://github.com/vandnagarggoogle/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/agent-engine-nightly
   ui:
