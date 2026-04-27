@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.3.2](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.1...v5.3.2) (2026-04-27)
+
+
+### Bug Fixes
+
+* principle for agent_identity ([#114](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/114)) ([7df87cb](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/7df87cb77819e5ef0ce62b264d2f6c3bb0c8487d))
+
 ## [5.3.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.0...v5.3.1) (2026-04-27)
 
 
