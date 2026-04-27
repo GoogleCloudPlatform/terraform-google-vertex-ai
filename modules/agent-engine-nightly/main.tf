@@ -19,7 +19,7 @@ locals {
 
   identity_prefixes = {
     "SERVICE_ACCOUNT" = "serviceAccount:"
-    "AGENT_IDENTITY"  = "principal:"
+    "AGENT_IDENTITY"  = "principal://"
   }
 
   member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
