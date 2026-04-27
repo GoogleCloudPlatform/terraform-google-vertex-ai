@@ -22,7 +22,7 @@ spec:
   info:
     title: Vertex AI Agent Engine Nightly Module
     source:
-      repo: https://github.com/vandnagarggoogle/terraform-google-vertex-ai.git
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/agent-engine-nightly
     version: 5.3.0
@@ -185,7 +185,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.6"
             spec:
-              outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\"]"
+              outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\",  \"roles/modelarmor.calloutUser\"]"
       - name: effective_identity_roles
         description: A list of roles to assign to the Reasoning Engine's effective identity.
         varType: list(string)
