@@ -22,4 +22,7 @@ terraform {
     }
   }
   required_version = ">= 1.3"
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:feature-online-store/v5.2.0"
+  }
 }
