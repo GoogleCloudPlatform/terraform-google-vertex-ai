@@ -8,6 +8,34 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [5.3.2](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.1...v5.3.2) (2026-04-27)
+
+
+### Bug Fixes
+
+* principle for agent_identity ([#114](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/114)) ([7df87cb](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/7df87cb77819e5ef0ce62b264d2f6c3bb0c8487d))
+
+## [5.3.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.0...v5.3.1) (2026-04-27)
+
+
+### Bug Fixes
+
+* updating outputExpr for connection ([#112](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/112)) ([23991ee](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/23991ee1ed51934eab5d9f5f23eb49a52bf194c9))
+
+## [5.3.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.2.1...v5.3.0) (2026-04-27)
+
+
+### Features
+
+* adding agent engine and authz policy dependency connection ([#110](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/110)) ([0f47fe3](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/0f47fe3a9b138dd84d6a5bbe598dc61d356def81))
+
+## [5.2.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.2.0...v5.2.1) (2026-04-24)
+
+
+### Bug Fixes
+
+* added roles for re-sa for connection ae-agw ([#105](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/105)) ([a38c206](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/a38c206fc0f7d8c7307401a99fc600cc75d7bc58))
+
 ## [5.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.1.0...v5.2.0) (2026-04-20)
 
 

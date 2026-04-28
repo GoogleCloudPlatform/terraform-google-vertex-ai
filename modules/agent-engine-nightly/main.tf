@@ -19,7 +19,7 @@ locals {
 
   identity_prefixes = {
     "SERVICE_ACCOUNT" = "serviceAccount:"
-    "AGENT_IDENTITY"  = "principal:"
+    "AGENT_IDENTITY"  = "principal://"
   }
 
   member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
@@ -33,7 +33,8 @@ resource "google_vertex_ai_reasoning_engine" "main" {
   description  = var.description
 
   depends_on = [
-    google_project_iam_member.aiplatform_roles
+    google_project_iam_member.aiplatform_roles,
+    var.module_depends_on
   ]
 
   dynamic "encryption_spec" {

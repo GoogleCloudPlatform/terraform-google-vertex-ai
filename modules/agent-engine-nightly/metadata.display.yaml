@@ -46,6 +46,9 @@ spec:
         kms_key_name:
           name: kms_key_name
           title: Kms Key Name
+        module_depends_on:
+          name: module_depends_on
+          title: Module Depends On
         project_id:
           name: project_id
           title: Project Id

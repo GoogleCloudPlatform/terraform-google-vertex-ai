@@ -36,6 +36,7 @@ output "reasoning_engine_id" {
 | effective\_identity\_roles | A list of roles to assign to the Reasoning Engine's effective identity. | `list(string)` | `[]` | no |
 | google\_managed\_agent\_gateway\_config | A list of configurations for the Agent Gateway. This list can contain up to two objects, one for 'CLIENT\_TO\_AGENT' and one for 'AGENT\_TO\_ANYWHERE', each with their respective gateway\_id. | <pre>list(object({<br>    gateway_type = string<br>    gateway_id   = string<br>  }))</pre> | `[]` | no |
 | kms\_key\_name | Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key. | `string` | `null` | no |
+| module\_depends\_on | A list of resources or modules that this authorization policy depends on. | `list(string)` | `[]` | no |
 | project\_id | The ID of the project in which the resource belongs. | `string` | n/a | yes |
 | region | The region of the reasoning engine. eg us-central1. | `string` | n/a | yes |
 | service\_account\_roles | A list of roles to assign to the Vertex AI Service Identity. | `list(string)` | `[]` | no |
