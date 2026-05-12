@@ -62,6 +62,13 @@ resource "google_vertex_ai_reasoning_engine" "main" {
         }
       }
 
+      dynamic "container_spec" {
+        for_each = lookup(spec.value, "container_spec", null) == null ? [] : [spec.value.container_spec]
+        content {
+          image_uri = lookup(container_spec.value, "image_uri", null)
+        }
+      }
+
       dynamic "deployment_spec" {
         for_each = lookup(spec.value, "deployment_spec", null) == null ? [] : [spec.value.deployment_spec]
         content {
