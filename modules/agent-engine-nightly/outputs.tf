@@ -42,5 +42,5 @@ output "reasoning_engine_console_url" {
 output "discovery_filter" {
   description = "The pre-formatted filter string to discover this agent in the registry."
   value       = format("agentId:\"urn:agent:projects-%s:projects:%s:locations:%s:aiplatform:reasoningEngines:%s\"", data.google_project.project.number, data.google_project.project.number, var.region, google_vertex_ai_reasoning_engine.main.name)
-  depends_on = [time_sleep.wait_for_auto_registration_for_agent_in_registry]
+  depends_on  = [time_sleep.wait_for_auto_registration_for_agent_in_registry]
 }
