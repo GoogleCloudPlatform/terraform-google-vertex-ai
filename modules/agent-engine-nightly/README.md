@@ -54,6 +54,5 @@ output "reasoning_engine_id" {
 | reasoning\_engine\_console\_url | The URL to the Vertex AI Agent Engine console page. |
 | reasoning\_engine\_id | The unique identifier for the Reasoning Engine resource. |
 | reasoning\_engine\_name | The generated name of the Reasoning Engine. |
-| reasoning\_engine\_url | The full regional API URL for the Reasoning Engine interaction. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
