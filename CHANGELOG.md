@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.2...v6.0.0) (2026-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* added wait time for autoregistration of agent in agent registry and remove one output variable ([#116](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/116))
+
+### Bug Fixes
+
+* added wait time for autoregistration of agent in agent registry and remove one output variable ([#116](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/116)) ([5ad4756](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/5ad47567ef7b63bf46312cc15578639ea3dcd6d0))
+
 ## [5.3.2](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.1...v5.3.2) (2026-04-27)
 
 
