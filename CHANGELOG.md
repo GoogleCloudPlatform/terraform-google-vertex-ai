@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [6.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.0...v6.0.1) (2026-05-14)
+
+
+### Bug Fixes
+
+* added output variable and increase wait time ([#118](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/118)) ([2d3f9ca](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/2d3f9ca57e766255c28321e5fdd6612cfb85600e))
+
 ## [6.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.2...v6.0.0) (2026-05-12)
 
 
