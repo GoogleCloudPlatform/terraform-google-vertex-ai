@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
       dir: /modules/agent-engine-nightly
-    version: 6.0.0
+    version: 5.10.10
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -224,6 +224,8 @@ spec:
         description: The unique identifier for the Reasoning Engine resource.
       - name: reasoning_engine_name
         description: The generated name of the Reasoning Engine.
+      - name: reasoning_engine_url
+        description: The full regional API URL for the Reasoning Engine interaction.
   requirements:
     roles:
       - level: Project
@@ -262,3 +264,5 @@ spec:
         version: ">= 7.19, < 8"
       - source: hashicorp/google-nightly
         version: 6.0.0.27.0
+      - source: hashicorp/time
+        version: ">=0.13.1"

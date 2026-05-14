@@ -44,3 +44,8 @@ output "discovery_filter" {
   value       = format("agentId:\"urn:agent:projects-%s:projects:%s:locations:%s:aiplatform:reasoningEngines:%s\"", data.google_project.project.number, data.google_project.project.number, var.region, google_vertex_ai_reasoning_engine.main.name)
   depends_on  = [time_sleep.wait_for_auto_registration_for_agent_in_registry]
 }
+
+output "reasoning_engine_url" {
+  description = "The full regional API URL for the Reasoning Engine interaction."
+  value       = "https://${var.region}-aiplatform.googleapis.com/v1/projects/${var.project_id}/locations/${var.region}/reasoningEngines/${google_vertex_ai_reasoning_engine.main.name}"
+}
