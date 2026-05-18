@@ -28,10 +28,6 @@ terraform {
       source  = "hashicorp/google-nightly"
       version = "2026.4.8-7.27.0"
     }
-    time = {
-      source  = "hashicorp/time"
-      version = ">=0.13.1"
-    }
   }
   required_version = ">= 1.3"
 }
