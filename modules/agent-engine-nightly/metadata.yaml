@@ -180,17 +180,12 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
               version: ">= 0.4.1"
             spec:
-              outputExpr: "[\"roles/networkservices.admin\"]"
+              outputExpr: "[\"roles/networkservices.admin\", \"roles/aiplatform.serviceAgent\"]"
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.6"
             spec:
               outputExpr: "[\"roles/networkservices.admin\", \"roles/modelarmor.user\",  \"roles/modelarmor.calloutUser\"]"
-          - source:
-              source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
-              version: ">= 0.4.3"
-            spec:
-              outputExpr: "[\"roles/aiplatform.serviceAgent\"]"
       - name: effective_identity_roles
         description: A list of roles to assign to the Reasoning Engine's effective identity.
         varType: list(string)
