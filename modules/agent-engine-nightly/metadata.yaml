@@ -180,7 +180,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-agent-gateway
               version: ">= 0.4.1"
             spec:
-              outputExpr: "[\"roles/networkservices.admin\"]"
+              outputExpr: "[\"roles/networkservices.admin\", \"roles/aiplatform.serviceAgent\"]"
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
               version: ">= 5.1.6"
@@ -263,6 +263,4 @@ spec:
       - source: hashicorp/google-beta
         version: ">= 7.19, < 8"
       - source: hashicorp/google-nightly
-        version: 6.0.1.27.0
-      - source: hashicorp/time
-        version: ">=0.13.1"
+        version: 2026.4.8-7.27.0
