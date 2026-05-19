@@ -244,6 +244,7 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/artifactregistry.reader
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
