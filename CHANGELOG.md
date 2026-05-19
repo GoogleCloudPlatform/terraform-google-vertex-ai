@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.1...v7.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* removed wait time and added roles for sa ([#120](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/120))
+
+### Bug Fixes
+
+* removed wait time and added roles for sa ([#120](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/120)) ([e7bc18c](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/e7bc18c74b7a9146fbf43a73ec86a86348c2d86f))
+
 ## [6.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.0...v6.0.1) (2026-05-14)
 
 
