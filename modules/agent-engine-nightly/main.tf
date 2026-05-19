@@ -181,7 +181,7 @@ resource "google_vertex_ai_reasoning_engine" "main" {
 resource "time_sleep" "wait_for_auto_registration_for_agent_in_registry" {
   # Trigger the sleep only after the reasoning engine is fully created
   depends_on      = [google_vertex_ai_reasoning_engine.main]
-  create_duration = "10s"
+  create_duration = "20s"
 }
 
 resource "google_project_service_identity" "aiplatform_identity" {
