@@ -15,7 +15,7 @@
  */
 
 module "agent_engine" {
-  source = "Daisyprakash/vertex-ai/google//modules/agent-engine-nightly"
+  source = "../../modules/agent-engine-nightly"
 
   project_id   = var.project_id
   display_name = "Vertex AI Agent Engine"
