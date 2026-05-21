@@ -28,6 +28,7 @@ locals {
 
 resource "random_id" "suffix" {
   count       = local.is_container_spec_deployment ? 1 : 0
+  provider    = random
   byte_length = 4
 }
 
