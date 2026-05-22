@@ -102,6 +102,9 @@ spec:
                 python_version           = optional(string)
                 requirements_gcs_uri     = optional(string)
               }))
+              container_spec = optional(object({
+                image_uri = string
+              }))
               source_code_spec = optional(object({
                 inline_source = optional(object({
                   source_archive = optional(string)
@@ -243,6 +246,7 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/artifactregistry.reader
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -264,3 +268,5 @@ spec:
         version: ">= 7.19, < 8"
       - source: hashicorp/google-nightly
         version: 7.0.0.27.0
+      - source: hashicorp/random
+        version: ">=3.9.0"

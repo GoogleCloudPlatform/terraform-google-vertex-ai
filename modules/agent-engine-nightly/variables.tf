@@ -74,6 +74,9 @@ variable "spec" {
       python_version           = optional(string)
       requirements_gcs_uri     = optional(string)
     }))
+    container_spec = optional(object({
+      image_uri = string
+    }))
     source_code_spec = optional(object({
       inline_source = optional(object({
         source_archive = optional(string)
