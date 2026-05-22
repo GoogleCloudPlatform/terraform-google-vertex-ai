@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.0.0...v7.1.0) (2026-05-22)
+
+
+### Features
+
+* added container support for agent engine ([#123](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/123)) ([ec0a020](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/ec0a020a59c66d25a642d682fb7ae1289ede17d7))
+
 ## [7.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.1...v7.0.0) (2026-05-19)
 
 
