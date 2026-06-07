@@ -233,7 +233,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
               version: ">= 0.9.0"
             spec:
-              outputExpr: "[{\"name\": \"REASONING_ENGINE_SECRET\", \"secret_ref\": {\"secret\": name, \"version\": version}}]"
+              outputExpr: '[{"name": "REASONING_ENGINE_SECRET", "secret_ref": {"secret": split("/", name)[length(split("/", name)) - 1], "version": version}}]'
               inputPath: deployment_spec.secret_env
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
