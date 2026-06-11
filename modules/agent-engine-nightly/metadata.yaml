@@ -160,6 +160,12 @@ spec:
             spec:
               outputExpr: env_vars
               inputPath: deployment_spec.env
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-dataproc
+              version: ">= 0.0.1"
+            spec:
+              outputExpr: "{\"DATAPROC_CLUSTER_ID\": cluster_id}"
+              inputPath: deployment_spec.env
       - name: google_managed_agent_gateway_config
         description: A list of configurations for the Agent Gateway. This list can contain up to two objects, one for 'CLIENT_TO_AGENT' and one for 'AGENT_TO_ANYWHERE', each with their respective gateway_id.
         varType: |-
