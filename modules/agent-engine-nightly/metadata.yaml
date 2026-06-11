@@ -206,19 +206,19 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: 'url + "/agent.pkl"'
+              outputExpr: '"${url}/agent"'
               inputPath: package_spec.pickle_object_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: 'url + "/requirements.txt"'
+              outputExpr: '"${url}/requirements"'
               inputPath: package_spec.requirements_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: 'url + "/dependencies.tar.gz"'
+              outputExpr: '"${url}/dependencies"'
               inputPath: package_spec.dependency_files_gcs_uri
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-floorsetting
