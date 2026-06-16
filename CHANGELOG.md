@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.1.0...v7.2.0) (2026-06-12)
+
+
+### Features
+
+* add connection with dataproc ([#126](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/126)) ([4ad1e6a](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/4ad1e6ab31de59299c3f7753ec9ee86050414acf))
+
 ## [7.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.0.0...v7.1.0) (2026-05-22)
 
 
