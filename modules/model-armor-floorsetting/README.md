@@ -5,7 +5,7 @@ This module is used to create [Model Armor floor settings](https://cloud.google.
 ```hcl
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
-  version = "~> 7.2"
+  version = "~> 7.3"
 
   project_id          = var.project_id
   integrated_services = ["AI_PLATFORM"]
