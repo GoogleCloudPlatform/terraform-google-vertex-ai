@@ -23,6 +23,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:workbench/v7.2.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:workbench/v7.3.0"
   }
 }

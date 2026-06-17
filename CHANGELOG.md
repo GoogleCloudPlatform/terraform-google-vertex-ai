@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.3.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.2.0...v7.3.0) (2026-06-17)
+
+
+### Features
+
+* Add missing resource connections for Vertex AI Agent Engine ([#127](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/127)) ([c002cc0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/c002cc0527573fccde518e787331a5ca66327985))
+
 ## [7.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.1.0...v7.2.0) (2026-06-12)
 
 
