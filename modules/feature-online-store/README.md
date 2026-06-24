@@ -1,9 +1,7 @@
-# Vertex AI Feature Online Store Module
+# Vertex AI (Gemini Enterprise Agent Platform) Feature Online Store Module
 
 This module allows you to create and configure a Google Cloud Vertex AI Feature Online Store.
 
-<!-- BEGIN_TF_DOCS -->
-<!-- END_TF_DOCS -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 

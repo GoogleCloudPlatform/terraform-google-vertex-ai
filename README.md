@@ -1,9 +1,13 @@
-# Google Module for Vertex AI resources
+# Google Module for Vertex AI (Gemini Enterprise Agent Platform) resources
 
 This is a collection of submodules for vertex AI related resources.
 
-- [Vertex AI workbench](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/workbench)
+- [Workbench](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/workbench)
 - [Model Armor template](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/model-armor-template)
+- [Model Armor floorsetting](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/model-armor-floorsetting)
+- [Feature Online Store](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/feature-online-store)
+- [Agent Engine](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/agent-engine)
+- [Agent Engine (Nightly Build)](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/agent-engine-nightly)
 
 ## Requirements
 

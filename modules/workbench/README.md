@@ -1,4 +1,4 @@
-# Module for Vertex AI Workbench Instance
+# Vertex AI (Gemini Enterprise Agent Platform) Workbench Module
 
 This module is used to create Vertex AI Workbench Instance. You can find example(s) for this module [here](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples)
 
