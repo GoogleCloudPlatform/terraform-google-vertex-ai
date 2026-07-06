@@ -35,12 +35,12 @@ terraform {
   }
   required_version = ">= 1.3"
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v5.2.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v7.3.1"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v5.2.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v7.3.1"
   }
   provider_meta "google-nightly" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v5.2.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine-nightly/v7.3.1"
   }
 }
