@@ -83,5 +83,3 @@ spec:
           visibility: VISIBILITY_ROOT
         reasoning_engine_id:
           visibility: VISIBILITY_ROOT
-        reasoning_engine_url:
-          visibility: VISIBILITY_ROOT

@@ -8,6 +8,56 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.3.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.2.0...v7.3.0) (2026-06-17)
+
+
+### Features
+
+* Add missing resource connections for Vertex AI Agent Engine ([#127](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/127)) ([c002cc0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/c002cc0527573fccde518e787331a5ca66327985))
+
+## [7.2.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.1.0...v7.2.0) (2026-06-12)
+
+
+### Features
+
+* add connection with dataproc ([#126](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/126)) ([4ad1e6a](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/4ad1e6ab31de59299c3f7753ec9ee86050414acf))
+
+## [7.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.0.0...v7.1.0) (2026-05-22)
+
+
+### Features
+
+* added container support for agent engine ([#123](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/123)) ([ec0a020](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/ec0a020a59c66d25a642d682fb7ae1289ede17d7))
+
+## [7.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.1...v7.0.0) (2026-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* removed wait time and added roles for sa ([#120](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/120))
+
+### Bug Fixes
+
+* removed wait time and added roles for sa ([#120](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/120)) ([e7bc18c](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/e7bc18c74b7a9146fbf43a73ec86a86348c2d86f))
+
+## [6.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v6.0.0...v6.0.1) (2026-05-14)
+
+
+### Bug Fixes
+
+* added output variable and increase wait time ([#118](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/118)) ([2d3f9ca](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/2d3f9ca57e766255c28321e5fdd6612cfb85600e))
+
+## [6.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.2...v6.0.0) (2026-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* added wait time for autoregistration of agent in agent registry and remove one output variable ([#116](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/116))
+
+### Bug Fixes
+
+* added wait time for autoregistration of agent in agent registry and remove one output variable ([#116](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/116)) ([5ad4756](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/5ad47567ef7b63bf46312cc15578639ea3dcd6d0))
+
 ## [5.3.2](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v5.3.1...v5.3.2) (2026-04-27)
 
 

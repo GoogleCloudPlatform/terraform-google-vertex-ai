@@ -20,6 +20,7 @@ resource "random_id" "suffix" {
 
 module "feature_online_store" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/feature-online-store"
+  version = ">= 5.3.2"
 
   project_id        = var.project_id
   featurestore_name = "example_featurestore_name_${random_id.suffix.hex}"
