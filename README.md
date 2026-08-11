@@ -8,6 +8,7 @@ This is a collection of submodules for vertex AI related resources.
 - [Feature Online Store](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/feature-online-store)
 - [Agent Engine](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/agent-engine)
 - [Agent Engine (Nightly Build)](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/agent-engine-nightly)
+- [Semantic Governance Policy Engine](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/modules/semantic-governance-policy-engine)
 
 ## Requirements
 
