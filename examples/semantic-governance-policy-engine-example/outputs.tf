@@ -20,16 +20,16 @@ output "project_id" {
 }
 
 output "id" {
-  value       = module.semantic_governance_policy_engine.id
+  value       = module.semantic_governance_policy_engine.policy_engine.id
   description = "The engine identifier"
 }
 
 output "state" {
-  value       = module.semantic_governance_policy_engine.state
+  value       = module.semantic_governance_policy_engine.policy_engine.state
   description = "The current state of the engine"
 }
 
 output "psc_service_attachment" {
-  value       = module.semantic_governance_policy_engine.psc_service_attachment
+  value       = module.semantic_governance_policy_engine.policy_engine.psc_service_attachment
   description = "The Private Service Connect service attachment URI for the engine's managed endpoint"
 }

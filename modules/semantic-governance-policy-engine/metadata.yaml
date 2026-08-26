@@ -57,39 +57,16 @@ spec:
         varType: string
         required: true
       - name: project_id
-        description: The ID of the project in which the resource belongs. If null, the provider project is used.
+        description: The ID of the project in which to create the SemanticGovernancePolicyEngine.
         varType: string
+        required: true
       - name: deletion_policy
         description: How Terraform treats destruction of the engine. One of DELETE (default; deprovision the engine), PREVENT (fail the destroy), or ABANDON (drop from state without deprovisioning).
         varType: string
         defaultValue: DELETE
-      - name: timeout_create
-        description: Timeout for creating (provisioning) the SemanticGovernancePolicyEngine.
-        varType: string
-        defaultValue: 60m
-      - name: timeout_update
-        description: Timeout for updating the SemanticGovernancePolicyEngine.
-        varType: string
-        defaultValue: 60m
-      - name: timeout_delete
-        description: Timeout for deleting (deprovisioning) the SemanticGovernancePolicyEngine.
-        varType: string
-        defaultValue: 60m
     outputs:
-      - name: create_time
-        description: The time the engine was created, in RFC3339 UTC 'Zulu' format.
-      - name: id
-        description: An identifier for the engine, in the form 'projects/{{project}}/locations/{{region}}/semanticGovernancePolicyEngine'.
-      - name: name
-        description: The resource name of the engine, in the form 'projects/{project}/locations/{region}/semanticGovernancePolicyEngine'.
       - name: policy_engine
         description: The full google_vertex_ai_semantic_governance_policy_engine resource object.
-      - name: psc_service_attachment
-        description: The Private Service Connect service attachment URI for the engine's managed endpoint. Self-managed consumers target this to build their own PSC forwarding rule.
-      - name: state
-        description: The current state of the engine. One of STATE_UNSPECIFIED, PROVISIONING, ACTIVE, FAILED, DEPROVISIONING, INACTIVE.
-      - name: update_time
-        description: The time the engine was last updated, in RFC3339 UTC 'Zulu' format.
   requirements:
     roles:
       - level: Project

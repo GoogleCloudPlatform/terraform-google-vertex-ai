@@ -20,9 +20,8 @@ variable "region" {
 }
 
 variable "project_id" {
-  description = "The ID of the project in which the resource belongs. If null, the provider project is used."
+  description = "The ID of the project in which to create the SemanticGovernancePolicyEngine."
   type        = string
-  default     = null
 }
 
 variable "deletion_policy" {
@@ -33,22 +32,4 @@ variable "deletion_policy" {
     condition     = contains(["DELETE", "PREVENT", "ABANDON"], var.deletion_policy)
     error_message = "deletion_policy must be one of DELETE, PREVENT, or ABANDON."
   }
-}
-
-variable "timeout_create" {
-  description = "Timeout for creating (provisioning) the SemanticGovernancePolicyEngine."
-  type        = string
-  default     = "60m"
-}
-
-variable "timeout_update" {
-  description = "Timeout for updating the SemanticGovernancePolicyEngine."
-  type        = string
-  default     = "60m"
-}
-
-variable "timeout_delete" {
-  description = "Timeout for deleting (deprovisioning) the SemanticGovernancePolicyEngine."
-  type        = string
-  default     = "60m"
 }

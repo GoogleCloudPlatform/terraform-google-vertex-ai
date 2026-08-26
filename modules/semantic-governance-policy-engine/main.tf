@@ -18,10 +18,4 @@ resource "google_vertex_ai_semantic_governance_policy_engine" "policy_engine" {
   region          = var.region
   project         = var.project_id
   deletion_policy = var.deletion_policy
-
-  timeouts {
-    create = var.timeout_create
-    update = var.timeout_update
-    delete = var.timeout_delete
-  }
 }

@@ -20,23 +20,14 @@ module "semantic_governance_policy_engine" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | deletion\_policy | How Terraform treats destruction of the engine. One of DELETE (default; deprovision the engine), PREVENT (fail the destroy), or ABANDON (drop from state without deprovisioning). | `string` | `"DELETE"` | no |
-| project\_id | The ID of the project in which the resource belongs. If null, the provider project is used. | `string` | `null` | no |
+| project\_id | The ID of the project in which to create the SemanticGovernancePolicyEngine. | `string` | n/a | yes |
 | region | The region of the SemanticGovernancePolicyEngine, e.g. 'us-central1'. Required by this module, even though the underlying resource treats region as optional. | `string` | n/a | yes |
-| timeout\_create | Timeout for creating (provisioning) the SemanticGovernancePolicyEngine. | `string` | `"60m"` | no |
-| timeout\_delete | Timeout for deleting (deprovisioning) the SemanticGovernancePolicyEngine. | `string` | `"60m"` | no |
-| timeout\_update | Timeout for updating the SemanticGovernancePolicyEngine. | `string` | `"60m"` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| create\_time | The time the engine was created, in RFC3339 UTC 'Zulu' format. |
-| id | An identifier for the engine, in the form 'projects/{{project}}/locations/{{region}}/semanticGovernancePolicyEngine'. |
-| name | The resource name of the engine, in the form 'projects/{project}/locations/{region}/semanticGovernancePolicyEngine'. |
 | policy\_engine | The full google\_vertex\_ai\_semantic\_governance\_policy\_engine resource object. |
-| psc\_service\_attachment | The Private Service Connect service attachment URI for the engine's managed endpoint. Self-managed consumers target this to build their own PSC forwarding rule. |
-| state | The current state of the engine. One of STATE\_UNSPECIFIED, PROVISIONING, ACTIVE, FAILED, DEPROVISIONING, INACTIVE. |
-| update\_time | The time the engine was last updated, in RFC3339 UTC 'Zulu' format. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
