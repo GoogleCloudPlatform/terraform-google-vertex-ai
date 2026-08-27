@@ -27,9 +27,9 @@ terraform {
   }
   required_version = ">= 1.3"
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine/v7.3.1"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine/v7.4.0"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine/v7.3.1"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:agent-engine/v7.4.0"
   }
 }

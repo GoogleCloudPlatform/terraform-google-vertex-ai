@@ -7,7 +7,7 @@ The engine is a project-level, regional singleton — each project has at most o
 ```hcl
 module "semantic_governance_policy_engine" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
-  version = "~> 7.3"
+  version = "~> 7.4"
 
   project_id = var.project_id
   region     = "us-central1"

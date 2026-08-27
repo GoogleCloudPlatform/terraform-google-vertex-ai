@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [7.4.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.3.1...v7.4.0) (2026-08-27)
+
+
+### Features
+
+* add semantic-governance-policy-engine sub-module ([#133](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/133)) ([9df02bd](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/9df02bdb27654b81ed98e58bc25e4051f146791e))
+
 ## [7.3.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.3.0...v7.3.1) (2026-07-06)
 
 

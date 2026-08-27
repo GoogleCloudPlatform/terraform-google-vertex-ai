@@ -23,6 +23,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor-template/v7.3.1"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:model-armor-template/v7.4.0"
   }
 }
