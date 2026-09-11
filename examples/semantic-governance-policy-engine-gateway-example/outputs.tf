@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-# Surface the module's by-name gateway_endpoints output. To read one field:
-# module...gateway_endpoints["agent-gateway"].dns_record
+# Surface the module's gateway_endpoints list. To read one gateway's field:
+# module...gateway_endpoints[0].dns_record
 output "gateway_endpoints" {
   value       = module.semantic_governance_policy_engine.gateway_endpoints
-  description = "Map of gateway name to its full gateway object (inputs plus computed dns_record, ip_address, psc_endpoint, state)."
+  description = "List of gateway objects (each with inputs plus computed dns_record, ip_address, psc_endpoint, state)."
 }

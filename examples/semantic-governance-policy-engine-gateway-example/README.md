@@ -4,7 +4,7 @@ This example provisions a [Semantic Governance Policy Engine](https://cloud.goog
 
 Unlike the [minimal example](../semantic-governance-policy-engine-example), which provisions the engine with no gateways, this one also creates the networking a gateway needs — a VPC network, a subnetwork, and a private Cloud DNS zone — and references them from a `gateway_configs` entry. The engine creates a consumer-side PSC endpoint and publishes an A-record for the gateway into the private zone.
 
-Each gateway entry must set `network`, `subnetwork`, and `dns_zone_name` together; the engine rejects a partial set. The network and subnetwork are passed as their full resource URIs — the resources' `.id` (of the form `projects/P/global/networks/N`), not `.self_link` (the `https://` form the API rejects) — so the configuration matches what the API stores and the gateway does not churn on later plans.
+Within a gateway entry, `network`, `subnetwork`, and `dns_zone_name` must be set together or all omitted; a partial set is rejected — this example sets all three. Network and subnetwork are passed as their full resource URIs — the resources' `.id` (of the form `projects/P/global/networks/N`), not `.self_link` (the `https://` form the API rejects) — so the configuration matches what the API stores and the gateway does not churn on later plans.
 
 > **Note:** provisioning the engine and each gateway is a long-running operation (typically a few minutes, up to ~20), and it creates real PSC/DNS infrastructure. This example is provided as a reference for using `gateway_configs`; it is not part of the module's automated integration test suite.
 
@@ -40,6 +40,6 @@ terraform apply
 
 | Name | Description |
 |------|-------------|
-| gateway\_endpoints | Map of gateway name to its full gateway object (inputs plus computed dns\_record, ip\_address, psc\_endpoint, state). |
+| gateway\_endpoints | List of gateway objects (each with inputs plus computed dns\_record, ip\_address, psc\_endpoint, state). |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
