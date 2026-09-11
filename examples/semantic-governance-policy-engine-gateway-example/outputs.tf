@@ -14,15 +14,9 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 8.1, < 9"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:semantic-governance-policy-engine/v7.4.0"
-  }
+# Surface the module's gateway_endpoints list. To read one gateway's field:
+# module...gateway_endpoints[0].dns_record
+output "gateway_endpoints" {
+  value       = module.semantic_governance_policy_engine.gateway_endpoints
+  description = "List of gateway objects (each with inputs plus computed dns_record, ip_address, psc_endpoint, state)."
 }

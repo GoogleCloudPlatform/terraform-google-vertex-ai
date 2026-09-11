@@ -18,6 +18,17 @@ terraform plan
 terraform apply
 ```
 
+### Attaching customer-VPC PSC gateways
+
+This example provisions the engine with no gateways. To expose it over Private
+Service Connect endpoints in your own VPC, set the `gateway_configs` input (a map
+keyed by gateway name, at most 5). It is left out of this minimal example because
+each gateway provisions real PSC networking and a DNS A-record.
+
+For a complete, runnable configuration — including the network, subnetwork, and
+private DNS zone a gateway requires — see the
+[gateway example](../semantic-governance-policy-engine-gateway-example).
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 

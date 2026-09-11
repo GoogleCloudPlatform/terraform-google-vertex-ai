@@ -18,3 +18,12 @@ output "policy_engine" {
   description = "The full google_vertex_ai_semantic_governance_policy_engine resource object."
   value       = google_vertex_ai_semantic_governance_policy_engine.policy_engine
 }
+
+# gateway_configs is a set on the resource, which cannot be indexed. Expose it
+# as a list -- not a name-keyed map -- so consumers can select a gateway by
+# positional index (e.g. gateway_endpoints[0].dns_record); Application Design
+# Center connections support positional index but not string-key map access.
+output "gateway_endpoints" {
+  description = "List of gateway objects (each with the inputs plus the computed fields dns_record, ip_address, psc_endpoint, state)."
+  value       = tolist(google_vertex_ai_semantic_governance_policy_engine.policy_engine.gateway_configs)
+}

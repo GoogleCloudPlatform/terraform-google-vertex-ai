@@ -31,6 +31,9 @@ spec:
         deletion_policy:
           name: deletion_policy
           title: Deletion Policy
+        gateway_configs:
+          name: gateway_configs
+          title: Gateway Configs
         project_id:
           name: project_id
           title: Project Id

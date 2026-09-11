@@ -33,3 +33,20 @@ variable "deletion_policy" {
     error_message = "deletion_policy must be one of DELETE, PREVENT, or ABANDON."
   }
 }
+
+variable "gateway_configs" {
+  description = "Customer-VPC PSC gateway configurations, keyed by gateway name (at most 5). Each entry provisions a Private Service Connect endpoint. Within an entry, network, subnetwork, and dns_zone_name must all be set together or all omitted (a partial set is rejected); when set, network and subnetwork are the resources' .id (not .self_link, which the API rejects) and dns_zone_name is the private Cloud DNS zone the gateway's A-record is published into. allowed_projects (optional) takes full 'projects/{id}' resource names."
+  type = map(object({
+    network          = optional(string)
+    subnetwork       = optional(string)
+    dns_zone_name    = optional(string)
+    allowed_projects = optional(list(string))
+  }))
+  default  = {}
+  nullable = false
+
+  validation {
+    condition     = length(var.gateway_configs) <= 5
+    error_message = "At most 5 gateway_configs are allowed."
+  }
+}
