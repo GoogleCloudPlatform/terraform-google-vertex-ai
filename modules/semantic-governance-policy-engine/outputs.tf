@@ -18,3 +18,13 @@ output "policy_engine" {
   description = "The full google_vertex_ai_semantic_governance_policy_engine resource object."
   value       = google_vertex_ai_semantic_governance_policy_engine.policy_engine
 }
+
+# gateway_configs is a set on the resource, so it cannot be indexed by name.
+# Re-key it into a map (mirroring the gateway_configs input) so a caller can
+# read one gateway by name -- e.g. gateway_endpoints["<name>"].dns_record. Each
+# value is the full gateway object: the inputs plus the computed fields
+# (state, ip_address, psc_endpoint, dns_record).
+output "gateway_endpoints" {
+  description = "Map of gateway name to its full gateway object (the inputs plus the computed fields dns_record, ip_address, psc_endpoint, state)."
+  value       = { for g in google_vertex_ai_semantic_governance_policy_engine.policy_engine.gateway_configs : g.name => g }
+}
