@@ -79,8 +79,49 @@ spec:
     outputs:
       - name: gateway_endpoints
         description: Map of gateway name to its full gateway object (the inputs plus the computed fields dns_record, ip_address, psc_endpoint, state).
+        type:
+          - map
+          - - object
+            - allowed_projects:
+                - list
+                - string
+              dns_record: string
+              dns_zone_name: string
+              ip_address: string
+              name: string
+              network: string
+              psc_endpoint: string
+              state: string
+              subnetwork: string
       - name: policy_engine
         description: The full google_vertex_ai_semantic_governance_policy_engine resource object.
+        type:
+          - object
+          - create_time: string
+            deletion_policy: string
+            gateway_configs:
+              - set
+              - - object
+                - allowed_projects:
+                    - list
+                    - string
+                  dns_record: string
+                  dns_zone_name: string
+                  ip_address: string
+                  name: string
+                  network: string
+                  psc_endpoint: string
+                  state: string
+                  subnetwork: string
+            id: string
+            ip_address: string
+            name: string
+            project: string
+            psc_forwarding_rule: string
+            psc_service_attachment: string
+            region: string
+            state: string
+            update_time: string
   requirements:
     roles:
       - level: Project
