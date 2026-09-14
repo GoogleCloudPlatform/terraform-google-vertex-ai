@@ -20,23 +20,23 @@
 
 resource "google_compute_network" "agent_network" {
   project                 = var.project_id
-  name                    = var.network_name
+  name                    = "agent-network"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "agent_subnet" {
   project       = var.project_id
-  name          = var.subnetwork_name
-  region        = var.region
+  name          = "agent-subnet"
+  region        = "us-central1"
   network       = google_compute_network.agent_network.id
-  ip_cidr_range = var.subnetwork_cidr
+  ip_cidr_range = "10.0.0.0/24"
 }
 
 # Private zone into which the engine publishes the gateway's A-record.
 resource "google_dns_managed_zone" "sgp_private_zone" {
   project     = var.project_id
-  name        = var.dns_zone_name
-  dns_name    = var.dns_name
+  name        = "sgp-private-zone"
+  dns_name    = "internal.sgp.local."
   description = "Private zone for Semantic Governance Policy Engine gateway A-records."
   visibility  = "private"
 
@@ -51,14 +51,14 @@ module "semantic_governance_policy_engine" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
 
   project_id = var.project_id
-  region     = var.region
+  region     = "us-central1"
 
   # One customer-VPC PSC gateway. network/subnetwork are passed as their full
   # resource URIs (the resources' .id, e.g. projects/P/global/networks/N -- not
   # .self_link, which is the https:// form the API rejects) so the config matches
   # what the API stores and the gateway does not churn on subsequent plans.
   gateway_configs = {
-    (var.gateway_name) = {
+    "agent-gateway" = {
       network       = google_compute_network.agent_network.id
       subnetwork    = google_compute_subnetwork.agent_subnet.id
       dns_zone_name = google_dns_managed_zone.sgp_private_zone.name

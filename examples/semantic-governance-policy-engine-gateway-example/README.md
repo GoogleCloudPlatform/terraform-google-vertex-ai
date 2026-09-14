@@ -27,14 +27,7 @@ terraform apply
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| dns\_name | DNS suffix for the private managed zone (must be a fully-qualified name ending in a dot). | `string` | `"internal.sgp.local."` | no |
-| dns\_zone\_name | Name of the private Cloud DNS managed zone the engine publishes the gateway's A-record into. | `string` | `"sgp-private-zone"` | no |
-| gateway\_name | Name of the PSC gateway (used as the key in the engine's gateway\_configs map). | `string` | `"agent-gateway"` | no |
-| network\_name | Name of the VPC network the PSC gateway attaches to. | `string` | `"agent-network"` | no |
 | project\_id | The ID of the project in which the resources belong. | `string` | n/a | yes |
-| region | The region in which to provision the engine and the gateway's subnetwork. | `string` | `"us-central1"` | no |
-| subnetwork\_cidr | Primary IPv4 CIDR range for the subnetwork. | `string` | `"10.0.0.0/24"` | no |
-| subnetwork\_name | Name of the subnetwork the PSC gateway attaches to. | `string` | `"agent-subnet"` | no |
 
 ## Outputs
 
