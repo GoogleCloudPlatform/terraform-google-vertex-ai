@@ -14,15 +14,7 @@
  * limitations under the License.
  */
 
-terraform {
-  required_version = ">= 1.3"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = ">= 8.1, < 9"
-    }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:semantic-governance-policy-engine/v7.4.0"
-  }
+variable "project_id" {
+  description = "The ID of the project in which the resources belong."
+  type        = string
 }

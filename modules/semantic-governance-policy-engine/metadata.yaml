@@ -46,6 +46,8 @@ spec:
         location: examples/model-armor-template-example
       - name: semantic-governance-policy-engine-example
         location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -64,9 +66,62 @@ spec:
         description: How Terraform treats destruction of the engine. One of DELETE (default; deprovision the engine), PREVENT (fail the destroy), or ABANDON (drop from state without deprovisioning).
         varType: string
         defaultValue: DELETE
+      - name: gateway_configs
+        description: Customer-VPC PSC gateway configurations, keyed by gateway name (at most 5). Each entry provisions a Private Service Connect endpoint. Within an entry, network, subnetwork, and dns_zone_name must all be set together or all omitted (a partial set is rejected); when set, network and subnetwork are the resources' .id (not .self_link, which the API rejects) and dns_zone_name is the private Cloud DNS zone the gateway's A-record is published into. allowed_projects (optional) takes full 'projects/{id}' resource names.
+        varType: |-
+          map(object({
+              network          = optional(string)
+              subnetwork       = optional(string)
+              dns_zone_name    = optional(string)
+              allowed_projects = optional(list(string))
+            }))
+        defaultValue: {}
     outputs:
+      - name: gateway_endpoints
+        description: List of gateway objects (each with the inputs plus the computed fields dns_record, ip_address, psc_endpoint, state).
+        type:
+          - list
+          - - object
+            - allowed_projects:
+                - list
+                - string
+              dns_record: string
+              dns_zone_name: string
+              ip_address: string
+              name: string
+              network: string
+              psc_endpoint: string
+              state: string
+              subnetwork: string
       - name: policy_engine
         description: The full google_vertex_ai_semantic_governance_policy_engine resource object.
+        type:
+          - object
+          - create_time: string
+            deletion_policy: string
+            gateway_configs:
+              - set
+              - - object
+                - allowed_projects:
+                    - list
+                    - string
+                  dns_record: string
+                  dns_zone_name: string
+                  ip_address: string
+                  name: string
+                  network: string
+                  psc_endpoint: string
+                  state: string
+                  subnetwork: string
+            id: string
+            ip_address: string
+            name: string
+            project: string
+            psc_forwarding_rule: string
+            psc_service_attachment: string
+            region: string
+            state: string
+            update_time: string
   requirements:
     roles:
       - level: Project
@@ -100,4 +155,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 7.41.0, < 8"
+        version: ">= 8.1, < 9"

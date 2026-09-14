@@ -18,4 +18,15 @@ resource "google_vertex_ai_semantic_governance_policy_engine" "policy_engine" {
   region          = var.region
   project         = var.project_id
   deletion_policy = var.deletion_policy
+
+  dynamic "gateway_configs" {
+    for_each = var.gateway_configs
+    content {
+      name             = gateway_configs.key
+      network          = gateway_configs.value.network
+      subnetwork       = gateway_configs.value.subnetwork
+      dns_zone_name    = gateway_configs.value.dns_zone_name
+      allowed_projects = gateway_configs.value.allowed_projects
+    }
+  }
 }
