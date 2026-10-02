@@ -40,9 +40,7 @@ module "semantic_governance_policy" {
 
 | Name | Description |
 |------|-------------|
-| agent\_identity | The principal of the governed agent, used by the Policy Decision Point (PDP) for governance checks. |
-| name | The resource name of the policy, in the form projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic\_governance\_policy\_id}. |
-| policy | The full google\_vertex\_ai\_semantic\_governance\_policy resource object. |
+| policy | The full google\_vertex\_ai\_semantic\_governance\_policy resource object, including its name and agent\_identity. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

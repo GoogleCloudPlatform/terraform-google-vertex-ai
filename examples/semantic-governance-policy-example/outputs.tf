@@ -20,11 +20,11 @@ output "project_id" {
 }
 
 output "name" {
-  value       = module.semantic_governance_policy.name
+  value       = module.semantic_governance_policy.policy.name
   description = "The resource name of the policy"
 }
 
 output "agent_identity" {
-  value       = module.semantic_governance_policy.agent_identity
+  value       = module.semantic_governance_policy.policy.agent_identity
   description = "The principal of the governed agent"
 }

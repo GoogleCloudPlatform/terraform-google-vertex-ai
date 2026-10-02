@@ -14,17 +14,7 @@
  * limitations under the License.
  */
 
-output "name" {
-  description = "The resource name of the policy, in the form projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy_id}."
-  value       = google_vertex_ai_semantic_governance_policy.policy.name
-}
-
-output "agent_identity" {
-  description = "The principal of the governed agent, used by the Policy Decision Point (PDP) for governance checks."
-  value       = google_vertex_ai_semantic_governance_policy.policy.agent_identity
-}
-
 output "policy" {
-  description = "The full google_vertex_ai_semantic_governance_policy resource object."
+  description = "The full google_vertex_ai_semantic_governance_policy resource object, including its name and agent_identity."
   value       = google_vertex_ai_semantic_governance_policy.policy
 }
