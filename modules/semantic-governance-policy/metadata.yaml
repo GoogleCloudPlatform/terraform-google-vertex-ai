@@ -1,0 +1,183 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vertex-ai-semantic-governance-policy
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Vertex AI (Gemini Enterprise Agent Platform) Semantic Governance Policy Module
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      sourceType: git
+      dir: /modules/semantic-governance-policy
+    version: 8.0.0
+    actuationTool:
+      flavor: Terraform
+      version: ">= 1.3"
+    description: {}
+  content:
+    examples:
+      - name: agent-engine-developer-connect-example
+        location: examples/agent-engine-developer-connect-example
+      - name: agent-engine-example
+        location: examples/agent-engine-example
+      - name: agent-engine-nightly-example
+        location: examples/agent-engine-nightly-example
+      - name: feature-online-store-example
+        location: examples/feature-online-store-example
+      - name: model-armor-floorsetting-example
+        location: examples/model-armor-floorsetting-example
+      - name: model-armor-template-example
+        location: examples/model-armor-template-example
+      - name: semantic-governance-policy-engine-example
+        location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
+      - name: workbench-complete-example
+        location: examples/workbench-complete-example
+      - name: workbench-simple-example
+        location: examples/workbench-simple-example
+  interfaces:
+    variables:
+      - name: project_id
+        description: The ID of the project in which to create the SemanticGovernancePolicy. The project must have an active SemanticGovernancePolicyEngine in the same region.
+        varType: string
+        required: true
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services
+              version: ">= 18.2.0"
+            spec:
+              outputExpr: project_id
+      - name: region
+        description: The region of the SemanticGovernancePolicy, e.g. 'us-central1'. Must match the region of the project's SemanticGovernancePolicyEngine. Required by this module, even though the underlying resource treats region as optional.
+        varType: string
+        required: true
+      - name: semantic_governance_policy_id
+        description: The ID of the policy, which becomes the final component of its resource name. Up to 63 characters from [a-z0-9-]; must start with a letter and end with a letter or number.
+        varType: string
+        required: true
+      - name: natural_language_constraint
+        description: The rule the policy enforces, written in natural language. The policy engine blocks any tool call by the agent that violates it.
+        varType: string
+        required: true
+      - name: agent
+        description: The Agent Registry resource name of the agent this policy governs, in the form projects/{project}/locations/{location}/agents/{agent}. The agent must have an agent identity.
+        varType: string
+        required: true
+      - name: display_name
+        description: The user-defined name of the policy.
+        varType: string
+      - name: description
+        description: The description of the policy.
+        varType: string
+      - name: mcp_tools
+        description: Scopes the policy to a tool the agent calls through an MCP server. Each entry names an Agent Registry MCP server (projects/{project}/locations/{location}/mcpServers/{mcp_server}) and the tools it covers. Each tool is the tool's name as the MCP server lists it (for example get_order_status), not a resource name; a name that does not match exactly never matches a tool call. When empty, the policy applies to the agent as a whole.
+        varType: |-
+          list(object({
+              mcp_server = string
+              tools      = list(string)
+            }))
+        defaultValue: []
+      - name: denial_message
+        description: Message shown to the end user when this policy denies a tool call. Use it to explain the rationale. When null or empty, the default denial message is used.
+        varType: string
+      - name: deletion_policy
+        description: "How Terraform treats destruction of the policy: DELETE (delete the policy), PREVENT (fail the destroy), or ABANDON (drop from state without deleting). When null, the provider-level deletion_policy applies, which defaults to DELETE."
+        varType: string
+      - name: policy_engine_state
+        description: Optional. The state of the project's SemanticGovernancePolicyEngine, e.g. module.<engine>.policy_engine.state. Wiring it makes this policy wait for the engine and fails fast unless the engine is ACTIVE. Use it where depends_on is not available, such as Application Design Center connections; plain Terraform can use depends_on instead.
+        varType: string
+        connections:
+          - source:
+              source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/semantic-governance-policy-engine
+              version: ">= 8.0.0"
+            spec:
+              outputExpr: policy_engine.state
+    outputs:
+      - name: agent_identity
+        description: The principal of the governed agent, used by the Policy Decision Point (PDP) for governance checks.
+        type: string
+      - name: name
+        description: The resource name of the policy, in the form projects/{project}/locations/{location}/semanticGovernancePolicies/{semantic_governance_policy_id}.
+        type: string
+      - name: policy
+        description: The full google_vertex_ai_semantic_governance_policy resource object.
+        type:
+          - object
+          - agent: string
+            agent_identity: string
+            agent_response_customization:
+              - list
+              - - object
+                - denial_message: string
+            create_time: string
+            deletion_policy: string
+            description: string
+            display_name: string
+            etag: string
+            id: string
+            mcp_tools:
+              - list
+              - - object
+                - mcp_server: string
+                  tools:
+                    - set
+                    - string
+            name: string
+            natural_language_constraint: string
+            project: string
+            region: string
+            semantic_governance_policy_id: string
+            update_time: string
+  requirements:
+    roles:
+      - level: Project
+        roles:
+          - roles/aiplatform.admin
+          - roles/compute.admin
+          - roles/compute.networkAdmin
+          - roles/notebooks.admin
+          - roles/iam.securityAdmin
+          - roles/iam.serviceAccountAdmin
+          - roles/iam.serviceAccountUser
+          - roles/cloudkms.admin
+          - roles/iam.roleAdmin
+          - roles/storage.admin
+          - roles/cloudkms.cryptoKeyEncrypterDecrypter
+          - roles/modelarmor.admin
+          - roles/modelarmor.floorSettingsAdmin
+    services:
+      - cloudresourcemanager.googleapis.com
+      - serviceusage.googleapis.com
+      - iamcredentials.googleapis.com
+      - iam.googleapis.com
+      - cloudbilling.googleapis.com
+      - cloudkms.googleapis.com
+      - servicenetworking.googleapis.com
+      - secretmanager.googleapis.com
+      - notebooks.googleapis.com
+      - aiplatform.googleapis.com
+      - iap.googleapis.com
+      - modelarmor.googleapis.com
+      - dlp.googleapis.com
+    providerVersions:
+      - source: hashicorp/google
+        version: ">= 8.5, < 9"
