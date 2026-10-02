@@ -1,0 +1,63 @@
+# Copyright 2026 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-vertex-ai-semantic-governance-policy-display
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Vertex AI (Gemini Enterprise Agent Platform) Semantic Governance Policy Module
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
+      sourceType: git
+      dir: /modules/semantic-governance-policy
+  ui:
+    input:
+      variables:
+        agent:
+          name: agent
+          title: Agent
+        deletion_policy:
+          name: deletion_policy
+          title: Deletion Policy
+        denial_message:
+          name: denial_message
+          title: Denial Message
+        description:
+          name: description
+          title: Description
+        display_name:
+          name: display_name
+          title: Display Name
+        mcp_tools:
+          name: mcp_tools
+          title: MCP Tools
+        natural_language_constraint:
+          name: natural_language_constraint
+          title: Natural Language Constraint
+        policy_engine_state:
+          name: policy_engine_state
+          title: Policy Engine State
+        project_id:
+          name: project_id
+          title: Project ID
+        region:
+          name: region
+          title: Region
+        semantic_governance_policy_id:
+          name: semantic_governance_policy_id
+          title: Policy ID

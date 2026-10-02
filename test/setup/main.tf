@@ -39,6 +39,8 @@ module "project" {
     "iap.googleapis.com",
     "modelarmor.googleapis.com",
     "dlp.googleapis.com",
+    "agentregistry.googleapis.com",
+    "compute.googleapis.com",
   ]
 
   disable_dependent_services  = false
