@@ -71,15 +71,17 @@ spec:
       - name: description
         description: The description of the Reasoning Engine.
         varType: string
+        defaultValue: null
       - name: kms_key_name
         description: Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key.
         varType: string
+        defaultValue: null
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-kms
               version: ">= 4.1.2"
             spec:
-              outputExpr: "key_id_list[0]"
+              outputExpr: key_id_list[0]
       - name: spec
         description: Configurations of the Reasoning Engine.
         varType: |-
@@ -132,6 +134,7 @@ spec:
               service_account = optional(string)
               identity_type   = optional(string)
             })
+        defaultValue: null
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
@@ -197,19 +200,19 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/agent"'
+              outputExpr: "\"${url}/agent\""
               inputPath: package_spec.pickle_object_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/requirements"'
+              outputExpr: "\"${url}/requirements\""
               inputPath: package_spec.requirements_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/dependencies"'
+              outputExpr: "\"${url}/dependencies\""
               inputPath: package_spec.dependency_files_gcs_uri
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-floorsetting
@@ -233,7 +236,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
               version: ">= 0.9.0"
             spec:
-              outputExpr: '[{"name": "REASONING_ENGINE_SECRET", "secret_ref": {"secret": split("/", name)[length(split("/", name)) - 1], "version": version}}]'
+              outputExpr: "[{\"name\": \"REASONING_ENGINE_SECRET\", \"secret_ref\": {\"secret\": split(\"/\", name)[length(split(\"/\", name)) - 1], \"version\": version}}]"
               inputPath: deployment_spec.secret_env
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
