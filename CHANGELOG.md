@@ -8,6 +8,15 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [8.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v8.0.0...v8.0.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* populate null defaultValue in model-armor-floorsetting blueprint metadata ([#140](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/140)) ([0287f26](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/0287f26a01433e5e58228f6e7d797c9a51e0467d))
+* populate null defaultValue in model-armor-template blueprint metadata ([#141](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/141)) ([fd815d7](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/fd815d7afd273cd2bf1f17c0d9a4541e425c040a))
+* populate null defaultValue in vertex-ai-agent-engine blueprint metadata ([#142](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/142)) ([273342a](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/273342a0c80f14715039aaacb0133e4845cd1215))
+
 ## [8.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v7.4.0...v8.0.0) (2026-09-14)
 
 
