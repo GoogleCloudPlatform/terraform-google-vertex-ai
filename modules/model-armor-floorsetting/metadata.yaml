@@ -53,12 +53,15 @@ spec:
       - name: project_id
         description: The ID of the project to create the floor settings in. This has the highest precedence; if provided, folder_id and org_id are ignored.
         varType: string
+        defaultValue: null
       - name: folder_id
         description: The ID of the folder to create the floor settings in. This takes precedence over org_id, but is ignored if project_id is provided.
         varType: string
+        defaultValue: null
       - name: org_id
         description: The ID of the organization to create the floor settings in. This is only used if both project_id and folder_id are null.
         varType: string
+        defaultValue: null
       - name: enable_floor_setting_enforcement
         description: Floor Settings enforcement status
         varType: bool
@@ -76,6 +79,7 @@ spec:
               hate_speech       = optional(string)
               harassment        = optional(string)
             })
+        defaultValue: null
       - name: sdp_settings
         description: Sensitive Data Protection settings
         varType: |-
@@ -86,9 +90,11 @@ spec:
                 deidentify_template = optional(string)
               }))
             })
+        defaultValue: null
       - name: pi_and_jailbreak_filter_settings
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
+        defaultValue: null
       - name: ai_platform_floor_setting
         description: "Configure the AI Platform floor setting; Note: Value AI_PLATFORM must be in Integrated Services Field."
         varType: |-
@@ -97,6 +103,7 @@ spec:
               inspect_and_block    = optional(bool)
               enable_cloud_logging = optional(bool)
             })
+        defaultValue: null
       - name: enable_multi_language_detection
         description: If true, multi language detection will be enabled
         varType: bool
@@ -113,6 +120,7 @@ spec:
               inspect_and_block    = optional(bool)
               enable_cloud_logging = optional(bool)
             })
+        defaultValue: null
     outputs:
       - name: floorsetting
         description: Model armor floor setting created
