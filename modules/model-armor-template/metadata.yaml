@@ -79,6 +79,7 @@ spec:
               hate_speech       = optional(string)
               harassment        = optional(string)
             })
+        defaultValue: null
       - name: sdp_settings
         description: Sensitive Data Protection settings
         varType: |-
@@ -89,9 +90,11 @@ spec:
                 deidentify_template = optional(string)
               }))
             })
+        defaultValue: null
       - name: pi_and_jailbreak_filter_settings
         description: Confidence level for Prompt injection and Jailbreak Filter settings
         varType: string
+        defaultValue: null
       - name: metadata_configs
         description: Message describing Template Metadata
         varType: |-
@@ -106,6 +109,7 @@ spec:
               custom_llm_response_safety_error_message = optional(string)
               custom_llm_response_safety_error_code    = optional(string)
             })
+        defaultValue: null
     outputs:
       - name: template
         description: Model armor template created
