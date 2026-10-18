@@ -85,9 +85,11 @@ spec:
       - name: display_name
         description: The user-defined name of the policy.
         varType: string
+        defaultValue: null
       - name: description
         description: The description of the policy.
         varType: string
+        defaultValue: null
       - name: mcp_tools
         description: Scopes the policy to a tool the agent calls through an MCP server. Each entry names an Agent Registry MCP server (projects/{project}/locations/{location}/mcpServers/{mcp_server}) and the tools it covers. Each tool is the tool's name as the MCP server lists it (for example get_order_status), not a resource name; a name that does not match exactly never matches a tool call. When empty, the policy applies to the agent as a whole.
         varType: |-
@@ -99,9 +101,11 @@ spec:
       - name: denial_message
         description: Message shown to the end user when this policy denies a tool call. Use it to explain the rationale. When null or empty, the default denial message is used.
         varType: string
+        defaultValue: null
       - name: deletion_policy
         description: "How Terraform treats destruction of the policy: DELETE (delete the policy), PREVENT (fail the destroy), or ABANDON (drop from state without deleting). When null, the provider-level deletion_policy applies, which defaults to DELETE."
         varType: string
+        defaultValue: null
       - name: policy_engine_state
         description: Optional. The state of the project's SemanticGovernancePolicyEngine, e.g. module.<engine>.policy_engine.state. Wiring it makes this policy wait for the engine and fails fast unless the engine is ACTIVE. Use it where depends_on is not available, such as Application Design Center connections; plain Terraform can use depends_on instead.
         varType: string
@@ -111,6 +115,7 @@ spec:
               version: ">= 8.0.0"
             spec:
               outputExpr: policy_engine.state
+        defaultValue: null
     outputs:
       - name: policy
         description: The full google_vertex_ai_semantic_governance_policy resource object, including its name and agent_identity.
