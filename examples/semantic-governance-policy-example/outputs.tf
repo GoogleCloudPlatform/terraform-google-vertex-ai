@@ -28,3 +28,23 @@ output "agent_identity" {
   value       = module.semantic_governance_policy.policy.agent_identity
   description = "The principal of the governed agent"
 }
+
+output "agent" {
+  value       = module.semantic_governance_policy.policy.agent
+  description = "The Agent Registry name of the governed agent"
+}
+
+output "registry_agent" {
+  value       = data.google_agent_registry_agent.agent.id
+  description = "The Agent Registry name the example looked up for its agent"
+}
+
+output "denial_message" {
+  value       = one(module.semantic_governance_policy.policy.agent_response_customization[*].denial_message)
+  description = "The denial message stored on the policy"
+}
+
+output "engine_state" {
+  value       = module.semantic_governance_policy_engine.policy_engine.state
+  description = "The state of the Semantic Governance Policy Engine"
+}

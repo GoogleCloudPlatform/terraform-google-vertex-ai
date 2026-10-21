@@ -20,7 +20,9 @@ locals {
 
 # A policy can only be created once the project has an active engine in the
 # same region. The policy has no attribute that references the engine, so the
-# ordering is declared explicitly with depends_on below.
+# policy module below takes the engine's state as policy_engine_state, which
+# orders it after the engine and checks the engine is ACTIVE. depends_on works
+# too in plain Terraform.
 module "semantic_governance_policy_engine" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
 
@@ -66,6 +68,5 @@ module "semantic_governance_policy" {
   natural_language_constraint   = "Do not call internal developer endpoints."
   agent                         = data.google_agent_registry_agent.agent.id
   denial_message                = "This request was blocked because it targets an internal developer endpoint."
-
-  depends_on = [module.semantic_governance_policy_engine]
+  policy_engine_state           = module.semantic_governance_policy_engine.policy_engine.state
 }
