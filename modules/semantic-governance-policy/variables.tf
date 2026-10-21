@@ -81,7 +81,7 @@ variable "mcp_tools" {
   }
 
   validation {
-    condition     = alltrue([for t in var.mcp_tools : t.tools == null ? false : length(t.tools) > 0 && alltrue([for name in t.tools : length(trimspace(name)) > 0 && !strcontains(name, "/")])])
+    condition     = alltrue([for t in var.mcp_tools : t.tools == null ? false : length(t.tools) > 0 && alltrue([for name in t.tools : length(trimspace(name)) > 0 && !can(regex("/", name))])])
     error_message = "Each mcp_tools entry must list at least one tool, and each tool must be a non-empty tool name (for example get_order_status), not a resource name."
   }
 }
