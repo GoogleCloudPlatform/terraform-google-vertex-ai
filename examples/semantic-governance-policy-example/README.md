@@ -29,8 +29,12 @@ terraform apply
 
 | Name | Description |
 |------|-------------|
+| agent | The Agent Registry name of the governed agent |
 | agent\_identity | The principal of the governed agent |
+| denial\_message | The denial message stored on the policy |
+| engine\_state | The state of the Semantic Governance Policy Engine |
 | name | The resource name of the policy |
 | project\_id | The project ID |
+| registry\_agent | The Agent Registry name the example looked up for its agent |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
