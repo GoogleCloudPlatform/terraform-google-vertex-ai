@@ -49,9 +49,9 @@ spec:
         natural_language_constraint:
           name: natural_language_constraint
           title: Natural Language Constraint
-        policy_engine_state:
-          name: policy_engine_state
-          title: Policy Engine State
+        module_depends_on:
+          name: module_depends_on
+          title: Module Depends On
         project_id:
           name: project_id
           title: Project ID

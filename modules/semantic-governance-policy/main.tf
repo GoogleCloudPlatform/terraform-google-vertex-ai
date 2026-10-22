@@ -39,10 +39,8 @@ resource "google_vertex_ai_semantic_governance_policy" "policy" {
     }
   }
 
-  lifecycle {
-    precondition {
-      condition     = var.policy_engine_state == null || var.policy_engine_state == "ACTIVE"
-      error_message = "The SemanticGovernancePolicyEngine must be ACTIVE before a policy can be created in this project and region."
-    }
-  }
+  # The policy has no attribute that references the engine it needs, so callers
+  # that can't use depends_on (Application Design Center connections) order it
+  # through this input instead.
+  depends_on = [var.module_depends_on]
 }

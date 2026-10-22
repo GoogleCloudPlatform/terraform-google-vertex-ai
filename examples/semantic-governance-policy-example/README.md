@@ -2,7 +2,7 @@
 
 This example creates a [Semantic Governance Policy](https://cloud.google.com/gemini-enterprise-agent-platform/govern/policies/semantic-governance-overview) for an agent using the `semantic-governance-policy` module. It also creates what the policy needs: a Semantic Governance Policy Engine in the same region (with the `semantic-governance-policy-engine` module) and an Agent Engine agent, which it then looks up in Agent Registry.
 
-A policy can only be created once the engine is active, and the policy has no attribute that references the engine, so the example passes the engine's state to the policy module's `policy_engine_state` input. That orders the policy after the engine and checks that the engine is `ACTIVE`; `depends_on` on the policy module works too. Engine provisioning is a long-running operation (typically a few minutes, up to ~20). The example also waits 120 seconds for Agent Registry to register the new agent.
+A policy can only be created once the engine is active, and the policy has no attribute that references the engine, so the example passes the engine's id to the policy module's `module_depends_on` input, which orders the policy after the engine. `depends_on` on the policy module works too. Engine provisioning is a long-running operation (typically a few minutes, up to ~20). The example also waits 120 seconds for Agent Registry to register the new agent.
 
 ## Usage
 

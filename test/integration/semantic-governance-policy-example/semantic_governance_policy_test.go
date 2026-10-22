@@ -45,8 +45,8 @@ func TestSemanticGovernancePolicyExample(t *testing.T) {
 		name := sgp.GetStringOutput("name")
 		assert.Contains(name, "/locations/us-central1/semanticGovernancePolicies/no-internal-endpoints", "unexpected policy name %q", name)
 
-		// The policy module checks policy_engine_state, and the API rejects a
-		// policy create unless the engine is ACTIVE.
+		// The API rejects a policy create unless the engine is ACTIVE, and the
+		// example orders the policy after the engine through module_depends_on.
 		assert.Equal("ACTIVE", sgp.GetStringOutput("engine_state"), "engine should be ACTIVE")
 
 		// These come back from the server, so they show the module sent the

@@ -103,8 +103,8 @@ variable "deletion_policy" {
   }
 }
 
-variable "policy_engine_state" {
-  description = "Optional. The state of the project's SemanticGovernancePolicyEngine, e.g. module.<engine>.policy_engine.state. Wiring it makes this policy wait for the engine and fails fast unless the engine is ACTIVE. Use it where depends_on is not available, such as Application Design Center connections; plain Terraform can use depends_on instead."
-  type        = string
-  default     = null
+variable "module_depends_on" {
+  description = "A list of external resources or modules that this module should depend on, such as the SemanticGovernancePolicyEngine's id (module.<engine>.policy_engine.id), which must be active before the policy can be created. Use it where depends_on is not available, such as Application Design Center connections; plain Terraform can use depends_on instead."
+  type        = list(string)
+  default     = []
 }
