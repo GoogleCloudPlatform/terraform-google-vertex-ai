@@ -29,6 +29,7 @@ locals {
     "roles/cloudkms.cryptoKeyEncrypterDecrypter",
     "roles/modelarmor.admin",
     "roles/modelarmor.floorSettingsAdmin",
+    "roles/agentregistry.viewer",
   ]
 }
 

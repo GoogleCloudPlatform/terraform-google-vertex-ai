@@ -112,6 +112,7 @@ resource "google_model_armor_template" "model_armor_template" {
       custom_prompt_safety_error_code          = lookup(var.metadata_configs, "custom_prompt_safety_error_code")
       custom_prompt_safety_error_message       = lookup(var.metadata_configs, "custom_prompt_safety_error_message")
       enforcement_type                         = lookup(var.metadata_configs, "enforcement_type")
+      modalities                               = lookup(var.metadata_configs, "modalities")
       dynamic "multi_language_detection" {
         for_each = lookup(var.metadata_configs, "enable_multi_language_detection") == null ? [] : ["multi_language_detection"]
         content {

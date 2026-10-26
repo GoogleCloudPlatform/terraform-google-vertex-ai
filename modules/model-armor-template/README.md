@@ -50,7 +50,7 @@ module "model_armor_template" {
 | enable\_malicious\_uri\_filter\_settings | Enable Malicious URI filter settings | `bool` | `false` | no |
 | labels | Labels to apply to this model armor template | `map(string)` | `{}` | no |
 | location | the location of the template | `string` | n/a | yes |
-| metadata\_configs | Message describing Template Metadata | <pre>object({<br>    enforcement_type                         = optional(string, "")<br>    enable_multi_language_detection          = optional(bool)<br>    log_sanitize_operations                  = optional(bool, false)<br>    log_template_operations                  = optional(bool, false)<br>    ignore_partial_invocation_failures       = optional(bool, false)<br>    custom_prompt_safety_error_code          = optional(string)<br>    custom_prompt_safety_error_message       = optional(string)<br>    custom_llm_response_safety_error_message = optional(string)<br>    custom_llm_response_safety_error_code    = optional(string)<br>  })</pre> | `null` | no |
+| metadata\_configs | Message describing Template Metadata | <pre>object({<br>    enforcement_type                         = optional(string, "")<br>    enable_multi_language_detection          = optional(bool)<br>    log_sanitize_operations                  = optional(bool, false)<br>    log_template_operations                  = optional(bool, false)<br>    ignore_partial_invocation_failures       = optional(bool, false)<br>    custom_prompt_safety_error_code          = optional(string)<br>    custom_prompt_safety_error_message       = optional(string)<br>    custom_llm_response_safety_error_message = optional(string)<br>    custom_llm_response_safety_error_code    = optional(string)<br>    modalities                               = optional(list(string), [])<br>  })</pre> | `null` | no |
 | pi\_and\_jailbreak\_filter\_settings | Confidence level for Prompt injection and Jailbreak Filter settings | `string` | `null` | no |
 | project\_id | The ID of the project in which the resource belongs | `string` | n/a | yes |
 | rai\_filters | Confidence level for Responsible AI filters | <pre>object({<br>    dangerous         = optional(string)<br>    sexually_explicit = optional(string)<br>    hate_speech       = optional(string)<br>    harassment        = optional(string)<br>  })</pre> | `null` | no |
@@ -104,6 +104,8 @@ Detects [malicious content and jailbreak](https://cloud.google.com/security-comm
 
 `custom_llm_response_safety_error_message` - (Optional) Indicates the custom error message set by the user to be returned to the end user if the LLM response trips Model Armor filters.
 
+`modalities` - (Optional) Modalities to scan: `MODALITY_TEXT`, `MODALITY_IMAGE`. Empty (the default) scans text only. Image screening is in Preview and only supported in the `us` and `eu` multi-regions.
+
 `enforcement_type` - (Optional) Possible values: INSPECT_ONLY INSPECT_AND_BLOCK
 
 
@@ -118,7 +120,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.43+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v8.7+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:

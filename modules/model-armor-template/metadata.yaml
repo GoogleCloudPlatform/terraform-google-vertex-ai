@@ -108,6 +108,7 @@ spec:
               custom_prompt_safety_error_message       = optional(string)
               custom_llm_response_safety_error_message = optional(string)
               custom_llm_response_safety_error_code    = optional(string)
+              modalities                               = optional(list(string), [])
             })
         defaultValue: null
     outputs:
@@ -208,4 +209,4 @@ spec:
       - dlp.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.43, < 8"
+        version: ">= 8.7, < 9"

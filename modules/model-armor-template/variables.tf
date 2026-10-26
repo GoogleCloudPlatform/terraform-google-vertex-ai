@@ -82,6 +82,7 @@ variable "metadata_configs" {
     custom_prompt_safety_error_message       = optional(string)
     custom_llm_response_safety_error_message = optional(string)
     custom_llm_response_safety_error_code    = optional(string)
+    modalities                               = optional(list(string), [])
   })
   default = null
 }

@@ -37,6 +37,8 @@ spec:
         location: modules/model-armor-floorsetting
       - name: model-armor-template
         location: modules/model-armor-template
+      - name: semantic-governance-policy
+        location: modules/semantic-governance-policy
       - name: semantic-governance-policy-engine
         location: modules/semantic-governance-policy-engine
       - name: workbench
@@ -56,6 +58,10 @@ spec:
         location: examples/model-armor-template-example
       - name: semantic-governance-policy-engine-example
         location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
