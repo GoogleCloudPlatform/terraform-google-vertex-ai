@@ -24,6 +24,6 @@ terraform {
   }
 
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-vertex-ai:semantic-governance-policy/v8.0.0"
+    module_name = "blueprints/terraform/terraform-google-vertex-ai:semantic-governance-policy/v8.1.0"
   }
 }
