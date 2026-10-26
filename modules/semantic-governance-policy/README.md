@@ -7,7 +7,7 @@ A policy can only be created in a project and region that already has an active 
 ```hcl
 module "semantic_governance_policy" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy"
-  version = "~> 8.0"
+  version = "~> 8.1"
 
   project_id                    = var.project_id
   region                        = "us-central1"
