@@ -104,7 +104,7 @@ Detects [malicious content and jailbreak](https://cloud.google.com/security-comm
 
 `custom_llm_response_safety_error_message` - (Optional) Indicates the custom error message set by the user to be returned to the end user if the LLM response trips Model Armor filters.
 
-`modalities` - (Optional) Modalities to scan: `MODALITY_TEXT`, `MODALITY_IMAGE`. Empty (the default) scans text only. Image screening is in Preview and only supported in the `us` and `eu` multi-regions. Requires provider 8.7 or later.
+`modalities` - (Optional) Modalities to scan: `MODALITY_TEXT`, `MODALITY_IMAGE`. Empty (the default) scans text only. Image screening is in Preview and only supported in the `us` and `eu` multi-regions.
 
 `enforcement_type` - (Optional) Possible values: INSPECT_ONLY INSPECT_AND_BLOCK
 
@@ -120,7 +120,7 @@ These sections describe requirements for using this module.
 The following dependencies must be available:
 
 - [Terraform][terraform] v1.3+
-- [Terraform Provider for GCP][terraform-provider-gcp] plugin v6.43+
+- [Terraform Provider for GCP][terraform-provider-gcp] plugin v8.7+
 
 ### Enable API's
 In order to operate with the Service Account you must activate the following API on the project where the Service Account was created:
