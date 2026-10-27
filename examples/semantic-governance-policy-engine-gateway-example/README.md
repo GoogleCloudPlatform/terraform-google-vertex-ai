@@ -6,7 +6,9 @@ Unlike the [minimal example](../semantic-governance-policy-engine-example), whic
 
 Within a gateway entry, `network`, `subnetwork`, and `dns_zone_name` must be set together or all omitted; a partial set is rejected — this example sets all three. Network and subnetwork are passed as their full resource URIs — the resources' `.id` (of the form `projects/P/global/networks/N`), not `.self_link` (the `https://` form the API rejects) — so the configuration matches what the API stores and the gateway does not churn on later plans.
 
-> **Note:** provisioning the engine and each gateway is a long-running operation (typically a few minutes, up to ~20), and it creates real PSC/DNS infrastructure. This example is provided as a reference for using `gateway_configs`; it is not part of the module's automated integration test suite.
+The engine attaches the gateway as the project's Vertex AI service agent (`service-PROJECT_NUMBER@gcp-sa-aiplatform.iam.gserviceaccount.com`), so the example grants it `roles/compute.networkAdmin` and `roles/dns.admin` on the project before creating the engine. Without them the gateway reaches `FAILED` while the engine reports `ACTIVE`.
+
+> **Note:** provisioning the engine and each gateway is a long-running operation (typically a few minutes, up to ~20), and it creates real PSC/DNS infrastructure. The integration test `TestSemanticGovernancePolicyEngineGatewayExample` applies this example.
 
 ## Usage
 
