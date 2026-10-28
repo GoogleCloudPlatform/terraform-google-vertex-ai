@@ -4,6 +4,8 @@ This module wraps the [`google_vertex_ai_semantic_governance_policy_engine`](htt
 
 The engine is a project-level, regional singleton — each project has at most one engine per region. Provisioning sets up managed Private Service Connect (PSC) networking in your VPC and a policy decision point that the Agent Gateway consults at runtime. The policies themselves and the Agent Gateway integration are configured separately and are not managed by this module.
 
+To use `gateway_configs`, the project's Vertex AI service agent (`service-PROJECT_NUMBER@gcp-sa-aiplatform.iam.gserviceaccount.com`) needs `roles/compute.networkAdmin` and `roles/dns.admin` on the project, both to attach each gateway and to remove it when the engine is deleted. Without them a gateway reaches `FAILED` while the engine reports `ACTIVE`, and the engine may then fail to delete. The [gateway example](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/tree/main/examples/semantic-governance-policy-engine-gateway-example) shows how to grant them.
+
 ```hcl
 module "semantic_governance_policy_engine" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
