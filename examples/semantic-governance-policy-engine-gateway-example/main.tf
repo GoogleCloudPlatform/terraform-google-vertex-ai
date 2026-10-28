@@ -65,6 +65,15 @@ resource "google_project_iam_member" "vertex_ai_service_agent" {
   member   = google_project_service_identity.vertex_ai_service_agent.member
 }
 
+# Gives the grants time to propagate before the engine attaches the gateway, and
+# keeps them in place for a while after the engine is deleted, since the agent
+# also needs them to remove the PSC endpoint and A-record.
+resource "time_sleep" "vertex_ai_service_agent_iam" {
+  depends_on       = [google_project_iam_member.vertex_ai_service_agent]
+  create_duration  = "120s"
+  destroy_duration = "120s"
+}
+
 module "semantic_governance_policy_engine" {
   source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
 
@@ -83,5 +92,5 @@ module "semantic_governance_policy_engine" {
     }
   }
 
-  depends_on = [google_project_iam_member.vertex_ai_service_agent]
+  depends_on = [time_sleep.vertex_ai_service_agent_iam]
 }
