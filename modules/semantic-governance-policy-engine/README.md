@@ -9,7 +9,7 @@ To use `gateway_configs`, the project's Vertex AI service agent (`service-PROJEC
 ```hcl
 module "semantic_governance_policy_engine" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
-  version = "~> 8.1"
+  version = "~> 9.0"
 
   project_id = var.project_id
   region     = "us-central1"
