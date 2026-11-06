@@ -26,56 +26,12 @@ locals {
   member_prefix = lookup(local.identity_prefixes, local.identity_type, "")
 }
 
-resource "random_id" "suffix" {
-  count       = local.is_container_spec_deployment ? 1 : 0
-  provider    = random
-  byte_length = 4
-}
-
-resource "google_vertex_ai_reasoning_engine" "tenant_mds" {
-  count        = local.is_container_spec_deployment ? 1 : 0
-  provider     = google-nightly
-  display_name = "${var.display_name}-mds-${random_id.suffix[0].hex}"
-  description  = "Metadata agent to get tenant project service account"
-  region       = var.region
-  project      = var.project_id
-
-  spec {
-    source_code_spec {
-      inline_source {
-        source_archive = "H4sIAAAAAAAAA+2VXW+bMBSGuV1+hcVVKg0DSQAJKdK6Le0qdWmlaRfVNEUenBAawNQ2UdKq/30mhKXdh7KL0WrqeW6MP8+xX16b2kbnOJrA8+rSDTznYdliuN7AGfqO4/uu4bgD33UM4nWfmmFUUjFBiBGzVG7K5YJfs9+OO9T/n0Lt0+nnnC1hnmbQUYxaYH80+qP+A3envxcEw2Gg9R/5gdbf6SifR7x0/S8/XEyvQsKyjJQsWrIEej1dCfe13UfYewXFiry7uLw6OTufzN6ffTp+ez4Zu6Q+QCu6Xc0JpXYey5keXaiZFBHVXTS5JTkoFjPFmh5aboiAmyoVkOuqpGqtnvscXirUbiXpLsYh//tesPe/N6j9P3QG6P+nIMqYlOTjzp/H9b8Q9nqExDAnNxWITV9CNj8KdRMhaV5yobbeBanktq0SGRkTc6FUGdp2a3SacJ5kQNNCgShYZkc8LysFbSB75dql4NcQKbuochBpZO3qVhqb25WV2DRhawTIkhcSdKw2PE1A9XX412QBLAYhx3dmu751krEVF2ZIzNNtJub90S9rUaE1hdmci5n+CVQl+w/HqEoUZG5KEKs0AuvuxywFa3X/pm4HkYGUluDfuKrTj2nKcprsprAo4pW2lt56syFYR1AqMtkWKS/Cn6NNeaHvW8G5ai5KvdlHyvSP/rn+1O7+Jj7kf2fk7/3vD7X/fdfF9/9JaHxqRRmvYoulZcaU9kP+pXnCoUjSAuTX584SQRAEQRAEQRAEQRAEQRAEQRAEQZC/4TsjV0RZACgAAA=="
-      }
-
-      python_spec {
-        entrypoint_module = "agent"
-        entrypoint_object = "root_agent"
-      }
-    }
-  }
-}
-
-data "google_vertex_ai_reasoning_engine_query" "tenant_mds" {
-  count               = local.is_container_spec_deployment ? 1 : 0
-  provider            = google-nightly
-  project             = var.project_id
-  region              = var.region
-  reasoning_engine_id = google_vertex_ai_reasoning_engine.tenant_mds[0].name
-  depends_on          = [google_vertex_ai_reasoning_engine.tenant_mds]
-}
-
 resource "google_project_iam_member" "vertex_ar_reader" {
   count      = local.is_container_spec_deployment ? 1 : 0
   project    = data.google_project.project.project_id
   role       = "roles/artifactregistry.reader"
   member     = "serviceAccount:service-${data.google_project.project.number}@gcp-sa-aiplatform-re.iam.gserviceaccount.com"
-  depends_on = [data.google_vertex_ai_reasoning_engine_query.tenant_mds]
-}
-
-resource "google_project_iam_member" "tenant_ar_reader" {
-  count   = local.is_container_spec_deployment ? 1 : 0
-  project = data.google_project.project.project_id
-  role    = "roles/artifactregistry.reader"
-  member  = "serviceAccount:${jsondecode(data.google_vertex_ai_reasoning_engine_query.tenant_mds[0].output).output}"
+  depends_on = [google_project_service_identity.aiplatform_identity]
 }
 
 resource "google_vertex_ai_reasoning_engine" "main" {
@@ -88,8 +44,7 @@ resource "google_vertex_ai_reasoning_engine" "main" {
   depends_on = [
     google_project_iam_member.aiplatform_roles,
     var.module_depends_on,
-    google_project_iam_member.vertex_ar_reader,
-    google_project_iam_member.tenant_ar_reader
+    google_project_iam_member.vertex_ar_reader
   ]
 
   dynamic "encryption_spec" {
