@@ -8,6 +8,17 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [9.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v8.1.0...v9.0.0) (2026-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove addition tenant_mds agent ([#150](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/150))
+
+### Bug Fixes
+
+* remove addition tenant_mds agent ([#150](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/150)) ([e3f653c](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/e3f653c92b3e2fa7b7006fe09a7b11f5aeb58bb2))
+
 ## [8.1.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v8.0.0...v8.1.0) (2026-10-26)
 
 
