@@ -41,6 +41,7 @@ module "project" {
     "dlp.googleapis.com",
     "agentregistry.googleapis.com",
     "compute.googleapis.com",
+    "dns.googleapis.com",
   ]
 
   disable_dependent_services  = false
