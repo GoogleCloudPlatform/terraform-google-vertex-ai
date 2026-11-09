@@ -8,6 +8,13 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This changelog is generated automatically based on [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
+## [9.0.1](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v9.0.0...v9.0.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* make the semantic-governance-policy-engine gateway example work in a new project, and test it ([#149](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/issues/149)) ([1f1b423](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/commit/1f1b42382b5ba282c73c531dbdeb5750545d2c0f))
+
 ## [9.0.0](https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai/compare/v8.1.0...v9.0.0) (2026-11-06)
 
 
