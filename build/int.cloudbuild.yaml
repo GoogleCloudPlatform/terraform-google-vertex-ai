@@ -44,6 +44,23 @@ steps:
     - semantic-governance-policy-example-verify
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
   args: ['/bin/bash', '-c', 'cft test run TestSemanticGovernancePolicyExample --stage teardown --verbose']
+- id: semantic-governance-policy-engine-gateway-example-apply
+  # Runs after the SGP example's teardown: both examples create the project's
+  # policy engine in us-central1.
+  waitFor:
+    - semantic-governance-policy-example-teardown
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSemanticGovernancePolicyEngineGatewayExample --stage apply --verbose']
+- id: semantic-governance-policy-engine-gateway-example-verify
+  waitFor:
+    - semantic-governance-policy-engine-gateway-example-apply
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSemanticGovernancePolicyEngineGatewayExample --stage verify --verbose']
+- id: semantic-governance-policy-engine-gateway-example-teardown
+  waitFor:
+    - semantic-governance-policy-engine-gateway-example-verify
+  name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
+  args: ['/bin/bash', '-c', 'cft test run TestSemanticGovernancePolicyEngineGatewayExample --stage teardown --verbose']
 - id: model-armor-template-example-apply
   waitFor:
     - init-all
