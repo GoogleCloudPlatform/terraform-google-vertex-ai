@@ -32,7 +32,7 @@ resource "google_project_iam_member" "ma_sa_member" {
 
 module "model_armor_floorsetting" {
   source  = "GoogleCloudPlatform/vertex-ai/google//modules/model-armor-floorsetting"
-  version = "~> 8.0"
+  version = "~> 10.0"
 
   project_id          = var.project_id
   integrated_services = ["AI_PLATFORM", "GOOGLE_MCP_SERVER"]
@@ -43,9 +43,10 @@ module "model_armor_floorsetting" {
   }
 
   pi_and_jailbreak_filter_settings = "MEDIUM_AND_ABOVE"
+  malicious_uri_filter_settings    = "ENABLED"
 
   sdp_settings = {
-    basic_config_filter_enforcement = true
+    basic_config_filter_enforcement = "ENABLED"
   }
 
   ai_platform_floor_setting = {

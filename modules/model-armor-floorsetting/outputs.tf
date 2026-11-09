@@ -18,3 +18,28 @@ output "floorsetting" {
   value       = google_model_armor_floorsetting.model_armor_floorsetting
   description = "Model armor floor setting created"
 }
+
+output "id" {
+  value       = google_model_armor_floorsetting.model_armor_floorsetting.id
+  description = "An identifier for the Model Armor floor setting resource."
+}
+
+output "name" {
+  value       = google_model_armor_floorsetting.model_armor_floorsetting.name
+  description = "The resource name of the Model Armor floor setting."
+}
+
+output "parent" {
+  value       = google_model_armor_floorsetting.model_armor_floorsetting.parent
+  description = "The parent resource path (projects/{project}, folders/{folder}, or organizations/{organizationId})."
+}
+
+output "create_time" {
+  value       = google_model_armor_floorsetting.model_armor_floorsetting.create_time
+  description = "Timestamp when the Model Armor floor setting was created."
+}
+
+output "update_time" {
+  value       = google_model_armor_floorsetting.model_armor_floorsetting.update_time
+  description = "Timestamp when the Model Armor floor setting was last updated."
+}

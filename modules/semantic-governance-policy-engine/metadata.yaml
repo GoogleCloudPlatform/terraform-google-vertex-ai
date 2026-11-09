@@ -48,6 +48,8 @@ spec:
         location: examples/semantic-governance-policy-engine-example
       - name: semantic-governance-policy-engine-gateway-example
         location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -139,6 +141,7 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/agentregistry.viewer
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -153,6 +156,8 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 8.1, < 9"

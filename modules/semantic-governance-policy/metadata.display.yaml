@@ -46,12 +46,12 @@ spec:
         mcp_tools:
           name: mcp_tools
           title: MCP Tools
-        natural_language_constraint:
-          name: natural_language_constraint
-          title: Natural Language Constraint
         module_depends_on:
           name: module_depends_on
           title: Module Depends On
+        natural_language_constraint:
+          name: natural_language_constraint
+          title: Natural Language Constraint
         project_id:
           name: project_id
           title: Project ID

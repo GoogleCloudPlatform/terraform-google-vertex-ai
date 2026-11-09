@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Feature Online Store Module
+    title: Vertex AI (Gemini Enterprise Agent Platform) Feature Online Store Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
@@ -44,6 +44,12 @@ spec:
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
+      - name: semantic-governance-policy-engine-example
+        location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -126,6 +132,7 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/agentregistry.viewer
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -140,6 +147,8 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 6.45, < 8"
+        version: ">= 6.45, < 9"

@@ -23,7 +23,8 @@ locals {
 # policy module below takes the engine's id in module_depends_on, which orders
 # it after the engine. depends_on works too in plain Terraform.
 module "semantic_governance_policy_engine" {
-  source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
+  version = "~> 10.0"
 
   project_id = var.project_id
   region     = local.region
@@ -59,7 +60,8 @@ data "google_agent_registry_agent" "agent" {
 }
 
 module "semantic_governance_policy" {
-  source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy"
+  version = "~> 10.0"
 
   project_id                    = var.project_id
   region                        = local.region

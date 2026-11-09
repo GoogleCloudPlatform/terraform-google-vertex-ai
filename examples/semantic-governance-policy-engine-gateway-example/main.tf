@@ -48,7 +48,8 @@ resource "google_dns_managed_zone" "sgp_private_zone" {
 }
 
 module "semantic_governance_policy_engine" {
-  source = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/semantic-governance-policy-engine"
+  version = "~> 10.0"
 
   project_id = var.project_id
   region     = "us-central1"

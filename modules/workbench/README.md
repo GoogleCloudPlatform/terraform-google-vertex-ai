@@ -4,8 +4,8 @@ This module is used to create Vertex AI Workbench Instance. You can find example
 
 ```hcl
 module "simple_vertex_ai_workbench" {
-  source   = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
-  version  = "~> 2.0"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/workbench"
+  version = "~> 10.0"
 
   name       = "simple-vertex-ai-workbench"
   location   = "us-central1-a"

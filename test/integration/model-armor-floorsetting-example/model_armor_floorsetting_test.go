@@ -15,8 +15,8 @@
 package model_armor_floorsetting_test
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/gcloud"
 	"github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test/pkg/tft"
@@ -30,11 +30,22 @@ func TestModelArmorFloorsetting(t *testing.T) {
 		modelArmorFloorsetting.DefaultVerify(assert)
 
 		projectId := modelArmorFloorsetting.GetStringOutput("project_id")
-
+		id := modelArmorFloorsetting.GetStringOutput("id")
+		name := modelArmorFloorsetting.GetStringOutput("name")
+		parent := modelArmorFloorsetting.GetStringOutput("parent")
+		createTime := modelArmorFloorsetting.GetStringOutput("create_time")
+		updateTime := modelArmorFloorsetting.GetStringOutput("update_time")
 
 		mafs := gcloud.Runf(t, "model-armor floorsettings describe --full-uri=projects/%s/locations/global/floorSetting", projectId)
 		fmt.Println(mafs)
 
+		assert.Equal(fmt.Sprintf("projects/%s/locations/global/floorSetting", projectId), id, "No matching id")
+		assert.Equal(mafs.Get("name").String(), name, "No matching name")
+		assert.Equal(fmt.Sprintf("projects/%s", projectId), parent, "No matching parent")
+		assert.NotEmpty(createTime, "create_time output should not be empty")
+		assert.Equal(mafs.Get("createTime").String(), createTime, "No matching createTime")
+		assert.NotEmpty(updateTime, "update_time output should not be empty")
+		assert.Equal(mafs.Get("updateTime").String(), updateTime, "No matching updateTime")
 
 		assert.True(mafs.Get("enableFloorSettingEnforcement").Bool(), "enableFloorSettingEnforcement is not set to True")
 
@@ -48,7 +59,10 @@ func TestModelArmorFloorsetting(t *testing.T) {
 		assert.Equal("ENABLED", mafs.Get("filterConfig.sdpSettings.basicConfig.filterEnforcement").String(), "No matching filterConfig.sdpSettings.basicConfig.filterEnforcement")
 		assert.Equal("MEDIUM_AND_ABOVE", mafs.Get("filterConfig.piAndJailbreakFilterSettings.confidenceLevel").String(), "No matching filterConfig.piAndJailbreakFilterSettings.confidenceLevel")
 		assert.Equal("ENABLED", mafs.Get("filterConfig.piAndJailbreakFilterSettings.filterEnforcement").String(), "No matching filterConfig.piAndJailbreakFilterSettings.filterEnforcement")
-		assert.Equal("ENABLED", mafs.Get("filterConfig.sdpSettings.basicConfig.filterEnforcement").String(), "No matching filterConfig.sdpSettings.basicConfig.filterEnforcement")
+		assert.Equal("ENABLED", mafs.Get("filterConfig.maliciousUriFilterSettings.filterEnforcement").String(), "No matching filterConfig.maliciousUriFilterSettings.filterEnforcement")
+		assert.Len(mafs.Get("filterConfig.raiSettings.raiFilters").Array(), 2, "Expected 2 configured RAI filters")
+		assert.Equal("LOW_AND_ABOVE", mafs.Get("filterConfig.raiSettings.raiFilters.#(filterType==\"DANGEROUS\").confidenceLevel").String(), "No matching DANGEROUS RAI filter confidenceLevel")
+		assert.Equal("MEDIUM_AND_ABOVE", mafs.Get("filterConfig.raiSettings.raiFilters.#(filterType==\"SEXUALLY_EXPLICIT\").confidenceLevel").String(), "No matching SEXUALLY_EXPLICIT RAI filter confidenceLevel")
 	})
 	modelArmorFloorsetting.Test()
 }

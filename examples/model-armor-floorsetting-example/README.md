@@ -27,8 +27,13 @@ terraform apply
 
 | Name | Description |
 |------|-------------|
+| create\_time | Timestamp when the Model Armor floor setting was created. |
+| id | An identifier for the Model Armor floor setting resource. |
 | model\_armor\_floorsetting | floor setting created |
+| name | The resource name of the Model Armor floor setting. |
+| parent | The parent resource path. |
 | project\_id | The project ID |
+| update\_time | Timestamp when the Model Armor floor setting was last updated. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

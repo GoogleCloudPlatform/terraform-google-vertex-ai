@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Google Module for Vertex AI resources
+    title: Google Module for Vertex AI (Gemini Enterprise Agent Platform) resources
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git

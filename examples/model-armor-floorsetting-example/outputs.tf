@@ -23,3 +23,28 @@ output "model_armor_floorsetting" {
   value       = module.model_armor_floorsetting.floorsetting
   description = "floor setting created"
 }
+
+output "id" {
+  value       = module.model_armor_floorsetting.id
+  description = "An identifier for the Model Armor floor setting resource."
+}
+
+output "name" {
+  value       = module.model_armor_floorsetting.name
+  description = "The resource name of the Model Armor floor setting."
+}
+
+output "parent" {
+  value       = module.model_armor_floorsetting.parent
+  description = "The parent resource path."
+}
+
+output "create_time" {
+  value       = module.model_armor_floorsetting.create_time
+  description = "Timestamp when the Model Armor floor setting was created."
+}
+
+output "update_time" {
+  value       = module.model_armor_floorsetting.update_time
+  description = "Timestamp when the Model Armor floor setting was last updated."
+}
