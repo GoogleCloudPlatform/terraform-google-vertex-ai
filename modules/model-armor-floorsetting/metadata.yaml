@@ -44,6 +44,12 @@ spec:
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
+      - name: semantic-governance-policy-engine-example
+        location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -51,25 +57,21 @@ spec:
   interfaces:
     variables:
       - name: project_id
-        description: The ID of the project to create the floor settings in. This has the highest precedence; if provided, folder_id and org_id are ignored.
+        description: Google Cloud Project ID where the floor setting will be applied. Mutually exclusive with folder_id and org_id.
         varType: string
-        defaultValue: null
       - name: folder_id
-        description: The ID of the folder to create the floor settings in. This takes precedence over org_id, but is ignored if project_id is provided.
+        description: Numeric Folder ID where the floor setting will be applied. Mutually exclusive with project_id and org_id.
         varType: string
-        defaultValue: null
       - name: org_id
-        description: The ID of the organization to create the floor settings in. This is only used if both project_id and folder_id are null.
+        description: Numeric Organization ID where the floor setting will be applied. Mutually exclusive with project_id and folder_id.
         varType: string
-        defaultValue: null
       - name: enable_floor_setting_enforcement
         description: Floor Settings enforcement status
         varType: bool
         defaultValue: true
-      - name: enable_malicious_uri_filter_settings
-        description: Enable Malicious URI filter settings
-        varType: bool
-        defaultValue: false
+      - name: malicious_uri_filter_settings
+        description: Malicious URI filter enforcement status. Possible values are ENABLED or DISABLED. Set to null to omit.
+        varType: string
       - name: rai_filters
         description: Confidence level for Responsible AI filters
         varType: |-
@@ -79,22 +81,19 @@ spec:
               hate_speech       = optional(string)
               harassment        = optional(string)
             })
-        defaultValue: null
       - name: sdp_settings
-        description: Sensitive Data Protection settings
+        description: Sensitive Data Protection settings. Configure either basic_config_filter_enforcement (ENABLED or DISABLED) or advanced_config.
         varType: |-
           object({
-              basic_config_filter_enforcement = optional(bool, false)
+              basic_config_filter_enforcement = optional(string)
               advanced_config = optional(object({
                 inspect_template    = optional(string)
                 deidentify_template = optional(string)
               }))
             })
-        defaultValue: null
       - name: pi_and_jailbreak_filter_settings
-        description: Confidence level for Prompt injection and Jailbreak Filter settings
+        description: Confidence level for Prompt injection and Jailbreak Filter settings (LOW_AND_ABOVE, MEDIUM_AND_ABOVE, HIGH), or DISABLED to explicitly disable the filter.
         varType: string
-        defaultValue: null
       - name: ai_platform_floor_setting
         description: "Configure the AI Platform floor setting; Note: Value AI_PLATFORM must be in Integrated Services Field."
         varType: |-
@@ -103,9 +102,8 @@ spec:
               inspect_and_block    = optional(bool)
               enable_cloud_logging = optional(bool)
             })
-        defaultValue: null
       - name: enable_multi_language_detection
-        description: If true, multi language detection will be enabled
+        description: Enable multi-language detection for floor setting. Set to null to omit floor_setting_metadata.
         varType: bool
         defaultValue: true
       - name: integrated_services
@@ -120,10 +118,19 @@ spec:
               inspect_and_block    = optional(bool)
               enable_cloud_logging = optional(bool)
             })
-        defaultValue: null
     outputs:
+      - name: create_time
+        description: Timestamp when the Model Armor floor setting was created.
       - name: floorsetting
         description: Model armor floor setting created
+      - name: id
+        description: An identifier for the Model Armor floor setting resource.
+      - name: name
+        description: The resource name of the Model Armor floor setting.
+      - name: parent
+        description: The parent resource path (projects/{project}, folders/{folder}, or organizations/{organizationId}).
+      - name: update_time
+        description: Timestamp when the Model Armor floor setting was last updated.
   requirements:
     roles:
       - level: Project
@@ -141,6 +148,8 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -155,6 +164,9 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
+      - dns.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 7.13, < 8"
+        version: ">= 7.13, < 9"

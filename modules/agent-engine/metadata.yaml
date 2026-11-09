@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Agent Engine Module
+    title: Vertex AI (Gemini Enterprise Agent Platform) Agent Engine Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
@@ -44,6 +44,12 @@ spec:
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
+      - name: semantic-governance-policy-engine-example
+        location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -71,11 +77,9 @@ spec:
       - name: description
         description: The description of the Reasoning Engine.
         varType: string
-        defaultValue: null
       - name: kms_key_name
         description: Customer-managed encryption key name for a Reasoning Engine. If set, this Reasoning Engine and all sub-resources will be secured by this key.
         varType: string
-        defaultValue: null
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-kms
@@ -134,7 +138,6 @@ spec:
               service_account = optional(string)
               identity_type   = optional(string)
             })
-        defaultValue: null
         connections:
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-template
@@ -288,6 +291,8 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -302,8 +307,11 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
+      - dns.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 7.19, < 8"
+        version: ">= 7.19, < 9"
       - source: hashicorp/google-beta
-        version: ">= 7.19, < 8"
+        version: ">= 7.19, < 9"

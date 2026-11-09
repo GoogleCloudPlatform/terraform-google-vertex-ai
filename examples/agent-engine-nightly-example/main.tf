@@ -15,7 +15,8 @@
  */
 
 module "agent_engine" {
-  source = "../../modules/agent-engine-nightly"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/agent-engine-nightly"
+  version = "~> 10.0"
 
   project_id   = var.project_id
   display_name = "Vertex AI Agent Engine"

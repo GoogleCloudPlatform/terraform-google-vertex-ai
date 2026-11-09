@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Google Module for Vertex AI resources
+    title: Google Module for Vertex AI (Gemini Enterprise Agent Platform) resources
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
@@ -84,6 +84,8 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
+          - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -98,3 +100,6 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
+      - dns.googleapis.com

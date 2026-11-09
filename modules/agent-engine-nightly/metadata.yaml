@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Vertex AI Agent Engine Nightly Module
+    title: Vertex AI (Gemini Enterprise Agent Platform) Agent Engine Nightly Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git
@@ -44,6 +44,12 @@ spec:
         location: examples/model-armor-floorsetting-example
       - name: model-armor-template-example
         location: examples/model-armor-template-example
+      - name: semantic-governance-policy-engine-example
+        location: examples/semantic-governance-policy-engine-example
+      - name: semantic-governance-policy-engine-gateway-example
+        location: examples/semantic-governance-policy-engine-gateway-example
+      - name: semantic-governance-policy-example
+        location: examples/semantic-governance-policy-example
       - name: workbench-complete-example
         location: examples/workbench-complete-example
       - name: workbench-simple-example
@@ -79,7 +85,7 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-kms
               version: ">= 4.1.2"
             spec:
-              outputExpr: "key_id_list[0]"
+              outputExpr: key_id_list[0]
       - name: spec
         description: Configurations of the Reasoning Engine.
         varType: |-
@@ -206,19 +212,19 @@ spec:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/agent"'
+              outputExpr: "\"${url}/agent\""
               inputPath: package_spec.pickle_object_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/requirements"'
+              outputExpr: "\"${url}/requirements\""
               inputPath: package_spec.requirements_gcs_uri
           - source:
               source: github.com/terraform-google-modules/terraform-google-cloud-storage//modules/simple_bucket
               version: ">= 12.3.0"
             spec:
-              outputExpr: '"${url}/dependencies"'
+              outputExpr: "\"${url}/dependencies\""
               inputPath: package_spec.dependency_files_gcs_uri
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-vertex-ai//modules/model-armor-floorsetting
@@ -242,7 +248,7 @@ spec:
               source: github.com/GoogleCloudPlatform/terraform-google-secret-manager//modules/simple-secret
               version: ">= 0.9.0"
             spec:
-              outputExpr: '[{"name": "REASONING_ENGINE_SECRET", "secret_ref": {"secret": split("/", name)[length(split("/", name)) - 1], "version": version}}]'
+              outputExpr: "[{\"name\": \"REASONING_ENGINE_SECRET\", \"secret_ref\": {\"secret\": split(\"/\", name)[length(split(\"/\", name)) - 1], \"version\": version}}]"
               inputPath: deployment_spec.secret_env
           - source:
               source: github.com/GoogleCloudPlatform/terraform-google-cloud-spanner
@@ -359,7 +365,8 @@ spec:
           - roles/cloudkms.cryptoKeyEncrypterDecrypter
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
-          - roles/artifactregistry.reader
+          - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -374,12 +381,15 @@ spec:
       - iap.googleapis.com
       - modelarmor.googleapis.com
       - dlp.googleapis.com
+      - agentregistry.googleapis.com
+      - compute.googleapis.com
+      - dns.googleapis.com
     providerVersions:
       - source: hashicorp/google
-        version: ">= 7.19, < 8"
+        version: ">= 7.19, < 9"
       - source: hashicorp/google-beta
-        version: ">= 7.19, < 8"
+        version: ">= 7.19, < 9"
       - source: hashicorp/google-nightly
-        version: 9.0.0.27.0
+        version: 2026.4.8-7.27.0
       - source: hashicorp/random
         version: ">=3.9.0"

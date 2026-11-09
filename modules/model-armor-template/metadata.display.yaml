@@ -20,7 +20,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Module for Model Armor Template
+    title: Vertex AI (Gemini Enterprise Agent Platform) Model Armor Template Module
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-google-vertex-ai.git
       sourceType: git

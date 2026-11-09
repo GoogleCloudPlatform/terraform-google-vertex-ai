@@ -8,7 +8,8 @@ Here's a basic example of how to use the module:
 
 ```terraform
 module "agent_engine" {
-  source = "GoogleCloudPlatform/vertex-ai/google//modules/agent-engine"
+  source  = "GoogleCloudPlatform/vertex-ai/google//modules/agent-engine"
+  version = "~> 10.0"
 
   project_id   = "your-gcp-project-id"
   display_name = "My Awesome Agent"

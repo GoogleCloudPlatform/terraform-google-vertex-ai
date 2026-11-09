@@ -85,11 +85,9 @@ spec:
       - name: display_name
         description: The user-defined name of the policy.
         varType: string
-        defaultValue: null
       - name: description
         description: The description of the policy.
         varType: string
-        defaultValue: null
       - name: mcp_tools
         description: Scopes the policy to a tool the agent calls through an MCP server. Each entry names an Agent Registry MCP server (projects/{project}/locations/{location}/mcpServers/{mcp_server}) and the tools it covers. Each tool is the tool's name as the MCP server lists it (for example get_order_status), not a resource name; a name that does not match exactly never matches a tool call. When empty, the policy applies to the agent as a whole.
         varType: |-
@@ -101,11 +99,9 @@ spec:
       - name: denial_message
         description: Message shown to the end user when this policy denies a tool call. Use it to explain the rationale. When null or empty, the default denial message is used.
         varType: string
-        defaultValue: null
       - name: deletion_policy
         description: "How Terraform treats destruction of the policy: DELETE (delete the policy), PREVENT (fail the destroy), or ABANDON (drop from state without deleting). When null, the provider-level deletion_policy applies, which defaults to DELETE."
         varType: string
-        defaultValue: null
       - name: module_depends_on
         description: A list of external resources or modules that this module should depend on, such as the SemanticGovernancePolicyEngine's id (module.<engine>.policy_engine.id), which must be active before the policy can be created. Use it where depends_on is not available, such as Application Design Center connections; plain Terraform can use depends_on instead.
         varType: list(string)
@@ -164,6 +160,7 @@ spec:
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
           - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -180,6 +177,7 @@ spec:
       - dlp.googleapis.com
       - agentregistry.googleapis.com
       - compute.googleapis.com
+      - dns.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 8.5, < 9"

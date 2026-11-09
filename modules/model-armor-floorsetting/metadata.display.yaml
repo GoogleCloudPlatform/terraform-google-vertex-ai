@@ -52,6 +52,9 @@ spec:
         location:
           name: location
           title: Location
+        malicious_uri_filter_settings:
+          name: malicious_uri_filter_settings
+          title: Malicious Uri Filter Settings
         org_id:
           name: org_id
           title: Org Id

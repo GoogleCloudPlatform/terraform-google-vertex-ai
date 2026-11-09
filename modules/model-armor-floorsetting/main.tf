@@ -23,6 +23,21 @@ locals {
 
   # Construct the full parent path
   parent_path = "${local.parent_type}s/${local.parent_id}"
+
+  effective_rai_filters = var.rai_filters == null ? [] : [
+    for item in [
+      { filter_type = "DANGEROUS", confidence_level = var.rai_filters.dangerous },
+      { filter_type = "SEXUALLY_EXPLICIT", confidence_level = var.rai_filters.sexually_explicit },
+      { filter_type = "HATE_SPEECH", confidence_level = var.rai_filters.hate_speech },
+      { filter_type = "HARASSMENT", confidence_level = var.rai_filters.harassment },
+    ] : item if item.confidence_level != null
+  ]
+
+  has_sdp_advanced = try(var.sdp_settings.advanced_config, null) != null && (
+    try(var.sdp_settings.advanced_config.inspect_template, null) != null ||
+    try(var.sdp_settings.advanced_config.deidentify_template, null) != null
+  )
+  has_sdp_settings = try(var.sdp_settings.basic_config_filter_enforcement, null) != null || local.has_sdp_advanced
 }
 
 resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
@@ -35,59 +50,33 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
 
     # Responsible AI filters
     dynamic "rai_settings" {
-      for_each = var.rai_filters == null ? [] : ["rai_settings"]
+      for_each = length(local.effective_rai_filters) > 0 ? ["rai_settings"] : []
       content {
-
         dynamic "rai_filters" {
-          for_each = lookup(var.rai_filters, "dangerous") == null ? [] : ["dangerous"]
+          for_each = local.effective_rai_filters
           content {
-            filter_type      = "DANGEROUS"
-            confidence_level = lookup(var.rai_filters, "dangerous")
+            filter_type      = rai_filters.value.filter_type
+            confidence_level = rai_filters.value.confidence_level
           }
         }
-
-        dynamic "rai_filters" {
-          for_each = lookup(var.rai_filters, "sexually_explicit") == null ? [] : ["sexually_explicit"]
-          content {
-            filter_type      = "SEXUALLY_EXPLICIT"
-            confidence_level = lookup(var.rai_filters, "sexually_explicit")
-          }
-        }
-
-        dynamic "rai_filters" {
-          for_each = lookup(var.rai_filters, "hate_speech") == null ? [] : ["hate_speech"]
-          content {
-            filter_type      = "HATE_SPEECH"
-            confidence_level = lookup(var.rai_filters, "hate_speech")
-          }
-        }
-
-        dynamic "rai_filters" {
-          for_each = lookup(var.rai_filters, "harassment") == null ? [] : ["harassment"]
-          content {
-            filter_type      = "HARASSMENT"
-            confidence_level = lookup(var.rai_filters, "harassment")
-          }
-        }
-
       }
     }
 
     # Sensitive data protection filters
     dynamic "sdp_settings" {
-      for_each = var.sdp_settings == null ? [] : ["sdp_settings"]
+      for_each = local.has_sdp_settings ? ["sdp_settings"] : []
       content {
         dynamic "basic_config" {
-          for_each = lookup(var.sdp_settings, "basic_config_filter_enforcement") == true && try(var.sdp_settings.advanced_config, null) == null ? ["basic_config"] : []
+          for_each = try(var.sdp_settings.basic_config_filter_enforcement, null) == null ? [] : ["basic_config"]
           content {
-            filter_enforcement = "ENABLED"
+            filter_enforcement = var.sdp_settings.basic_config_filter_enforcement
           }
         }
         dynamic "advanced_config" {
-          for_each = try(var.sdp_settings.advanced_config, null) == null ? [] : ["advanced_config"]
+          for_each = local.has_sdp_advanced ? ["advanced_config"] : []
           content {
-            inspect_template    = lookup(var.sdp_settings.advanced_config, "inspect_template")
-            deidentify_template = lookup(var.sdp_settings.advanced_config, "deidentify_template")
+            inspect_template    = var.sdp_settings.advanced_config.inspect_template
+            deidentify_template = var.sdp_settings.advanced_config.deidentify_template
           }
         }
       }
@@ -97,50 +86,70 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
     dynamic "pi_and_jailbreak_filter_settings" {
       for_each = var.pi_and_jailbreak_filter_settings == null ? [] : ["pi_and_jailbreak_filter_settings"]
       content {
-        filter_enforcement = "ENABLED"
-        confidence_level   = var.pi_and_jailbreak_filter_settings
+        filter_enforcement = var.pi_and_jailbreak_filter_settings == "DISABLED" ? "DISABLED" : "ENABLED"
+        confidence_level   = var.pi_and_jailbreak_filter_settings == "DISABLED" ? null : var.pi_and_jailbreak_filter_settings
       }
     }
 
     # Malicious URI filter settings
     dynamic "malicious_uri_filter_settings" {
-      for_each = var.enable_malicious_uri_filter_settings ? ["malicious_uri_filter_settings"] : []
+      for_each = var.malicious_uri_filter_settings == null ? [] : ["malicious_uri_filter_settings"]
       content {
-        filter_enforcement = "ENABLED"
+        filter_enforcement = var.malicious_uri_filter_settings
       }
     }
 
   }
 
 
-  floor_setting_metadata {
-    multi_language_detection {
-      enable_multi_language_detection = var.enable_multi_language_detection
+  dynamic "floor_setting_metadata" {
+    for_each = var.enable_multi_language_detection == null ? [] : ["floor_setting_metadata"]
+    content {
+      multi_language_detection {
+        enable_multi_language_detection = var.enable_multi_language_detection
+      }
     }
   }
 
   dynamic "ai_platform_floor_setting" {
     for_each = var.ai_platform_floor_setting == null ? [] : ["ai_platform_floor_setting"]
     content {
-      inspect_only         = lookup(var.ai_platform_floor_setting, "inspect_only")
-      inspect_and_block    = lookup(var.ai_platform_floor_setting, "inspect_and_block")
-      enable_cloud_logging = lookup(var.ai_platform_floor_setting, "enable_cloud_logging")
+      inspect_only         = var.ai_platform_floor_setting.inspect_only == true ? true : null
+      inspect_and_block    = var.ai_platform_floor_setting.inspect_and_block == true ? true : null
+      enable_cloud_logging = var.ai_platform_floor_setting.enable_cloud_logging
     }
   }
 
   dynamic "google_mcp_server_floor_setting" {
     for_each = var.google_mcp_server_floor_setting == null ? [] : ["google_mcp_server_floor_setting"]
     content {
-      inspect_only         = lookup(var.google_mcp_server_floor_setting, "inspect_only")
-      inspect_and_block    = lookup(var.google_mcp_server_floor_setting, "inspect_and_block")
-      enable_cloud_logging = lookup(var.google_mcp_server_floor_setting, "enable_cloud_logging")
+      inspect_only         = var.google_mcp_server_floor_setting.inspect_only == true ? true : null
+      inspect_and_block    = var.google_mcp_server_floor_setting.inspect_and_block == true ? true : null
+      enable_cloud_logging = var.google_mcp_server_floor_setting.enable_cloud_logging
     }
   }
 
   lifecycle {
     precondition {
-      condition     = var.project_id != null || var.folder_id != null || var.org_id != null
-      error_message = "One of project_id, folder_id, or org_id must be provided to determine the parent resource."
+      condition     = (var.project_id != null ? 1 : 0) + (var.folder_id != null ? 1 : 0) + (var.org_id != null ? 1 : 0) == 1
+      error_message = "Exactly one of project_id, folder_id, or org_id must be provided to determine the parent resource."
+    }
+
+    precondition {
+      condition = var.project_id != null || (
+        length(var.integrated_services) == 0 &&
+        var.ai_platform_floor_setting == null &&
+        var.google_mcp_server_floor_setting == null
+      )
+      error_message = "integrated_services, ai_platform_floor_setting, and google_mcp_server_floor_setting are only supported for project-level floor settings (project_id)."
+    }
+
+    precondition {
+      condition = (
+        contains(var.integrated_services, "AI_PLATFORM") == (var.ai_platform_floor_setting != null) &&
+        contains(var.integrated_services, "GOOGLE_MCP_SERVER") == (var.google_mcp_server_floor_setting != null)
+      )
+      error_message = "ai_platform_floor_setting must be set if and only if 'AI_PLATFORM' is in integrated_services, and google_mcp_server_floor_setting must be set if and only if 'GOOGLE_MCP_SERVER' is in integrated_services."
     }
   }
 }
