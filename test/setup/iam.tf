@@ -30,6 +30,7 @@ locals {
     "roles/modelarmor.admin",
     "roles/modelarmor.floorSettingsAdmin",
     "roles/agentregistry.viewer",
+    "roles/dns.admin",
   ]
 }
 
