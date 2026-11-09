@@ -71,7 +71,7 @@ You can set the confidence level for each content filter. Possible values are:
 ## sdp_settings
 - `basic_config_filter_enforcement:` enables or disables Predefined infoTypes to detect [sensitive data types](https://cloud.google.com/security-command-center/docs/sanitize-prompts-responses#basic_sdp_configuration). Possible values are `ENABLED`, `DISABLED`, or `null` to omit. Mutually exclusive with `advanced_config`.
 
-- `advanced_config:` Model Armor lets you screen LLM prompts and responses using [Sensitive Data Protection](https://cloud.google.com/security-command-center/docs/sanitize-prompts-responses#advanced_sdp_configuration) templates (`inspect_template` and/or `deidentify_template`). Mutually exclusive with `basic_config_filter_enforcement`.
+- `advanced_config:` Model Armor lets you screen LLM prompts and responses using [Sensitive Data Protection](https://cloud.google.com/security-command-center/docs/sanitize-prompts-responses#advanced_sdp_configuration) templates (requires `inspect_template`, with optional `deidentify_template`). Mutually exclusive with `basic_config_filter_enforcement`.
 
 ## pi_and_jailbreak_filter_settings
 Detects [malicious content and jailbreak](https://cloud.google.com/security-command-center/docs/key-concepts-model-armor#ma-prompt-injection) attempts in a prompt. Possible values are:

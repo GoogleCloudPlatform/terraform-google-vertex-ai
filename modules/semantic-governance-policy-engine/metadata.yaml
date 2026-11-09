@@ -142,6 +142,7 @@ spec:
           - roles/modelarmor.admin
           - roles/modelarmor.floorSettingsAdmin
           - roles/agentregistry.viewer
+          - roles/dns.admin
     services:
       - cloudresourcemanager.googleapis.com
       - serviceusage.googleapis.com
@@ -158,6 +159,7 @@ spec:
       - dlp.googleapis.com
       - agentregistry.googleapis.com
       - compute.googleapis.com
+      - dns.googleapis.com
     providerVersions:
       - source: hashicorp/google
         version: ">= 8.1, < 9"

@@ -111,16 +111,16 @@ variable "sdp_settings" {
       !(try(var.sdp_settings.basic_config_filter_enforcement, null) != null && try(var.sdp_settings.advanced_config, null) != null) &&
       (
         try(var.sdp_settings.advanced_config, null) == null || (
+          try(var.sdp_settings.advanced_config.inspect_template, null) != null &&
+          length(trimspace(try(var.sdp_settings.advanced_config.inspect_template, null) != null ? var.sdp_settings.advanced_config.inspect_template : "")) > 0 &&
           (
-            (try(var.sdp_settings.advanced_config.inspect_template, null) != null && length(trimspace(try(var.sdp_settings.advanced_config.inspect_template, null) != null ? var.sdp_settings.advanced_config.inspect_template : "")) > 0) ||
-            (try(var.sdp_settings.advanced_config.deidentify_template, null) != null && length(trimspace(try(var.sdp_settings.advanced_config.deidentify_template, null) != null ? var.sdp_settings.advanced_config.deidentify_template : "")) > 0)
-          ) &&
-          (try(var.sdp_settings.advanced_config.inspect_template, null) == null || length(trimspace(try(var.sdp_settings.advanced_config.inspect_template, null) != null ? var.sdp_settings.advanced_config.inspect_template : "x")) > 0) &&
-          (try(var.sdp_settings.advanced_config.deidentify_template, null) == null || length(trimspace(try(var.sdp_settings.advanced_config.deidentify_template, null) != null ? var.sdp_settings.advanced_config.deidentify_template : "x")) > 0)
+            try(var.sdp_settings.advanced_config.deidentify_template, null) == null ||
+            length(trimspace(try(var.sdp_settings.advanced_config.deidentify_template, null) != null ? var.sdp_settings.advanced_config.deidentify_template : "x")) > 0
+          )
         )
       )
     )
-    error_message = "In sdp_settings, basic_config_filter_enforcement (ENABLED or DISABLED) and advanced_config are mutually exclusive, and advanced_config must specify at least one non-empty inspect_template or deidentify_template."
+    error_message = "In sdp_settings, basic_config_filter_enforcement (ENABLED or DISABLED) and advanced_config are mutually exclusive, and advanced_config must specify a non-empty inspect_template (and optional non-empty deidentify_template)."
   }
 }
 
