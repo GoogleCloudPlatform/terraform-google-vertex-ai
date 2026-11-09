@@ -131,25 +131,25 @@ resource "google_model_armor_floorsetting" "model_armor_floorsetting" {
 
   lifecycle {
     precondition {
-          condition     = (var.project_id != null ? 1 : 0) + (var.folder_id != null ? 1 : 0) + (var.org_id != null ? 1 : 0) == 1
-          error_message = "Exactly one of project_id, folder_id, or org_id must be provided to determine the parent resource."
-        }
-
-        precondition {
-          condition = var.project_id != null || (
-            length(var.integrated_services) == 0 &&
-            var.ai_platform_floor_setting == null &&
-            var.google_mcp_server_floor_setting == null
-          )
-          error_message = "integrated_services, ai_platform_floor_setting, and google_mcp_server_floor_setting are only supported for project-level floor settings (project_id)."
-        }
-
-        precondition {
-          condition = (
-            contains(var.integrated_services, "AI_PLATFORM") == (var.ai_platform_floor_setting != null) &&
-            contains(var.integrated_services, "GOOGLE_MCP_SERVER") == (var.google_mcp_server_floor_setting != null)
-          )
-          error_message = "ai_platform_floor_setting must be set if and only if 'AI_PLATFORM' is in integrated_services, and google_mcp_server_floor_setting must be set if and only if 'GOOGLE_MCP_SERVER' is in integrated_services."
-        }
+      condition     = (var.project_id != null ? 1 : 0) + (var.folder_id != null ? 1 : 0) + (var.org_id != null ? 1 : 0) == 1
+      error_message = "Exactly one of project_id, folder_id, or org_id must be provided to determine the parent resource."
     }
+
+    precondition {
+      condition = var.project_id != null || (
+        length(var.integrated_services) == 0 &&
+        var.ai_platform_floor_setting == null &&
+        var.google_mcp_server_floor_setting == null
+      )
+      error_message = "integrated_services, ai_platform_floor_setting, and google_mcp_server_floor_setting are only supported for project-level floor settings (project_id)."
+    }
+
+    precondition {
+      condition = (
+        contains(var.integrated_services, "AI_PLATFORM") == (var.ai_platform_floor_setting != null) &&
+        contains(var.integrated_services, "GOOGLE_MCP_SERVER") == (var.google_mcp_server_floor_setting != null)
+      )
+      error_message = "ai_platform_floor_setting must be set if and only if 'AI_PLATFORM' is in integrated_services, and google_mcp_server_floor_setting must be set if and only if 'GOOGLE_MCP_SERVER' is in integrated_services."
+    }
+  }
 }
